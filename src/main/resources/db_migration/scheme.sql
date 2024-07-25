@@ -41,11 +41,11 @@ create table roles (
 );
 
 CREATE TABLE users_roles (
-                             user_id               bigint not null,
-                             role_id               int not null,
-                             primary key (user_id, role_id),
-                             foreign key (user_id) references users (id),
-                             foreign key (role_id) references roles (id)
+                             users_id               bigint not null,
+                             roles_id               int not null,
+                             primary key (users_id, roles_id),
+                             foreign key (users_id) references users (id),
+                             foreign key (roles_id) references roles (id)
 );
 
 insert into roles (name)
@@ -59,7 +59,7 @@ values
     ('admin', '$2a$12$jcMLNqhHTEw7whvWxJiA1OZ5MmD4jXB/ufXhSAxmYokgyqb3DkDa2
 ', 'admin@gmail.com');
 
-insert into users_roles (user_id, role_id)
+insert into users_roles (users_id, roles_id)
 values
     (1, 1),
     (2, 2);
