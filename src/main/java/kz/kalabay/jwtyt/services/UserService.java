@@ -1,8 +1,11 @@
 package kz.kalabay.jwtyt.services;
 
 
+import kz.kalabay.jwtyt.mapper.UserMapper;
+import kz.kalabay.jwtyt.model.Photo;
 import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
+import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.repostory.RoleRepositories;
 import kz.kalabay.jwtyt.repostory.UserRepositories;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
+    private final UserMapper mapper;
     private final UserRepositories userRepositories;
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
@@ -46,6 +50,21 @@ public class UserService implements UserDetailsService {
         user.setEmail(userDto.getEmail());
         user.setRoles(List.of(roleService.getUserRole()));
         return userRepositories.save(user);
-
+    }
+    public User getByUsername(String username){
+        return userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("User not found"));
+    }
+    public List<UserDto> getAllFriend(String username){
+        User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("User not found"));
+        return mapper.mapToDTOList(user.getFriends());
+    }
+    public UserDto getUserByUsername(String username){
+        return mapper.mapToDTO(userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found")));
+    }
+    public User getUserById(Long id){
+        return userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found"));
+    }
+    public UserDto getUserByIdDto(Long id){
+        return mapper.mapToDTO(userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
 }

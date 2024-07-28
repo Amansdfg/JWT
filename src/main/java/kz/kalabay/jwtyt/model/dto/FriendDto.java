@@ -1,9 +1,5 @@
 package kz.kalabay.jwtyt.model.dto;
-
-import jakarta.persistence.*;
-
 import kz.kalabay.jwtyt.model.Photo;
-import kz.kalabay.jwtyt.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +11,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class FriendDto {
     private Long id;
     private String username;
+    private List<Photo> photos;
     private String email;
-    private List<Role> roles;
-    private List<Photo>photos;
-    private List<FriendDto> friends;
 }

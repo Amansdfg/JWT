@@ -1,38 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import Header from "./Header/Header.jsx";
+import {useEffect, useState} from "react";
+import Chat from "./Chat/Chat.jsx";
+import axios from "../util/axios.js";
 const Home = () => {
-    const [message, setMessage] = useState('');
+    return (
+        <>
+            <Header/>
+            {/*<Chat contacts={friends}/>*/}
+        </>
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const token = localStorage.getItem('token');
-            console.log(token)
-            console.log(`Bearer ${token}`);
-            if (!token) {
-                console.log(token)
-                setMessage('No token found. Please log in.');
-                return;
-            }
-            try {
-                const response = await axios.get('http://localhost:8080/aman/info', {
-
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setMessage(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setMessage('Error fetching data.');
-
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    return <div>{message}</div>;
+    );
 };
 
 export default Home;

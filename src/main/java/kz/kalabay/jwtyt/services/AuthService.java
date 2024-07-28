@@ -2,10 +2,7 @@ package kz.kalabay.jwtyt.services;
 
 import kz.kalabay.jwtyt.exceptions.AppError;
 import kz.kalabay.jwtyt.model.User;
-import kz.kalabay.jwtyt.model.dto.JwtRequest;
-import kz.kalabay.jwtyt.model.dto.JwtResponse;
-import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
-import kz.kalabay.jwtyt.model.dto.UserDto;
+import kz.kalabay.jwtyt.model.dto.*;
 import kz.kalabay.jwtyt.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,6 +38,6 @@ public class AuthService {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Username already exists"), HttpStatus.BAD_REQUEST);
         }
         User user=userService.createNewUser(userDto);
-        return ResponseEntity.ok(new UserDto(user.getId(),user.getUsername(),user.getEmail()));
+        return ResponseEntity.ok(new JwtUserDto(user.getId(),user.getUsername(),user.getEmail()));
     }
 }

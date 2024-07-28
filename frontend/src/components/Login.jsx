@@ -1,8 +1,8 @@
 import {useInput} from "../hooks/useInput.js";
 import {isEmail,isNotEmpty,hasMinLength} from "../util/validation.js"
-import axios from 'axios';
+import axios from '../util/axios';
 import {useNavigate} from "react-router-dom";
-
+import './Login.css'
 export default function Login() {
     const navigate=useNavigate();
     const {
@@ -22,21 +22,22 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/aman/auth', {
+            const response = await axios.post('/aman/auth', {
                 username:emailValue,
                 password:passwordValue
             });
             localStorage.setItem('token', response.data.token);
             if(response.data.token){
-                navigate('/home');
+                navigate('/');
             }
         } catch (error) {
             console.error(error);
         }
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
+        <div className="flex justify-center items-center w-screen h-screen">
+        <form onSubmit={handleSubmit} className="form">
+            <h2 className="text-center text-white text-xl">Login</h2>
             <div className="control-row">
                 <div className="control no-margin">
                     <label htmlFor="email">Email</label>
@@ -70,5 +71,6 @@ export default function Login() {
                 <button className="button">Login</button>
             </p>
         </form>
+        </div>
     );
 }
