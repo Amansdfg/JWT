@@ -1,5 +1,3 @@
-import {register} from "../../util/list.js";
-import InputSection from "./InputSection.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useInput} from "../../hooks/useInput.js";
 import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../util/validation.js";
@@ -7,6 +5,12 @@ import axios from "../../util/axios.js";
 
 export default function From(){
     const navigate=useNavigate();
+    const {
+        value:userNameValue,
+        handleInputChange:handleUserNameChange,
+        handleInputBlur : handleUserNameBlur,
+        hasError:userNameHasError,
+    } = useInput('',(value)=>isNotEmpty(value));
     const {
         value:firstNameValue,
         handleInputChange:handleFirstNameChange,
@@ -44,21 +48,30 @@ export default function From(){
             const response = await axios.post('/aman/registration', {
                 firstName:firstNameValue,
                 lastName: lastNameValue,
-                username:emailValue,
+                username:userNameValue,
                 password:passwordValue,
                 confirmPassword: passwordConfirmationValue,
                 email: emailValue,
             });
-            localStorage.setItem('token', response.data.token);
-            if(response.data.token){
-                navigate('/');
-            }
         } catch (error) {
             console.error(error);
         }
     };
     return (
         <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
+            <div className="col-span-6">
+                <label htmlFor="UserName" className="block text-sm font-medium text-gray-700">Username</label>
+                <input
+                    type="text"
+                    id="UserName"
+                    name="userName"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    onBlur={handleUserNameBlur}
+                    onChange={handleUserNameChange}
+                    value={userNameValue}
+                />
+                {userNameHasError && <div className="control-error">Invalid UserName</div>}
+            </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
                     First Name
@@ -73,55 +86,54 @@ export default function From(){
                     onChange={handleFirstNameChange}
                     value={firstNameValue}
                 />
-                {firstNameHasError && <div className="control-error">Invalid FirstName</div> }
+                {firstNameHasError && <div className="control-error">Invalid FirstName</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
                     Last Name
                 </label>
                 <input
-                       type="text"
-                       id="LastName"
-                       name="last_name"
-                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
-                       onBlur={handleLastNameBlur}
-                       onChange={handleLastNameChange}
-                       value={lastNameValue}
+                    type="text"
+                    id="LastName"
+                    name="last_name"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    onBlur={handleLastNameBlur}
+                    onChange={handleLastNameChange}
+                    value={lastNameValue}
                 />
-                {lastNameHasError && <div className="control-error">Invalid LastName</div> }
+                {lastNameHasError && <div className="control-error">Invalid LastName</div>}
             </div>
             <div className="col-span-6">
                 <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
                 <input
-                       type="email"
-                       id="Email"
-                       name="email"
-                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
-                       onBlur={handleEmailBlur}
-                       onChange={handleEmailChange}
-                       value={emailValue}
+                    type="email"
+                    id="Email"
+                    name="email"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    onBlur={handleEmailBlur}
+                    onChange={handleEmailChange}
+                    value={emailValue}
                 />
-                {emailHasError && <div className="control-error">Invalid Email</div> }
+                {emailHasError && <div className="control-error">Invalid Email</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
                 <input
-                       type="text"
-                       id="Password"
-                       name="password"
-                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
-                       onBlur={handlePasswordBlur}
-                       onChange={handlePasswordChange}
-                       value={passwordValue}
+                    type="text"
+                    id="Password"
+                    name="password"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    onBlur={handlePasswordBlur}
+                    onChange={handlePasswordChange}
+                    value={passwordValue}
                 />
-                {passwordHasError && <div className="control-error">Invalid Email</div> }
+                {passwordHasError && <div className="control-error">Invalid Email</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
                     Password Confirmation
                 </label>
                 <input
-                    // type="password"
                     type="text"
                     id="PasswordConfirmation"
                     name="password_confirmation"
@@ -130,7 +142,7 @@ export default function From(){
                     onChange={handlePasswordConfirmationChange}
                     value={passwordConfirmationValue}
                 />
-                {passwordConfirmationHasError && <div className="control-error">Invalid Email</div> }
+                {passwordConfirmationHasError && <div className="control-error">Invalid Email</div>}
             </div>
             <div className="col-span-6">
                 <label htmlFor="MarketingAccept" className="flex gap-4">

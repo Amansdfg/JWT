@@ -12,8 +12,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -34,7 +32,7 @@ public class AuthService {
         if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(),"password and confirm password do not match"), HttpStatus.BAD_REQUEST);
         }
-        if(userService.findByUsername(userDto.getUsername()).isPresent()) {
+        if(userService.findByUsername(userDto.getEmail()).isPresent()) {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Username already exists"), HttpStatus.BAD_REQUEST);
         }
         User user=userService.createNewUser(userDto);

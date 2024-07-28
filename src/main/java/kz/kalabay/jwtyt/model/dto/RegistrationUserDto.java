@@ -1,8 +1,10 @@
 package kz.kalabay.jwtyt.model.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class RegistrationUserDto {
     private String firstName;
     private String lastName;

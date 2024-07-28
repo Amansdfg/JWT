@@ -10,7 +10,7 @@ export default function Login() {
         handleInputChange:handleEmailChange,
         handleInputBlur : handleEmailBlur,
         hasError:emailHasError,
-    } = useInput('',(value)=>isEmail(value) && isNotEmpty(value));
+    } = useInput('',(value)=>isNotEmpty(value));
     const {
         value:passwordValue,
         handleInputChange:handlePasswordChange,
@@ -23,7 +23,7 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await axios.post('/aman/auth', {
-                username:emailValue,
+                username: emailValue,
                 password:passwordValue
             });
             localStorage.setItem('token', response.data.token);
@@ -40,10 +40,9 @@ export default function Login() {
             <h2 className="text-center text-white text-xl">Login</h2>
             <div className="control-row">
                 <div className="control no-margin">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Username</label>
                     <input
                         id="email"
-                        type="email"
                         name="email"
                         onBlur={handleEmailBlur}
                         onChange={handleEmailChange}
@@ -54,6 +53,7 @@ export default function Login() {
 
                 <div className="control no-margin">
                     <label htmlFor="password">Password</label>
+
                     <input
                         id="password"
                         type="password"
@@ -61,8 +61,9 @@ export default function Login() {
                         onBlur={handlePasswordBlur}
                         onChange={handlePasswordChange}
                         value={passwordValue}
+                        autoComplete="username"
                     />
-                    { passwordHasError && <div className="control-error">Invalid Password</div> }
+                    {passwordHasError && <div className="control-error">Invalid Password</div>}
                 </div>
             </div>
 

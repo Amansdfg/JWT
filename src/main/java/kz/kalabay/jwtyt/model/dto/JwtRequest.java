@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Data
 @RequestMapping
 public class JwtRequest {
-    private  String username;
+    private String username;
     private String password;
 }

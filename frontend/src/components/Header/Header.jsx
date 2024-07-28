@@ -17,6 +17,7 @@ export default function Header({...props}) {
             const token = localStorage.getItem("token")
             if (!token) {
                 window.location.href = "/login";
+                return;
             }
             try {
                 const responseuser = await axios.get("/aman/info", {

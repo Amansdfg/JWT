@@ -37,6 +37,6 @@ public class MainController{
     }
     @GetMapping("/info")
     public UserDto userData(Principal principal){
-      return   userService.getUserByUsername(principal.getName());
+      return userService.getUserByUsername(principal.getName());
     }
 }
