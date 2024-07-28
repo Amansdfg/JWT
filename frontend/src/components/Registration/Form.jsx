@@ -1,6 +1,6 @@
 import {register} from "../../util/list.js";
 import InputSection from "./InputSection.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useInput} from "../../hooks/useInput.js";
 import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../util/validation.js";
 import axios from "../../util/axios.js";
@@ -58,10 +58,80 @@ export default function From(){
         }
     };
     return (
-        <form  className="mt-8 grid grid-cols-6 gap-6">
-            {register.map(item => (
-                <InputSection key={item.id} id={item.id} name={item.name}/>
-            ))}
+        <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
+            <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+                    First Name
+                </label>
+
+                <input
+                    id="FirstName"
+                    name="first_name"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    type="text"
+                    onBlur={handleFirstNameBlur}
+                    onChange={handleFirstNameChange}
+                    value={firstNameValue}
+                />
+                {firstNameHasError && <div className="control-error">Invalid FirstName</div> }
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
+                    Last Name
+                </label>
+                <input
+                       type="text"
+                       id="LastName"
+                       name="last_name"
+                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                       onBlur={handleLastNameBlur}
+                       onChange={handleLastNameChange}
+                       value={lastNameValue}
+                />
+                {lastNameHasError && <div className="control-error">Invalid LastName</div> }
+            </div>
+            <div className="col-span-6">
+                <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
+                <input
+                       type="email"
+                       id="Email"
+                       name="email"
+                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                       onBlur={handleEmailBlur}
+                       onChange={handleEmailChange}
+                       value={emailValue}
+                />
+                {emailHasError && <div className="control-error">Invalid Email</div> }
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
+                <input
+                       type="text"
+                       id="Password"
+                       name="password"
+                       className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                       onBlur={handlePasswordBlur}
+                       onChange={handlePasswordChange}
+                       value={passwordValue}
+                />
+                {passwordHasError && <div className="control-error">Invalid Email</div> }
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
+                    Password Confirmation
+                </label>
+                <input
+                    // type="password"
+                    type="text"
+                    id="PasswordConfirmation"
+                    name="password_confirmation"
+                    className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
+                    onBlur={handlePasswordConfirmationBlur}
+                    onChange={handlePasswordConfirmationChange}
+                    value={passwordConfirmationValue}
+                />
+                {passwordConfirmationHasError && <div className="control-error">Invalid Email</div> }
+            </div>
             <div className="col-span-6">
                 <label htmlFor="MarketingAccept" className="flex gap-4">
                     <input type="checkbox" id="MarketingAccept" name="marketing_accept"
@@ -86,7 +156,7 @@ export default function From(){
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
-                    <a href="#" className="text-gray-700 underline">Log in</a>.
+                    <Link to="/login" className="text-gray-700 underline">Log in</Link>.
                 </p>
             </div>
         </form>

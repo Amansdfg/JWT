@@ -6,6 +6,7 @@ export default function InputSection({id,name}){
             </label>
             <input type="text" id={id}
                    className="mt-1 p-2 w-full rounded-lg border text-gray-900 text-sm shadow-sm"/>
+            {hasError && <div className="control-error">Invalid Email</div> }
         </div>
     )
 }
