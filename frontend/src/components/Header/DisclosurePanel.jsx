@@ -13,11 +13,7 @@ export default function DisclosurePanel({isOpen,user}){
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className=
-                            // item.current ? 'bg-gray-900 text-white' :
-                                'text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
-
-                        // aria-current={item.current ? 'page' : undefined}
+                        className='text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
                     >
                         {item.name}
                     </DisclosureButton>
@@ -26,7 +22,7 @@ export default function DisclosurePanel({isOpen,user}){
             <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                        <img className="h-10 w-10 rounded-full" src={user.photos[0]??photo} alt="" />
+                        <img className="h-10 w-10 rounded-full" src={photo} alt="" />
                     </div>
                     <div className="ml-3">
                         <div className="text-base font-medium leading-none text-white">{user.username}</div>

@@ -16,7 +16,6 @@ const Secured = () => {
             }
             try {
                 const response = await axios.get('http://localhost:8080/aman/secured', {
-
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

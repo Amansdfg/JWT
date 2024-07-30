@@ -29,3 +29,4 @@ public class ChatController {
         return chatService.sendMessage(sender,receiver,text);
     }
 }
+

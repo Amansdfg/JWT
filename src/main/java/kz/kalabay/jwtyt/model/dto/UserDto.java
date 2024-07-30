@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 
 import kz.kalabay.jwtyt.model.Photo;
 import kz.kalabay.jwtyt.model.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,6 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserDto {
     private Long id;
     private String username;

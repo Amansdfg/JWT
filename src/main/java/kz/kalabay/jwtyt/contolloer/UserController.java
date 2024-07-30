@@ -18,7 +18,10 @@ public class UserController {
         return userService.getAllFriend(principal.getName());
     }
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable(name="id") Long id) {
-        return userService.getUserByIdDto(id);
+    public UserDto getUser(@PathVariable(value="id") Long id) {
+        System.out.println(id);
+        UserDto userDto=userService.getUserByIdDto(id);
+        System.out.println(userDto.toString());
+        return userDto;
     }
 }

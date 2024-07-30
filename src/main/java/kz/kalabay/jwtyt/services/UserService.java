@@ -65,6 +65,6 @@ public class UserService implements UserDetailsService {
         return userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found"));
     }
     public UserDto getUserByIdDto(Long id){
-        return mapper.mapToDTO(userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found")));
+        return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
 }

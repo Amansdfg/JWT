@@ -1,10 +1,7 @@
 package kz.kalabay.jwtyt.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(name="photos")
+@ToString
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

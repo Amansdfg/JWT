@@ -5,40 +5,16 @@ import Menu from "./menu/Menu.jsx";
 import DisclosurePanel from "./DisclosurePanel.jsx";
 import XMarkIcon from "./icons/XMarkIcon.jsx";
 import Bars3Icon from "./icons/Bars3Icon.jsx";
-import {useEffect, useState} from "react";
-import axios from "../../util/axios.js";
-
+import {useState} from "react";
 import {header} from "../../util/list.js";
-export default function Header({...props}) {
-    const [user,setUser]=useState({username:"aman",email:"asd",photos:[]});
+export default function Header({user}) {
     const [isOpen, setIsOpen] = useState(false);
-    useEffect(()=> {
-        const fetch = async ()=> {
-            const token = localStorage.getItem("token")
-            if (!token) {
-                window.location.href = "/login";
-                return;
-            }
-            try {
-                const responseuser = await axios.get("/aman/info", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                setUser(responseuser.data)
-            } catch (error) {
-                console.error("Error fetching header data:", error);
-                throw new Error("setr")
-            }
-        }
-        fetch()
-    },[])
-
     function handle(){
         setIsOpen(!isOpen);
     }
+    console.log(user)
     return (
-        <nav className='w-screen bg-gray-800' {...props}>
+        <nav className='w-screen bg-gray-800'>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 items-center justify-between">
                             <div className="flex items-center">
