@@ -2,10 +2,8 @@ import {setting} from "../../util/list.js";
 import DisclosureButton from "./DisclosureButton.jsx";
 import BellIcon from "./icons/BellIcon.jsx";
 import photo from "../../assets/No-photo.gif";
-import {header} from "../../util/list.js";
 import {useQuery} from "@tanstack/react-query";
 import {fetchUser} from "../../util/http.js";
-import {comment} from "postcss";
 import Loading from "../UI/Loading.jsx";
 import MainNavigation from "./MainNavigation.jsx";
 export default function DisclosurePanel({isOpen}){
@@ -13,7 +11,6 @@ export default function DisclosurePanel({isOpen}){
         queryKey:['user'],
         queryFn:fetchUser
     })
-    console.log(data)
     let content;
     if(isPending){
         content=<Loading/>
@@ -30,16 +27,6 @@ export default function DisclosurePanel({isOpen}){
     return(
         <div className={`md:hidden ${!isOpen?"hidden":""}`}>
             <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                {/*{header.map((item) => (*/}
-                {/*    <DisclosureButton*/}
-                {/*        key={item.name}*/}
-                {/*        as="a"*/}
-                {/*        href={item.href}*/}
-                {/*        className='text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'*/}
-                {/*    >*/}
-                {/*        {item.name}*/}
-                {/*    </DisclosureButton>*/}
-                {/*))}*/}
                 <MainNavigation/>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">

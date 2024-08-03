@@ -1,8 +1,8 @@
-import { header } from "../../util/list.js";
 import {Form, NavLink, useRouteLoaderData} from "react-router-dom";
+import {getAuthToken} from "../../util/auth.js";
 
 export default function MainNavigation() {
-    const token=useRouteLoaderData('root');
+    const token=getAuthToken()
     return (
         <ul className="ml-10 flex items-baseline space-x-4">
             <li>

@@ -35,7 +35,6 @@ export async function fetchUser(){
         }
         return await response.json();
     }
-
 }
 export async function fetchMessages({id,signal}){
     console.log("id:"+id+", signal"+ signal)
