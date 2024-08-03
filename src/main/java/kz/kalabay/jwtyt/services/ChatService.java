@@ -18,8 +18,7 @@ public class ChatService {
     public List<MessageDto> chat(User sender, User receiver) {
         return mapper.mapToDTOList(repositoryIndChat.findAllBySenderAndReceiverOrSenderAndReceiverOrderByDate(sender,receiver,receiver,sender));
     }
-    public MessageDto sendMessage(User sender, User receiver, String text) {
-        IndividualChat individualChat = new IndividualChat(sender, receiver, text);
+    public MessageDto sendMessage(IndividualChat individualChat) {
         return mapper.mapToDTO(repositoryIndChat.save(individualChat)) ;
     }
 

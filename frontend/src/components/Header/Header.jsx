@@ -7,12 +7,12 @@ import XMarkIcon from "./icons/XMarkIcon.jsx";
 import Bars3Icon from "./icons/Bars3Icon.jsx";
 import {useState} from "react";
 import {header} from "../../util/list.js";
-export default function Header({user}) {
+import MainNavigation from "./MainNavigation.jsx";
+export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     function handle(){
         setIsOpen(!isOpen);
     }
-    console.log(user)
     return (
         <nav className='w-screen bg-gray-800'>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -26,17 +26,7 @@ export default function Header({user}) {
                                     />
                                 </div>
                                 <div className="hidden md:block">
-                                    <div className="ml-10 flex items-baseline space-x-4">
-                                        {header.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
-                                    </div>
+                                    <MainNavigation/>
                                 </div>
                             </div>
                             <div className="hidden md:block">
@@ -49,7 +39,7 @@ export default function Header({user}) {
                                         <span className="sr-only">View notifications</span>
                                         <BellIcon/>
                                     </button>
-                                    <Menu header={header} user={user}/>
+                                    <Menu header={header}/>
                                 </div>
                             </div>
                             <div className="-mr-2 flex md:hidden">
@@ -65,7 +55,7 @@ export default function Header({user}) {
                             </div>
                         </div>
                     </div>
-                <DisclosurePanel user={user} isOpen={isOpen}/>
+                <DisclosurePanel isOpen={isOpen}/>
         </nav>
     )
 }

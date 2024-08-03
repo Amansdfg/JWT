@@ -20,5 +20,5 @@ export function isEqualsToOtherValue(value, otherValue) {
     return value === otherValue;
 }
 export function time(time){
-    return time.getHours()+":"+time.getMinutes()
+    return time.getHours()+":"+(time.getMinutes()<9?"0"+time.getMinutes():time.getMinutes());
 }

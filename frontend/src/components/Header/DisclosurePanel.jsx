@@ -3,21 +3,44 @@ import DisclosureButton from "./DisclosureButton.jsx";
 import BellIcon from "./icons/BellIcon.jsx";
 import photo from "../../assets/No-photo.gif";
 import {header} from "../../util/list.js";
-export default function DisclosurePanel({isOpen,user}){
-
+import {useQuery} from "@tanstack/react-query";
+import {fetchUser} from "../../util/http.js";
+import {comment} from "postcss";
+import Loading from "../UI/Loading.jsx";
+import MainNavigation from "./MainNavigation.jsx";
+export default function DisclosurePanel({isOpen}){
+    const {data,isError,isPending,error}=useQuery({
+        queryKey:['user'],
+        queryFn:fetchUser
+    })
+    console.log(data)
+    let content;
+    if(isPending){
+        content=<Loading/>
+    }
+    if(isError){
+        content=<p>Error</p>
+    }
+    if(data){
+        content=   <>
+            <div className="text-base font-medium leading-none text-white">{data.username}</div>
+            <div className="text-sm font-medium leading-none text-gray-400">{data.email}</div>
+        </>
+    }
     return(
         <div className={`md:hidden ${!isOpen?"hidden":""}`}>
             <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                {header.map((item) => (
-                    <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className='text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
-                    >
-                        {item.name}
-                    </DisclosureButton>
-                ))}
+                {/*{header.map((item) => (*/}
+                {/*    <DisclosureButton*/}
+                {/*        key={item.name}*/}
+                {/*        as="a"*/}
+                {/*        href={item.href}*/}
+                {/*        className='text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'*/}
+                {/*    >*/}
+                {/*        {item.name}*/}
+                {/*    </DisclosureButton>*/}
+                {/*))}*/}
+                <MainNavigation/>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5">
@@ -25,8 +48,7 @@ export default function DisclosurePanel({isOpen,user}){
                         <img className="h-10 w-10 rounded-full" src={photo} alt="" />
                     </div>
                     <div className="ml-3">
-                        <div className="text-base font-medium leading-none text-white">{user.username}</div>
-                        <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                        {content}
                     </div>
                     <button
                         type="button"

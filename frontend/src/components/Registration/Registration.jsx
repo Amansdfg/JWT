@@ -1,7 +1,7 @@
 
 import Left from "./Left.jsx";
 import Mobile from "./Mobile.jsx";
-import Form from "./Form.jsx";
+import Form from "./Register.jsx";
 const Registration=()=>{
     return (
         <section className="bg-white">

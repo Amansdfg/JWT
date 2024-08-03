@@ -1,6 +1,6 @@
 .form {
     width: 90%;
-    max-width: 20rem;
+    max-width: 28rem;
     margin: 3rem auto;
     padding: 2rem;
     background: linear-gradient(180deg, #253c3c, #1d4949);
@@ -90,7 +90,7 @@ fieldset {
 
 .form-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 1rem;
     margin: 10px auto;
 }
@@ -119,4 +119,12 @@ fieldset {
 .button-flat:focus {
     background-color: transparent;
     color: #869999;
+}
+@media (max-width: 600px) {
+    .button{
+        font-size: 0.75rem;
+    }
+    .form-actions{
+        justify-content: space-between;
+    }
 }

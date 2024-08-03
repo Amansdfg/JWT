@@ -1,10 +1,10 @@
 import {useInput} from "../hooks/useInput.js";
-import {isEmail,isNotEmpty,hasMinLength} from "../util/validation.js"
-import axios from '../util/axios';
-import {useNavigate} from "react-router-dom";
+import {isNotEmpty,hasMinLength} from "../util/validation.js"
+import {Form, Link, useNavigation} from "react-router-dom";
 import './Login.css'
 export default function Login() {
-    const navigate=useNavigate();
+    const navigation=useNavigation();
+    const isSubmitting=navigation.state==="submitting";
     const {
         value:emailValue,
         handleInputChange:handleEmailChange,
@@ -17,33 +17,15 @@ export default function Login() {
         handleInputBlur:handlePasswordBlur,
         hasError:passwordHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/aman/auth', {
-                username: emailValue,
-                password:passwordValue
-            });
-            localStorage.setItem('token', response.data.token);
-            if(response.data.token){
-                navigate('/');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
     return (
-        <div className="flex justify-center items-center w-screen h-screen">
-        <form onSubmit={handleSubmit} className="form">
+        <Form className="form" method="POST">
             <h2 className="text-center text-white text-xl">Login</h2>
             <div className="control-row">
                 <div className="control no-margin">
                     <label htmlFor="email">Username</label>
                     <input
                         id="email"
-                        name="email"
+                        name="username"
                         onBlur={handleEmailBlur}
                         onChange={handleEmailChange}
                         value={emailValue}
@@ -68,10 +50,10 @@ export default function Login() {
             </div>
 
             <p className="form-actions">
+                <Link to="/register" className="button">Register</Link>
                 <button className="button button-flat">Reset</button>
-                <button className="button">Login</button>
+                <button className="button" disabled={isSubmitting}>{isSubmitting ?"Submitting":"Login"}</button>
             </p>
-        </form>
-        </div>
+        </Form>
     );
 }

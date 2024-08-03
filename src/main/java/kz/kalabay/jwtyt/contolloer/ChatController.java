@@ -22,11 +22,5 @@ public class ChatController {
         User receiver=userService.getUserById(id);
         return chatService.chat(sender,receiver);
     }
-    @GetMapping("/send/{id}")
-    public MessageDto sendData(Principal principal, @PathVariable(name="id")Long id, @RequestParam("text")String text){
-        User sender=userService.getByUsername(principal.getName());
-        User receiver=userService.getUserById(id);
-        return chatService.sendMessage(sender,receiver,text);
-    }
 }
 

@@ -1,9 +1,9 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link, Form,useNavigate} from "react-router-dom";
 import {useInput} from "../../hooks/useInput.js";
 import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../util/validation.js";
 import axios from "../../util/axios.js";
 
-export default function From(){
+export default function Register(){
     const navigate=useNavigate();
     const {
         value:userNameValue,
@@ -58,7 +58,7 @@ export default function From(){
         }
     };
     return (
-        <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
+        <Form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit} method="POST">
             <div className="col-span-6">
                 <label htmlFor="UserName" className="block text-sm font-medium text-gray-700">Username</label>
                 <input
@@ -171,6 +171,6 @@ export default function From(){
                     <Link to="/login" className="text-gray-700 underline">Log in</Link>.
                 </p>
             </div>
-        </form>
+        </Form>
     )
 }
