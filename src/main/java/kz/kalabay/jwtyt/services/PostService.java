@@ -33,7 +33,7 @@ public class PostService{
             Files.createDirectories(path.getParent());
             Files.write(path, file.getBytes());
             System.out.println(path);
-            post.setPhotoUrl(path.toString());
+            post.setPhotoUrl(UPLOAD_DIR + file.getOriginalFilename());
             postRepository.save(post);
         }else{
             System.out.println("file is not uploaded");

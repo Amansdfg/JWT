@@ -4,7 +4,7 @@ import {getAuthToken} from "../util/auth.js";
 
 export default function UploadPost(){
     return(
-        <section className="w-full min-h-svh">
+        <section className="w-full min-h-svh flex justify-center">
             <Post/>
         </section>
     )

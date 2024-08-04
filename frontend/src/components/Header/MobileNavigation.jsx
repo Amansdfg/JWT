@@ -36,7 +36,7 @@ export default function MobileNavigation() {
                     <NavLink
                         to="/chat"
                         className={({isActive}) =>
-                            `text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium ${isActive ? "bg-gray-500" : ""}`
+                            ` block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium ${isActive ? "bg-gray-500" : ""}`
                         }
                     >
                         Chat
@@ -49,7 +49,7 @@ export default function MobileNavigation() {
                     <NavLink
                         to="/profile"
                         className={({isActive}) =>
-                            `text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium ${isActive ? "bg-gray-500" : ""}`
+                            `block  text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium ${isActive ? "bg-gray-500" : ""}`
                         }
                     >
                         Profile
@@ -60,10 +60,8 @@ export default function MobileNavigation() {
             {
                 token &&
                 <li>
-                    <Form action="/logout" method='post'>
-                        <button
-                            className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium"
-                        >
+                    <Form action="/logout" method='post' className=" block  text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">
+                        <button className="static">
                             Logout
                         </button>
                     </Form>

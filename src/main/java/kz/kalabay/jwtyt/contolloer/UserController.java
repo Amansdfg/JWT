@@ -37,7 +37,7 @@ public class UserController {
 public ResponseEntity<String> post(
         @RequestParam("title") String title,
         @RequestParam("content") String content,
-        @RequestParam(value = "file", required = false) MultipartFile file,
+        @RequestParam(value = "file",required = false) MultipartFile file,
         Principal principal) {
     System.out.println("Multipart: "+file);
     Post post = new Post();
