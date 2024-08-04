@@ -124,7 +124,7 @@ export default function Chat() {
         <section className="w-screen h-dvh flex flex-col bg-aman">
             <Header/>
             <div className="py-3 px-2 flex-1 overflow-hidden flex gap-4">
-                <div className={`flex-col gap-3 ${!params.id ? " w-full md:w-30p" : "hidden md:flex"}`}>
+                <div className={`flex-col gap-3 flex ${!params.id ? " w-full md:w-30p" : " w-30p hidden md:flex"}`}>
                     {user.friends.map((friend) => (
                         <NavLink key={friend.id} to={"/chat/" + friend.id}
                                  className={({ isActive }) =>

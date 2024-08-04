@@ -13,6 +13,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import {QueryClientProvider} from "@tanstack/react-query";
 import Profile from "./components/Profile/Profile.jsx";
 import FileUpload from "./components/FileUpload.jsx";
+import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
             {
                 path: "file",
                 element: <FileUpload/>
+            },
+            {
+                path: "post",
+                element: <UploadPost/>,
+                action:postAction
             },
             {
                 path:"*",

@@ -54,5 +54,24 @@ export async function fetchMessages({id,signal}){
         throw  error;
     }
     return await response.json();
-
+}
+export async function upLoadPost({data,signal}){
+    console.log("data"+data);
+    const token=getAuthToken();
+    const response = await fetch("http://localhost:8080/aman/auth", {
+        signal,
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":"Bearer "+token
+        },
+        body: JSON.stringify(data),
+    });
+    if(!response.ok){
+        const error=new Error("Error during fetching upload post");
+        error.code=response.status;
+        error.message=await response.json();
+        throw  error;
+    }
+    return await response.json();
 }

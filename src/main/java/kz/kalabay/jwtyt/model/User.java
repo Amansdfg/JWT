@@ -50,7 +50,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="posts_id")
     )
     private List<Post> posts;
-    public void  updatePost(Post post) {
-        posts.add(post);
-    }
 }

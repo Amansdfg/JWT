@@ -2,14 +2,14 @@ package kz.kalabay.jwtyt.services;
 
 
 import kz.kalabay.jwtyt.mapper.UserMapper;
-import kz.kalabay.jwtyt.model.Photo;
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
 import kz.kalabay.jwtyt.model.dto.UserDto;
-import kz.kalabay.jwtyt.repostory.RoleRepositories;
 import kz.kalabay.jwtyt.repostory.UserRepositories;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService {
     private final UserRepositories userRepositories;
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
+    private final PostService postService;
     public Optional<User> findByUsername(String username) {
         return userRepositories.findByUsername(username);
     }
@@ -68,10 +69,15 @@ public class UserService implements UserDetailsService {
     public UserDto getUserByIdDto(Long id){
         return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
-    public void post(String username,Post post){
-        User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
-        List<Post> posts=user.getPosts();
+    public ResponseEntity<String> post(String username, Post post) {
+        User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
+        postService.savePost(post);
+//        Post savedPost = postService.getPostById(post.getId());
+        List<Post> posts = user.getPosts();
         posts.add(post);
+        user.setPosts(posts);
         userRepositories.save(user);
+
+        return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
     }
 }

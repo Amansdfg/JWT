@@ -1,9 +1,11 @@
 package kz.kalabay.jwtyt.contolloer;
 
 import kz.kalabay.jwtyt.model.Post;
+import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -25,8 +27,10 @@ public class UserController {
         System.out.println(userDto.toString());
         return userDto;
     }
-    @GetMapping("post")
-    public void post(@RequestBody  Post post,Principal principal) {
-        userService.post(principal.getName(),post);
+    @PostMapping("post")
+    public ResponseEntity<String> post(@RequestBody  Post post, Principal principal) {
+        System.out.println(post);
+        return userService.post(principal.getName(),post);
     }
+
 }
