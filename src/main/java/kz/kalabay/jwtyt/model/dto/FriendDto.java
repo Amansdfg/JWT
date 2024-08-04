@@ -1,5 +1,6 @@
 package kz.kalabay.jwtyt.model.dto;
 import kz.kalabay.jwtyt.model.Photo;
+import kz.kalabay.jwtyt.model.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +17,5 @@ public class FriendDto {
     private String username;
     private List<Photo> photos;
     private String email;
+    private List<Post> posts;
 }

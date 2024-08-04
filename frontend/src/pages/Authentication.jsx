@@ -1,10 +1,16 @@
 import { json, redirect } from "react-router-dom";
-import Login from "../components/Login.jsx";
+import Login from '../components/Login.jsx';
 
 export default function Authentication() {
+    // const actionData = useActionData();
+    // const [error, setError] = useState(actionData ? actionData.message : '');
+
     return (
         <div className="flex justify-center items-center w-screen h-screen">
-            <Login />
+            <div className="flex flex-col items-center">
+                {/*{error && <div className="mb-4 text-red-500">{error}</div>}*/}
+                <Login />
+            </div>
         </div>
     );
 }

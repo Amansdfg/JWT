@@ -1,5 +1,6 @@
 package kz.kalabay.jwtyt.contolloer;
 
+import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,9 @@ public class UserController {
         UserDto userDto=userService.getUserByIdDto(id);
         System.out.println(userDto.toString());
         return userDto;
+    }
+    @GetMapping("post")
+    public void post(@RequestBody  Post post,Principal principal) {
+        userService.post(principal.getName(),post);
     }
 }

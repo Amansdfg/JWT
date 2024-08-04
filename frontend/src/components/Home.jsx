@@ -3,9 +3,9 @@ import Chat from "./Chat/Chat.jsx";
 
 const Home = () => {
     return (
-        <>
+        <div className="min-h-svh">
 
-        </>
+        </div>
 
     );
 };

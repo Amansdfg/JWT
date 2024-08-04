@@ -11,6 +11,8 @@ import Secured from "./components/Secured.jsx";
 import Chat from "./components/Chat/Chat.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import {QueryClientProvider} from "@tanstack/react-query";
+import Profile from "./components/Profile/Profile.jsx";
+import FileUpload from "./components/FileUpload.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
             {
                 path:'logout',
                 action:logoutAction,
+            },
+            {
+              path: "profile",
+              element: <Profile/>
+            },
+            {
+                path: "file",
+                element: <FileUpload/>
             },
             {
                 path:"*",

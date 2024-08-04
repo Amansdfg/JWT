@@ -34,6 +34,8 @@ export async function fetchUser(){
             throw error;
         }
         return await response.json();
+    }else{
+        return  null;
     }
 }
 export async function fetchMessages({id,signal}){

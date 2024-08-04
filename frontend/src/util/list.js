@@ -1,3 +1,7 @@
+import github from "../assets/github.svg"
+import telegram from "../assets/telegram.svg"
+import instagram from "../assets/instagram.svg"
+import linkedIn from "../assets/linkedIn.svg"
 export const setting=[
     {
         id:1,
@@ -7,7 +11,7 @@ export const setting=[
     {
         id:2,
         name:"Setting",
-        href:"/setting",
+        href:"/settings.svg",
     },
     {
         id:3,
@@ -54,3 +58,30 @@ export const register=[
         name:"Password Confirmation"
     },
 ]
+export const social=[
+    {
+        id:"1",
+        name:"Github",
+        href:"https://github.com/Amansdfg",
+        img:github,
+    },
+    {
+        id:"2",
+        name:"LinkedIn",
+        href:"https://www.linkedin.com/in/aman-kalabay-4371542bb/",
+        img:linkedIn,
+    },
+    {
+        id:"3",
+        name:"Telegram",
+        href:"https://t.me/AmanKalabay",
+        img:telegram,
+    },
+    {
+        id:"4",
+        name:"Instagram",
+        href:"https://www.instagram.com/aman_kalabay/",
+        img:instagram,
+    }
+]
+export const currentYear=new Date().getFullYear();

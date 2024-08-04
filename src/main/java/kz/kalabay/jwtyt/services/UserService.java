@@ -3,6 +3,7 @@ package kz.kalabay.jwtyt.services;
 
 import kz.kalabay.jwtyt.mapper.UserMapper;
 import kz.kalabay.jwtyt.model.Photo;
+import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
 import kz.kalabay.jwtyt.model.dto.UserDto;
@@ -66,5 +67,11 @@ public class UserService implements UserDetailsService {
     }
     public UserDto getUserByIdDto(Long id){
         return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
+    }
+    public void post(String username,Post post){
+        User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
+        List<Post> posts=user.getPosts();
+        posts.add(post);
+        userRepositories.save(user);
     }
 }

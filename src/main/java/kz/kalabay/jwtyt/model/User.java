@@ -43,4 +43,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="friends_id")
     )
     private List<User> friends;
+    @ManyToMany
+    @JoinTable(
+            name = "users_posts",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name="posts_id")
+    )
+    private List<Post> posts;
+    public void  updatePost(Post post) {
+        posts.add(post);
+    }
 }

@@ -124,7 +124,7 @@ export default function Chat() {
         <section className="w-screen h-dvh flex flex-col bg-aman">
             <Header/>
             <div className="py-3 px-2 flex-1 overflow-hidden flex gap-4">
-                <div className="md:flex flex-col gap-3 w-30p hidden">
+                <div className={`flex-col gap-3 ${!params.id ? " w-full md:w-30p" : "hidden md:flex"}`}>
                     {user.friends.map((friend) => (
                         <NavLink key={friend.id} to={"/chat/" + friend.id}
                                  className={({ isActive }) =>
@@ -135,7 +135,8 @@ export default function Chat() {
                         </NavLink>
                     ))}
                 </div>
-                <div className="md:w-70p w-full px-4 py-3 bg-white drop-shadow-md rounded-md flex flex-col">
+                <div className={`px-4 py-3 bg-white drop-shadow-md rounded-md  ${!params.id?"hidden w-70p md:flex":"w-full md:w-70p"}`}>
+                <div className="flex flex-col w-full h-full">
                     {params.id && friend && (
                         <>
                             <div className="h-15p flex rounded-t-md justify-between items-center px-4 bg-gray-300">
@@ -164,6 +165,7 @@ export default function Chat() {
                             </div>
                         </>
                     )}
+                </div>
                 </div>
             </div>
         </section>

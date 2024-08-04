@@ -6,6 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import {fetchUser} from "../../util/http.js";
 import Loading from "../UI/Loading.jsx";
 import MainNavigation from "./MainNavigation.jsx";
+import MobileNavigation from "./MobileNavigation.jsx";
 export default function DisclosurePanel({isOpen}){
     const {data,isError,isPending,error}=useQuery({
         queryKey:['user'],
@@ -26,8 +27,8 @@ export default function DisclosurePanel({isOpen}){
     }
     return(
         <div className={`md:hidden ${!isOpen?"hidden":""}`}>
-            <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                <MainNavigation/>
+            <div className="border-t border-gray-700 pb-3 pt-4">
+                <MobileNavigation/>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5">

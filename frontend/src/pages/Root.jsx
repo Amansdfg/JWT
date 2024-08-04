@@ -2,6 +2,7 @@ import { Outlet, useLoaderData, useNavigation, useSubmit } from 'react-router-do
 import { useEffect } from 'react';
 import { getDuration } from '../util/auth';
 import Header from "../components/Header/Header.jsx";
+import Footer from "../components/Footer.jsx";
 
 function RootLayout() {
     const token=useLoaderData();
@@ -23,9 +24,10 @@ function RootLayout() {
     return (
         <>
             <Header/>
-            <main>
+            <main className="bg-aman">
                 <Outlet/>
             </main>
+            <Footer />
         </>
 
     );
