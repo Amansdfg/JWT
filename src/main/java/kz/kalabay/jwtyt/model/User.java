@@ -22,13 +22,13 @@ public class User {
     private String password;
     @Column(name = "email",nullable=false)
     private String email;
-    @ManyToMany
-    @JoinTable(
-            name = "users_photos",
-            joinColumns = @JoinColumn(name = "users_id"),
-            inverseJoinColumns = @JoinColumn(name="photos_id")
-    )
-    private List<Photo> photos;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "users_photos",
+//            joinColumns = @JoinColumn(name = "users_id"),
+//            inverseJoinColumns = @JoinColumn(name="photos_id")
+//    )
+//    private List<Photo> photos;
     @ManyToMany
     @JoinTable(
             name = "users_roles",

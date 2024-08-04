@@ -11,20 +11,25 @@ export default function UploadPost(){
 }
 export async function action({ request }) {
     const data = await request.formData();
-    const postData = {
-        title: data.get("title"),
-        content: data.get("content"),
-    };
+    const formData = new FormData();
+
+    formData.append("title", data.get("title"));
+    formData.append("content", data.get("content"));
+    const file = data.get("file");
+    if (file) {
+        formData.append("file", file);
+        console.log("file: "+file)
+    }
+    console.log(file)
 const token=getAuthToken();
     try {
 
         const response = await fetch("http://localhost:8080/users/post", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization":"Bearer "+token
             },
-            body: JSON.stringify(postData),
+            body: formData,
         });
 
         if (response.status === 422 || response.status === 401) {

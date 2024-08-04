@@ -17,7 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,15 +71,33 @@ public class UserService implements UserDetailsService {
     public UserDto getUserByIdDto(Long id){
         return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
-    public ResponseEntity<String> post(String username, Post post) {
-        User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
-        postService.savePost(post);
-//        Post savedPost = postService.getPostById(post.getId());
+//    public ResponseEntity<String> post(String username, Post post) {
+//        User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
+//        postService.savePost(post);
+////        Post savedPost = postService.getPostById(post.getId());
+//        List<Post> posts = user.getPosts();
+//        posts.add(post);
+//        user.setPosts(posts);
+//        userRepositories.save(user);
+//
+//        return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
+//    }
+public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
+    User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
+
+    try {
+        postService.savePostWithImage(post, file);
+
         List<Post> posts = user.getPosts();
         posts.add(post);
         user.setPosts(posts);
         userRepositories.save(user);
 
         return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return new ResponseEntity<>("Failed to upload image", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}
+
 }

@@ -1,6 +1,4 @@
 import {Form, Link} from "react-router-dom";
-import FileUpload from "./FileUpload.jsx";
-
 export default function Post(){
     return(
         <Form className="" method="POST">
@@ -23,8 +21,8 @@ export default function Post(){
                     />
                 </div>
                 <div>
-                    <label htmlFor="content">Content</label>
-                    <FileUpload/>
+                    <label htmlFor="file">File</label>
+                    <input type="file" id="file" name="file"  accept="image/*" required/>
                 </div>
             </div>
 

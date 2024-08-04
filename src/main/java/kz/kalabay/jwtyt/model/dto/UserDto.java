@@ -1,8 +1,6 @@
 package kz.kalabay.jwtyt.model.dto;
 
 import jakarta.persistence.*;
-
-import kz.kalabay.jwtyt.model.Photo;
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.Role;
 import lombok.*;
@@ -19,7 +17,7 @@ public class UserDto {
     private String username;
     private String email;
     private List<Role> roles;
-    private List<Photo>photos;
+//    private List<Photo>photos;
     private List<FriendDto> friends;
     private List<Post> posts;
 }
