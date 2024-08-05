@@ -102,5 +102,8 @@ public class UserService implements UserDetailsService {
     public List<UserDto> getAllUsers() {
         return mapper.mapToDTOList(userRepositories.findAll());
     }
+    public List<UserDto> getRecommendationUsers(String username){
+        return mapper.mapToDTOList(userRepositories.findAllByNotUsernameAndNotFriends(username));
+    }
 
 }

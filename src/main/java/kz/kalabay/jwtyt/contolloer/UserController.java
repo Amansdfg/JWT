@@ -1,10 +1,11 @@
 package kz.kalabay.jwtyt.contolloer;
 
 import kz.kalabay.jwtyt.model.Post;
-import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,29 +18,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    @GetMapping("/friends")
-    public List<UserDto> getFriends(Principal principal) {
-        return userService.getAllFriend(principal.getName());
-    }
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @GetMapping("/all")
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable(value = "id") Long id) {
-        System.out.println(id);
         UserDto userDto = userService.getUserByIdDto(id);
-        System.out.println(userDto.toString());
+        logger.info(userDto.toString());
         return userDto;
     }
-
-
-    //    @PostMapping("post")
-//    public ResponseEntity<String> post(@RequestBody  Post post, Principal principal) {
-//        System.out.println(post);
-//        return userService.post(principal.getName(),post);
-//    }
     @PostMapping("/post")
     public ResponseEntity<String> post(
             @RequestParam("title") String title,
@@ -47,6 +36,16 @@ public class UserController {
             @RequestParam(value = "file", required = false) MultipartFile file,
             Principal principal) {
         Post post = new Post(title,content);
+        logger.info("Creating post for user: {}", principal.getName());
         return userService.post(principal.getName(), post, file);
+    }
+    @GetMapping("/rec/info")
+    public List<UserDto> getRecommendations(Principal principal) {
+        if (principal == null) {
+            logger.error("Principal is null");
+            throw new IllegalStateException("Principal cannot be null");
+        }
+        logger.info("Principal name: {}", principal.getName());
+        return userService.getRecommendationUsers(principal.getName());
     }
 }

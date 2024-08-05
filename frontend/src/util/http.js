@@ -29,6 +29,21 @@ export async function fetchAllUsers({signal}){
     }
     return await response.json();
 }
+export async function info(){
+    const token=getAuthToken()
+    const response=await fetch("http://localhost:8080/aman/info",{
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    if(!response.ok){
+        const error=new Error("Error during fetch allUsers");
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
+    }
+    return await response.json();
+}
 export async function fetchUser({signal}){
     const token=getAuthToken();
     if(token) {
@@ -74,7 +89,7 @@ export async function upLoadPost({data,signal}){
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization":"Bearer "+token
+            "Authorization":"Bearer "+token,
         },
         body: JSON.stringify(data),
     });
@@ -83,6 +98,20 @@ export async function upLoadPost({data,signal}){
         error.code=response.status;
         error.message=await response.json();
         throw  error;
+    }
+    return await response.json();
+}
+export async  function getRecommendation(){
+    const token=getAuthToken();
+    console.log(token)
+    const response=await fetch("http://localhost:8080/users/rec/info",{
+        "Authorization":"Bearer "+token,
+    })
+    if(!response.ok){
+        const error=new Error("Error during fetching rec");
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
     }
     return await response.json();
 }

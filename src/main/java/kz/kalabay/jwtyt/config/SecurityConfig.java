@@ -40,6 +40,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/aman/secured").authenticated()
                         .requestMatchers("/aman/info").authenticated()
+                        .requestMatchers("/aman/post").authenticated()
+                        .requestMatchers("/aman/rec").authenticated()
+                        .requestMatchers("/aman/rec/info").authenticated()
                         .requestMatchers("/aman/admin").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
