@@ -10,7 +10,7 @@ import MobileNavigation from "./MobileNavigation.jsx";
 export default function DisclosurePanel({isOpen}){
     const {data,isError,isPending,error}=useQuery({
         queryKey:['user'],
-        queryFn:fetchUser
+        queryFn:({signal})=>fetchUser({signal})
     })
     let content;
     if(isPending){

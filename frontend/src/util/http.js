@@ -19,10 +19,21 @@ export async function fetchFriend({id}){
     }
 
 }
-export async function fetchUser(){
+export async function fetchAllUsers({signal}){
+    const response=await fetch("http://localhost:8080/users/all",signal)
+    if(!response.ok){
+        const error=new Error("Error during fetch allUsers");
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
+    }
+    return await response.json();
+}
+export async function fetchUser({signal}){
     const token=getAuthToken();
     if(token) {
         const response = await fetch("http://localhost:8080/aman/info", {
+            signal,
             headers: {
                 "Authorization": "Bearer " + token
             }

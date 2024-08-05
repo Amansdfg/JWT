@@ -26,7 +26,7 @@ export default function Chat() {
 
     const { data: user, isLoading: isUserLoading, isError: isUserError, error: userError } = useQuery({
         queryKey: ['user'],
-        queryFn: fetchUser,
+        queryFn:({signal})=>fetchUser({signal})
     });
 
     const { data: fetchedMessages, isLoading: isMessagesLoading, isError: isMessagesError, error: messageError } = useQuery({

@@ -82,22 +82,25 @@ public class UserService implements UserDetailsService {
 //
 //        return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
 //    }
-public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
-    User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
+    public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
+        User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
 
-    try {
-        postService.savePostWithImage(post, file);
+        try {
+            postService.savePostWithImage(post, file);
 
-        List<Post> posts = user.getPosts();
-        posts.add(post);
-        user.setPosts(posts);
-        userRepositories.save(user);
+            List<Post> posts = user.getPosts();
+            posts.add(post);
+            user.setPosts(posts);
+            userRepositories.save(user);
 
-        return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
-    } catch (IOException e) {
-        e.printStackTrace();
-        return new ResponseEntity<>("Failed to upload image", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to upload image", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-}
+    public List<UserDto> getAllUsers() {
+        return mapper.mapToDTOList(userRepositories.findAll());
+    }
 
 }

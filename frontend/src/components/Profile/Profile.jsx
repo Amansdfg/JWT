@@ -10,7 +10,7 @@ import settings from '../../assets/settings.svg';
 function Profile() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['user'],
-        queryFn: fetchUser,
+        queryFn:({signal})=>fetchUser({signal})
     });
 
     let content;
