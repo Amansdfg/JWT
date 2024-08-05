@@ -24,7 +24,9 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home/> },
+                element: <Home/>,
+                // loader:checkAuthLoader,
+            },
             {
                 path:"login",
                 element:<Login/>,
@@ -43,8 +45,8 @@ const router = createBrowserRouter([
                 action:logoutAction,
             },
             {
-              path: "profile",
-              element: <Profile/>
+                path: "profile",
+                element: <Profile/>
             },
             {
                 path: "file",

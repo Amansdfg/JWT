@@ -22,8 +22,8 @@ export function tokenLoader(){
     return getAuthToken();
 }
 export function checkAuthLoader(){
-    const token=getAuthToken();
-    if(!token){
-        return redirect('/login')
+    const token = getAuthToken();
+    if (!token || token === "EXPIRED") {
+        return redirect('/login');
     }
 }

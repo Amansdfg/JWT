@@ -17,7 +17,10 @@ function ErrorPage() {
         <div className="text-center">
             <h1>{title}</h1>
             <p>{message}</p>
-            <Link to="/" className="bg-gray-800 text-white py-1 px-3 rounded-md" >Home</Link>
+            <div className="flex gap-5 justify-center">
+                <Link to="/" className="bg-gray-800 text-white py-1 px-3 rounded-md" >Home</Link>
+                <Link to="/login" className="bg-gray-800 text-white py-1 px-3 rounded-md" >Login</Link>
+            </div>
         </div>
     );
 }

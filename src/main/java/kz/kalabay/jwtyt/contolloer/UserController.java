@@ -23,6 +23,16 @@ public class UserController {
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
+
+    @GetMapping("/rec")
+    public ResponseEntity<?> getRecommendations(Principal principal) {
+        if (principal == null) {
+            logger.error("Principal is null");
+            return ResponseEntity.status(401).body("User not authenticated");
+        }
+        logger.info("Principal name: {}", principal.getName());
+        return ResponseEntity.ok(userService.getRecommendationUsers(principal.getName()));
+    }
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable(value = "id") Long id) {
         UserDto userDto = userService.getUserByIdDto(id);
@@ -38,14 +48,5 @@ public class UserController {
         Post post = new Post(title,content);
         logger.info("Creating post for user: {}", principal.getName());
         return userService.post(principal.getName(), post, file);
-    }
-    @GetMapping("/rec/info")
-    public List<UserDto> getRecommendations(Principal principal) {
-        if (principal == null) {
-            logger.error("Principal is null");
-            throw new IllegalStateException("Principal cannot be null");
-        }
-        logger.info("Principal name: {}", principal.getName());
-        return userService.getRecommendationUsers(principal.getName());
     }
 }

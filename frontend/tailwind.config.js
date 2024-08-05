@@ -7,18 +7,19 @@ export default {
   theme: {
     extend: {
       width:{
-        'post-sm':"200px",
-        'post-md':"300px",
-        'post-lg':"400px",
+        'post-sm':"550px",
+        'post-md':"450px",
+        'post-lg':"500px",
         'post-xl':"500px",
         '70p':"70%",
         '30p':"30%"
       },
       height:{
-        'post-sm':"200px",
-        'post-md':"300px",
+        "post-h":'400px',
+        'post-sm':"550px",
+        'post-md':"450px",
         'post-lg':"500px",
-        'post-xl':"600px",
+        'post-xl':"500px",
         '15p':"15%",
         '80p':"80%",
       },
