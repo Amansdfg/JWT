@@ -104,21 +104,25 @@ export async function upLoadPost({data,signal}){
 export async  function getRecommendation({signal}){
     const token=getAuthToken();
     console.log(token)
-    const response=await fetch("http://localhost:8080/users/rec",{
-        signal,
-        headers:{
-            "Authorization":"Bearer "+token,
-        }
+    if(token) {
+        const response = await fetch("http://localhost:8080/users/rec", {
+            signal,
+            headers: {
+                "Authorization": "Bearer " + token,
+            }
 
-    })
-    console.log(response)
-    if(!response.ok){
-        const error=new Error("Error during fetching rec");
-        error.code=response.status;
-        error.message=await response.json();
-        throw error;
+        })
+        console.log(response)
+        if (!response.ok) {
+            const error = new Error("Error during fetching rec");
+            error.code = response.status;
+            error.message = await response.json();
+            throw error;
+        }
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }else{
+        return null;
     }
-    const data= await response.json();
-    console.log(data);
-    return data;
 }

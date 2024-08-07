@@ -33,10 +33,6 @@ const router = createBrowserRouter([
                 action : loginAction,
             },
             {
-                path: 'register',
-                element: <Registration />,
-            },
-            {
                 path: 'Secured',
                 element: <Secured />,
             },
@@ -63,6 +59,10 @@ const router = createBrowserRouter([
             }
 
         ],
+    },
+    {
+        path: 'register',
+        element: <Registration />,
     },
     {
         path: "chat",

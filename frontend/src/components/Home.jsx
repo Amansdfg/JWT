@@ -18,17 +18,17 @@ const Home = () => {
 
     const { data: user, isLoading: userLoading, isError: userError } = useQuery({
         queryKey: ['user'],
-        queryFn: ({ signal }) => fetchUser({ signal }),
+        queryFn: fetchUser,
     });
-    console.log("user; "+user)
+    console.log("user: "+user)
     const { data: users, isLoading: usersLoading, isError: usersError } = useQuery({
         queryKey: ['users'],
-        queryFn: ({ signal }) => fetchAllUsers({ signal }),
+        queryFn:  fetchAllUsers,
     });
     console.log(users)
     const { data: recData, isLoading: recLoading, isError: recError } = useQuery({
         queryKey: ['rec'],
-        queryFn: ({ signal }) => getRecommendation({ signal }),
+        queryFn: getRecommendation,
         enabled: !user,
     });
     console.log(recData)
