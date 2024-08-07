@@ -1,0 +1,8 @@
+@media (max-width: 600px) {
+    .button{
+        font-size: 0.75rem;
+    }
+    .form-actions{
+        justify-content: space-between;
+    }
+}

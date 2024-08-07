@@ -12,7 +12,6 @@ import Chat from "./components/Chat/Chat.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import {QueryClientProvider} from "@tanstack/react-query";
 import Profile from "./components/Profile/Profile.jsx";
-import FileUpload from "./components/FileUpload.jsx";
 import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
 const router = createBrowserRouter([
     {
@@ -28,11 +27,6 @@ const router = createBrowserRouter([
                 // loader:checkAuthLoader,
             },
             {
-                path:"login",
-                element:<Login/>,
-                action : loginAction,
-            },
-            {
                 path: 'Secured',
                 element: <Secured />,
             },
@@ -45,10 +39,6 @@ const router = createBrowserRouter([
                 element: <Profile/>
             },
             {
-                path: "file",
-                element: <FileUpload/>
-            },
-            {
                 path: "post",
                 element: <UploadPost/>,
                 action:postAction
@@ -59,6 +49,11 @@ const router = createBrowserRouter([
             }
 
         ],
+    },
+    {
+        path:"login",
+        element:<Login/>,
+        action : loginAction,
     },
     {
         path: 'register',

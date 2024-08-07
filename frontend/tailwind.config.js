@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(180deg, #253c3c, #1d4949)',
+      },
+
       width:{
         'post-sm':"550px",
         'post-md':"450px",
@@ -31,6 +36,7 @@ export default {
       },
       boxShadow: {
         'modal': '0 2px 8px rgba(0, 0, 0, 0.26)',
+        'custom': '0 0 16px 1px rgba(0, 0, 0, 0.5)',
       },
       keyframes: {
         'slide-down-fade-in': {
