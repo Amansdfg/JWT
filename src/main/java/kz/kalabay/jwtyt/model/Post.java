@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,12 +18,12 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String  photoUrl;
-    private String title;
     @Column(length = 2000)
     private String content;
     private LocalDateTime createdAt;
-    public Post( String title, String content) {
-        this.title = title;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Comment> comments;
+    public Post(String content) {
         this.content = content;
         this.createdAt = LocalDateTime.now();
     }

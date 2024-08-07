@@ -41,11 +41,10 @@ public class UserController {
     }
     @PostMapping("/post")
     public ResponseEntity<String> post(
-            @RequestParam("title") String title,
             @RequestParam("content") String content,
             @RequestParam(value = "file", required = false) MultipartFile file,
             Principal principal) {
-        Post post = new Post(title,content);
+        Post post = new Post(content);
         logger.info("Creating post for user: {}", principal.getName());
         return userService.post(principal.getName(), post, file);
     }

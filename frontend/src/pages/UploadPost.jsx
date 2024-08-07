@@ -12,8 +12,6 @@ export default function UploadPost(){
 export async function action({ request }) {
     const data = await request.formData();
     const formData = new FormData();
-
-    formData.append("title", data.get("title"));
     formData.append("content", data.get("content"));
     const file = data.get("file");
     if (file) {

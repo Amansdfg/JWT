@@ -51,16 +51,14 @@ public class UserService implements UserDetailsService {
         User user=new User();
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setRoles(List.of(roleService.getUserRole()));
         return userRepositories.save(user);
     }
     public User getByUsername(String username){
         return userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("User not found"));
-    }
-    public List<UserDto> getAllFriend(String username){
-        User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("User not found"));
-        return mapper.mapToDTOList(user.getFriends());
     }
     public UserDto getUserByUsername(String username){
         return mapper.mapToDTO(userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found")));

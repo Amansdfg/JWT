@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './pages/Root.jsx';
 import {action as logoutAction} from "./pages/Logout.jsx"
 import { checkAuthLoader, tokenLoader } from './util/auth';
-import Home from "./components/Home.jsx";
+import Home from "./components/Home/Home.jsx";
 import {client} from "./util/http.js";
 import Login ,{action as loginAction} from "./pages/Authentication.jsx"
 import Registration from "./components/Registration/Registration.jsx";
