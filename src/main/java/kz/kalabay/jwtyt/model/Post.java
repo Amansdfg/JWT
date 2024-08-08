@@ -1,6 +1,7 @@
 package kz.kalabay.jwtyt.model;
 
 import jakarta.persistence.*;
+import kz.kalabay.jwtyt.model.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +19,10 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String  photoUrl;
-    @Column(length = 2000)
+    @Column(length =1000)
     private String content;
     private LocalDateTime createdAt;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Comment> comments;
     public Post(String content) {
         this.content = content;

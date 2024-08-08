@@ -1,5 +1,6 @@
 package kz.kalabay.jwtyt.services;
 
+import kz.kalabay.jwtyt.mapper.MapperComment;
 import kz.kalabay.jwtyt.model.Comment;
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.User;
@@ -20,6 +21,7 @@ public class CommentService {
     private PostRepository postRepository;
     @Autowired
     private UserRepositories userRepositories;
+    private MapperComment mapperComment;
     public Comment saveComment(Long postId,String username, String text) {
         Comment comment = new Comment();
         comment.setText(text);

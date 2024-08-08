@@ -20,5 +20,5 @@ public class UserDto {
     private String email;
     private List<Role> roles;
     private List<FriendDto> friends;
-    private List<Post> posts;
+    private List<PostDto> posts;
 }

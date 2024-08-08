@@ -27,7 +27,6 @@ public class PostService{
     @Transactional
     public void savePostWithImage(Post post, MultipartFile file) throws IOException {
         postRepository.save(post);
-//        System.out.println(file.getOriginalFilename());/**/
         if (file != null && !file.isEmpty()) {
             Path path = Paths.get(UPLOAD_DIR + file.getOriginalFilename());
             Files.createDirectories(path.getParent());

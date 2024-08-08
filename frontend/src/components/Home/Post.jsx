@@ -4,8 +4,8 @@ import PostContent from "./PostContent.jsx";
 import React, {useCallback, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {addComment} from "../../util/http.js";
-
 function Post({post,user}){
+    console.log(post.comments)
     const [comment,setComment]=useState("");
     const{mutate}=useMutation({
         mutationFn:addComment,
@@ -14,7 +14,6 @@ function Post({post,user}){
         },
         onSuccess: (data) => {
             console.log("Comment posted successfully:", data);
-
             setComment("")
         }
     })
@@ -23,7 +22,6 @@ function Post({post,user}){
         mutate({ id: post.id, comment });
     }
     const [expandedPosts, setExpandedPosts] = useState({});
-
     const toggleContent = useCallback((postId) => {
         setExpandedPosts((prev) => ({
             ...prev,
@@ -32,7 +30,7 @@ function Post({post,user}){
     }, []);
     return (
         <div
-             className="w-full bg-white px-6 py-4  sm:w-post-sm md:w-post-md lg:w-post-lg xl:w-post-xl rounded-md">
+            className="w-full bg-white px-6 py-4  sm:w-post-sm md:w-post-md lg:w-post-lg xl:w-post-xl rounded-md">
             <div className="flex">
                 <img className="h-8 rounded-full mr-2" src={user.photo ?? logo} alt="User"/>
                 <h3 className="text-xl font-semibold">{user.username}</h3>
@@ -58,6 +56,9 @@ function Post({post,user}){
                 isExpanded={expandedPosts[post.id]}
                 onToggle={() => toggleContent(post.id)}
             />
+            <div className="">
+
+            </div>
             <div className="border-b-2 border-black/70">
             <input
                 className="py-1 px-3"

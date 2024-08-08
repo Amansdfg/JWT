@@ -16,17 +16,13 @@ export default function HomePosts(){
         content=<p>Error</p>
     }
     if (data) {
-        content=
-            <div className="flex flex-col gap-5">
-            {data?.map((user) => (
-                user.posts &&
-                <div key={user.id}  className="flex flex-col gap-5">
-                    {user.posts.map((post) => (
-                        <Post post={post} user={user} key={post.id}/>
-                    ))}
-                </div>
-            ))};
-        </div>
+        content = data?.map((user) => (
+            <div key={user.id} className="flex flex-col gap-5">
+                {user.posts.map((post) => (
+                    <Post key={post.id} post={post} user={user}/>
+                ))}
+            </div>
+        ));
     }
     return content;
 }
