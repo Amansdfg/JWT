@@ -31,7 +31,7 @@ ChatGram is a social networking platform that allows users to chat, share posts,
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/chatgram.git
+    git clone https://github.com/Amansdfg/JWT.git
     cd chatgram/backend
     ```
 
