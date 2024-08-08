@@ -15,6 +15,8 @@ import java.util.List;
 public class UserDto {
     private Long id;
     private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private List<Role> roles;
     private List<FriendDto> friends;

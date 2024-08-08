@@ -19,7 +19,8 @@ export default function HomePosts(){
         content=
             <div className="flex flex-col gap-5">
             {data?.map((user) => (
-                <div key={user.id} >
+                user.posts &&
+                <div key={user.id}  className="flex flex-col gap-5">
                     {user.posts.map((post) => (
                         <Post post={post} user={user} key={post.id}/>
                     ))}

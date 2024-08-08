@@ -25,10 +25,11 @@ function Rec(){
     }
     if(recData){
         content= recData.map(user=> (
-                <div className="flex" key={user.id}>
+                <div className="flex justify-center items-center" key={user.id}>
                     <img className="h-8 rounded-full mr-2" src={logo} alt="User"/>
-                    <div>
-                        <span>{user.username}</span>
+                    <div className="flex flex-col w-40">
+                        <span className="text-xl">{user.username}</span>
+                        <span className="truncate">Recommendation for you</span>
                     </div>
                 </div>
             )
@@ -36,6 +37,19 @@ function Rec(){
     }
     return (
         <div className="flex flex-col ml-20">
+            {user &&
+                <>
+                <div className="flex justify-center items-center" key={user.id}>
+                    <img className="h-10 rounded-full mr-2" src={logo} alt="User"/>
+                    <div className="flex flex-col w-40">
+                        <span className="text-xl">{user.username}</span>
+                        <span className="truncate">{user.firstName} {user.lastName}</span>
+                    </div>
+                </div>
+                <h2 className="text-gray-600 my-4">Recommendation for you</h2>
+                </>
+            }
+
             {content}
         </div>
     )

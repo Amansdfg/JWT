@@ -126,3 +126,23 @@ export async  function getRecommendation({signal}){
         return null;
     }
 }
+export async function addComment({comment,id}){
+    const token=getAuthToken();
+    console.log("comment: "+comment)
+    console.log("id: "+id)
+    const response=await  fetch("http://localhost:8080/comment/"+id,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization": "Bearer " + token,
+        },
+        body:JSON.stringify(comment)
+    })
+    if(!response.ok){
+        const error=new Error("An error occurred while posting");
+        error.code=response.status;
+        error.info= await response.json();
+        throw error;
+    }
+    return await response.json();
+}

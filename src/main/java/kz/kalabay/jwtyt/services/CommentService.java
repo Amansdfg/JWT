@@ -20,8 +20,14 @@ public class CommentService {
     private PostRepository postRepository;
     @Autowired
     private UserRepositories userRepositories;
-    public Comment saveComment(Long postId,String username, Comment comment) {
+    public Comment saveComment(Long postId,String username, String text) {
+        Comment comment = new Comment();
+        comment.setText(text);
+        System.out.println("postId: " + postId);
+        System.out.println("username: " + username);
+        System.out.println("comment: " + text);
         User user=userRepositories.findByUsername(username).orElseThrow(()-> new RuntimeException("User not found"));
+        comment.setUser(user);
         commentRepository.save(comment);
         Post post=postRepository.findById(postId).orElseThrow(()->new RuntimeException("Comment not found"));
         List<Comment>comments=post.getComments();
@@ -29,6 +35,5 @@ public class CommentService {
         post.setComments(comments);
         postRepository.save(post);
         return comment;
-
     }
 }

@@ -2,8 +2,26 @@ import logo from "../../assets/No-photo.gif";
 import photo from "../../assets/No-photo.gif";
 import PostContent from "./PostContent.jsx";
 import React, {useCallback, useState} from "react";
+import {useMutation} from "@tanstack/react-query";
+import {addComment} from "../../util/http.js";
 
 function Post({post,user}){
+    const [comment,setComment]=useState("");
+    const{mutate}=useMutation({
+        mutationFn:addComment,
+        onError: (error) => {
+            console.error("Error posting comment:", error);
+        },
+        onSuccess: (data) => {
+            console.log("Comment posted successfully:", data);
+
+            setComment("")
+        }
+    })
+    function handleComment() {
+        console.log(comment)
+        mutate({ id: post.id, comment });
+    }
     const [expandedPosts, setExpandedPosts] = useState({});
 
     const toggleContent = useCallback((postId) => {
@@ -40,10 +58,14 @@ function Post({post,user}){
                 isExpanded={expandedPosts[post.id]}
                 onToggle={() => toggleContent(post.id)}
             />
+            <div className="border-b-2 border-black/70">
             <input
-                className="w-full border-b-2 border-black/70 py-1 px-3"
+                className="py-1 px-3"
                 placeholder="add a comment"
+                onChange={(event)=>setComment(event.target.value)}
             />
+            <button onClick={()=>handleComment()}>Send</button>
+            </div>
         </div>
     )
 }
