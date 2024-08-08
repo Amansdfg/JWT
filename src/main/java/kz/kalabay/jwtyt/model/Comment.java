@@ -1,6 +1,7 @@
 package kz.kalabay.jwtyt.model;
 
 import jakarta.persistence.*;
+import kz.kalabay.jwtyt.model.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

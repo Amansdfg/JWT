@@ -14,6 +14,9 @@ public class CommentController {
     private final CommentService commentService;
     @PostMapping("/{id}")
     public Comment createComment(Principal principal, @RequestBody String text, @PathVariable("id") Long id) {
+        System.out.println("Name " +principal.getName());
+        System.out.println("Text " +text);
+        System.out.println("Id " +id);
         return commentService.saveComment(id,principal.getName(),text);
     }
 }

@@ -57,7 +57,9 @@ function Post({post,user}){
                 onToggle={() => toggleContent(post.id)}
             />
             <div className="">
-
+                {post.comments.map(comment=>(
+                    <span>{comment.text}</span>
+                ))}
             </div>
             <div className="border-b-2 border-black/70">
             <input
