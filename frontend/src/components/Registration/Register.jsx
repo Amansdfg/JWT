@@ -39,13 +39,13 @@ export default function Register(){
         hasError:passwordConfirmationHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
     return (
-        <Form className="mt-8 grid grid-cols-6 gap-6">
+        <Form className="mt-8 grid grid-cols-6 gap-6" method="POST">
             <div className="col-span-6">
                 <label htmlFor="UserName" className="block text-sm font-medium text-gray-700">Username</label>
                 <input
                     type="text"
                     id="UserName"
-                    name="userName"
+                    name="username"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     onBlur={handleUserNameBlur}
                     onChange={handleUserNameChange}
@@ -60,7 +60,7 @@ export default function Register(){
 
                 <input
                     id="FirstName"
-                    name="first_name"
+                    name="firstname"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     type="text"
                     onBlur={handleFirstNameBlur}
@@ -76,7 +76,7 @@ export default function Register(){
                 <input
                     type="text"
                     id="LastName"
-                    name="last_name"
+                    name="lastname"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     onBlur={handleLastNameBlur}
                     onChange={handleLastNameChange}
@@ -117,7 +117,7 @@ export default function Register(){
                 <input
                     type="text"
                     id="PasswordConfirmation"
-                    name="password_confirmation"
+                    name="confirmPassword"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     onBlur={handlePasswordConfirmationBlur}
                     onChange={handlePasswordConfirmationChange}

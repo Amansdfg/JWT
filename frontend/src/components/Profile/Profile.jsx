@@ -84,11 +84,11 @@ function Profile() {
                                     {post.photoUrl && (
                                         /\.(mp4|mov)$/i.test(post.photoUrl) ? (
                                         <video
-                                            src={post.photoUrl ? `http://localhost:8080/${post.photoUrl}` : photo}
+                                            src={post.photoUrl ? `http://localhost:8081/${post.photoUrl}` : photo}
                                             className="w-full h-60 object-cover "
                                         />):(
                                         <img
-                                            src={post.photoUrl ? `http://localhost:8080/${post.photoUrl}` : photo}
+                                            src={post.photoUrl ? `http://localhost:8081/${post.photoUrl}` : photo}
                                             alt={post.name}
                                             className="w-full h-60 object-cover "
                                         />))

@@ -6,7 +6,7 @@ import {useMutation} from "@tanstack/react-query";
 import {addComment} from "../../util/http.js";
 function Post({post,user}){
     console.log(post.comments)
-    const [comment,setComment]=useState("");
+    const [comment,setComment]=useState();
     const{mutate}=useMutation({
         mutationFn:addComment,
         onError: (error) => {
@@ -38,13 +38,13 @@ function Post({post,user}){
             {post.photoUrl && (
                 /\.(mp4|mov)$/i.test(post.photoUrl) ? (
                     <video
-                        src={`http://localhost:8080/${post.photoUrl}`}
+                        src={`http://localhost:8081/${post.photoUrl}`}
                         controls
                         className="object-cover w-full h-post-h sm:h-post-sm md:h-post-md lg:h-post-lg xl:h-post-xl"
                     />
                 ) : (
                     <img
-                        src={post.photoUrl ? `http://localhost:8080/${post.photoUrl}` : photo}
+                        src={post.photoUrl ? `http://localhost:8081/${post.photoUrl}` : photo}
                         alt={post.title}
                         className="object-cover w-full h-post-h sm:h-post-sm md:h-post-md lg:h-post-lg xl:h-post-xl"
                     />
@@ -58,7 +58,12 @@ function Post({post,user}){
             />
             <div className="">
                 {post.comments.map(comment=>(
-                    <span>{comment.text}</span>
+                    <div className="flex">
+                        <img className="h-8" src={logo}/>
+                        <span>{comment.username}</span>
+                        <span>{comment.text}</span>
+                    </div>
+
                 ))}
             </div>
             <div className="border-b-2 border-black/70">

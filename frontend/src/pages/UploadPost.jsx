@@ -22,7 +22,7 @@ export async function action({ request }) {
 const token=getAuthToken();
     try {
 
-        const response = await fetch("http://localhost:8080/users/post", {
+        const response = await fetch("http://localhost:8081/users/post", {
             method: "POST",
             headers: {
                 "Authorization":"Bearer "+token
@@ -41,7 +41,7 @@ const token=getAuthToken();
             throw new Error("Could not authenticate user");
         }
 
-        return redirect("/post");
+        return redirect("/profile");
     } catch (error) {
         console.log("Error:", error);
         return json({ message: "An error occurred during authentication" }, { status: 500 });
