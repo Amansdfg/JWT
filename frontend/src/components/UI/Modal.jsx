@@ -10,7 +10,7 @@ function Modal({children,onClose,classes}){
             modal.close();
         }
     }, []);
-  document.getElementById('modal')
+    document.getElementById('modal')
     return createPortal(
         <div>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-[1]"> </div>

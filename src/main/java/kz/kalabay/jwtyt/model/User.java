@@ -24,21 +24,21 @@ public class User {
     private String firstName;
     private String lastName;
     private String photo;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name="roles_id")
     )
     private List<Role> roles;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_friends",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name="friends_id")
     )
     private List<User> friends;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_posts",
             joinColumns = @JoinColumn(name = "users_id"),

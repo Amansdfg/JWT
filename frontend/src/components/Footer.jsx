@@ -7,7 +7,7 @@ function Footer(){
                 {social.map((data)=>(
                     <li key={data.id}>
                         <a href={data.href} target="_blank">
-                            <img src={data.img} className="h-14 rounded-3xl p-2"/>
+                            <img src={data.img} className="h-14 rounded-3xl p-2" alt={data.name}/>
                         </a>
                     </li>
                 ))}

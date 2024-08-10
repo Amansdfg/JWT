@@ -22,7 +22,7 @@ public class Post {
     @Column(length =1000)
     private String content;
     private LocalDateTime createdAt;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Comment> comments;
     public Post(String content) {
         this.content = content;

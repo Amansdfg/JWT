@@ -13,7 +13,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-
 public interface UserMapper {
     UserDto mapToDTO(User user);
     List<UserDto> mapToDTOList(List<User> users);

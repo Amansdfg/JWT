@@ -1,10 +1,7 @@
-import {Link, Form,useNavigate} from "react-router-dom";
+import {Link, Form} from "react-router-dom";
 import {useInput} from "../../hooks/useInput.js";
 import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../util/validation.js";
-import axios from "../../util/axios.js";
-
 export default function Register(){
-    const navigate=useNavigate();
     const {
         value:userNameValue,
         handleInputChange:handleUserNameChange,
@@ -41,24 +38,8 @@ export default function Register(){
         handleInputBlur:handlePasswordConfirmationBlur,
         hasError:passwordConfirmationHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/aman/registration', {
-                firstName:firstNameValue,
-                lastName: lastNameValue,
-                username:userNameValue,
-                password:passwordValue,
-                confirmPassword: passwordConfirmationValue,
-                email: emailValue,
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    };
     return (
-        <Form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit} method="POST">
+        <Form className="mt-8 grid grid-cols-6 gap-6">
             <div className="col-span-6">
                 <label htmlFor="UserName" className="block text-sm font-medium text-gray-700">Username</label>
                 <input

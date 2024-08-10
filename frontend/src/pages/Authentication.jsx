@@ -41,7 +41,7 @@ export async function action({request}) {
     };
     try {
         console.log("Sending authentication request with data:", authData);
-        const response = await fetch("http://localhost:8080/aman/auth", {
+        const response = await fetch("http://localhost:8081/aman/auth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

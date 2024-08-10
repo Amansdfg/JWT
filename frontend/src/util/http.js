@@ -4,7 +4,7 @@ import {getAuthToken} from "./auth.js";
 export async function fetchFriend({id}){
     const token=getAuthToken();
     if(token) {
-        const response = await fetch("http://localhost:8080/users/"+id, {
+        const response = await fetch("http://localhost:8081/users/"+id, {
             headers: {
                 "Authorization": "Bearer " + token
             }
@@ -20,7 +20,7 @@ export async function fetchFriend({id}){
 
 }
 export async function fetchAllUsers({signal}){
-    const response=await fetch("http://localhost:8080/users/all",signal)
+    const response=await fetch("http://localhost:8081/users/all",signal)
     if(!response.ok){
         const error=new Error("Error during fetch allUsers");
         error.code=response.status;
@@ -31,7 +31,7 @@ export async function fetchAllUsers({signal}){
 }
 export async function info(){
     const token=getAuthToken()
-    const response=await fetch("http://localhost:8080/aman/info",{
+    const response=await fetch("http://localhost:8081/aman/info",{
         headers: {
             "Authorization": "Bearer " + token
         }
@@ -47,7 +47,7 @@ export async function info(){
 export async function fetchUser({signal}){
     const token=getAuthToken();
     if(token) {
-        const response = await fetch("http://localhost:8080/aman/info", {
+        const response = await fetch("http://localhost:8081/aman/info", {
             signal,
             headers: {
                 "Authorization": "Bearer " + token
@@ -67,7 +67,7 @@ export async function fetchUser({signal}){
 export async function fetchMessages({id,signal}){
     console.log("id:"+id+", signal"+ signal)
     const token=getAuthToken();
-    const response=await fetch("http://localhost:8080/chat/"+id,{
+    const response=await fetch("http://localhost:8081/chat/"+id,{
         signal,
         headers:{
             "Authorization":"Bearer "+token
@@ -84,7 +84,7 @@ export async function fetchMessages({id,signal}){
 export async function upLoadPost({data,signal}){
     console.log("data"+data);
     const token=getAuthToken();
-    const response = await fetch("http://localhost:8080/aman/auth", {
+    const response = await fetch("http://localhost:8081/aman/auth", {
         signal,
         method: "POST",
         headers: {
@@ -105,7 +105,7 @@ export async  function getRecommendation({signal}){
     const token=getAuthToken();
     console.log(token)
     if(token) {
-        const response = await fetch("http://localhost:8080/users/rec", {
+        const response = await fetch("http://localhost:8081/users/rec", {
             signal,
             headers: {
                 "Authorization": "Bearer " + token,
@@ -130,7 +130,7 @@ export async function addComment({comment,id}){
     const token=getAuthToken();
     console.log("comment: "+comment)
     console.log("id: "+id)
-    const response=await  fetch("http://localhost:8080/comment/"+id,{
+    const response=await  fetch("http://localhost:8081/comment/"+id,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
