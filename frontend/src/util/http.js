@@ -146,3 +146,38 @@ export async function addComment({comment,id}){
     }
     return await response.json();
 }
+export async function sendRequest({id}){
+    const token=getAuthToken();
+    console.log(JSON.stringify({receiverId: id}))
+    const response=await fetch("http://localhost:8081/request",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+token,
+        },
+        body:JSON.stringify({receiverId: id})
+    })
+    if(!response.ok){
+        const error=new Error("An error occurred while sending request")
+        error.code=response.status;
+        error.info= await response.json();
+        throw error;
+    }
+    return  await response.json()
+}
+export async function fetchRequest(){
+    const token=getAuthToken();
+    const response=await fetch("http://localhost:8081/request",{
+        method:"GET",
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
+    if(!response.ok){
+        const error=new Error("An error occurred while sending request")
+        error.code=response.status;
+        error.info= await response.json();
+        throw error;
+    }
+    return  await response.json()
+}

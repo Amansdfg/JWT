@@ -24,7 +24,7 @@ function RootLayout() {
     return (
         <>
             <Header/>
-            <main className="bg-aman">
+            <main className="bg-aman min-h-svh">
                 <Outlet/>
             </main>
             <Footer />

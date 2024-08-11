@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import {QueryClientProvider} from "@tanstack/react-query";
 import Profile from "./components/Profile/Profile.jsx";
 import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
+import Notification from "./components/Notification/Notification.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: "profile",
                 element: <Profile/>
+            },
+            {
+                path: "notification",
+                element: <Notification/>
             },
             {
                 path: "post",

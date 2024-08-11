@@ -16,7 +16,7 @@ function Modal({children,onClose,classes}){
             <div className="fixed inset-0 bg-black bg-opacity-50 z-[1]"> </div>
 
             <dialog
-                className={`modal fixed top-[5%] left-1/2 transform -translate-x-1/2  bg-[#e2e5eb] border-none rounded-md z-[2] shadow-md flex flex-col justify-between ${classes??undefined}`}
+                className={`modal  fixed top-[5%] left-1/2 transform -translate-x-1/2  bg-[#e2e5eb] border-none rounded-md z-[2] shadow-md flex flex-col justify-between ${classes??undefined}`}
                 ref={dialog }
                 onClose= {onClose}
             >
