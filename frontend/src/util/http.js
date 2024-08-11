@@ -181,3 +181,22 @@ export async function fetchRequest(){
     }
     return  await response.json()
 }
+export async function acceptUser({username}){
+    const  token=getAuthToken();
+    const response=await  fetch("http://localhost:8081/request/accept",{
+        method:"POST",
+        headers:{
+            "Content-type":"application/json",
+            "Authorization":"Bearer "+token,
+        },
+        body:JSON.stringify({senderUsername: username})
+    })
+    if(!response.ok){
+        const error=new Error("An error occurred while");
+        error.code=response.status;
+        error.info=await response.json();
+        throw error;
+    }
+    return await response.json();
+
+}

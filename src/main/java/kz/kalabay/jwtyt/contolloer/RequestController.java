@@ -22,4 +22,8 @@ public class RequestController {
     public List<UserDto> getRequests(Principal principal) {
         return requestService.getRequest(principal.getName());
     }
+    @PostMapping("accept")
+    public String acceptRequest(@RequestBody RequestDto requestDto, Principal principal) {
+        return requestService.acceptRequest(requestDto,principal.getName());
+    }
 }

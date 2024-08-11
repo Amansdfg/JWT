@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {useMutation} from "@tanstack/react-query";
-import {addComment} from "../../util/http.js";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import {addComment, fetchUser} from "../../util/http.js";
 import logo from "../../assets/No-photo.gif";
 
 function Comment({post}){
@@ -15,6 +15,10 @@ function Comment({post}){
             setComment("")
         }
     })
+    const{data}=useQuery({
+        queryKey:['user'],
+        queryFn:fetchUser
+    })
     function handleComment() {
         console.log(comment)
         mutate({ id: post.id, comment });
@@ -28,6 +32,8 @@ function Comment({post}){
                     <span>{comment.text}</span>
                 </div>
             ))}
+            {
+                data &&
             <div className="flex border-b-2 border-black/70 justify-between px-4">
                 <input
                     className="py-1 px-3"
@@ -36,6 +42,7 @@ function Comment({post}){
                 />
                 <button onClick={() => handleComment()}>Send</button>
             </div>
+            }
         </>
     )
 }

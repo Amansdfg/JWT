@@ -18,6 +18,6 @@ public class Comment {
     private Long id;
     @Column(length = 300, nullable = false)
     private String text;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 }

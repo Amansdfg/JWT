@@ -103,5 +103,7 @@ public class UserService implements UserDetailsService {
     public List<UserDto> getRecommendationUsers(String username){
         return mapper.mapToDTOList(userRepositories.findAllByNotUsernameAndNotFriends(username));
     }
-
+    public User saveUser(User user) {
+        return userRepositories.save(user);
+    }
 }

@@ -39,4 +39,17 @@ public class RequestService {
         }
         return userMapper.mapToDTOList(userDtos);
     }
+    public String acceptRequest(RequestDto requestDto,String username) {
+        User user=userService.getByUsername(username);
+        User sender=userService.getByUsername(requestDto.getSenderUsername());
+        List<User> friends=user.getFriends();
+        friends.add(sender);
+        user.setFriends(friends);
+        List<User> friends1=sender.getFriends();
+        friends1.add(user);
+        sender.setFriends(friends1);
+        userService.saveUser(user);
+        userService.saveUser(sender);
+        return "Successfully added";
+    }
 }

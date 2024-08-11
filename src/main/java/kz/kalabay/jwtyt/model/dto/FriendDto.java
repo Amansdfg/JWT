@@ -18,5 +18,4 @@ public class FriendDto {
     private String username;
     private String email;
     private List<Role> roles;
-    private List<Post> posts;
 }
