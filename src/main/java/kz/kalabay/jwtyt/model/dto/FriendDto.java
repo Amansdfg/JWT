@@ -1,6 +1,4 @@
 package kz.kalabay.jwtyt.model.dto;
-//import kz.kalabay.jwtyt.model.Photo;
-import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

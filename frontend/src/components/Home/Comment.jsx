@@ -4,15 +4,14 @@ import {addComment, fetchUser} from "../../util/http.js";
 import logo from "../../assets/No-photo.gif";
 
 function Comment({post}){
-    const [comment,setComment]=useState();
+    const [comment,setComment]=useState("");
     const{mutate}=useMutation({
         mutationFn:addComment,
-        onError: (error) => {
-            console.error("Error posting comment:", error);
-        },
+        // onError: (error) => {
+        //     console.error("Error posting comment:", error);
+        // },
         onSuccess: (data) => {
             console.log("Comment posted successfully:", data);
-            setComment("")
         }
     })
     const{data}=useQuery({
@@ -20,27 +19,32 @@ function Comment({post}){
         queryFn:fetchUser
     })
     function handleComment() {
+        setComment("")
         console.log(comment)
         mutate({ id: post.id, comment });
     }
     return (
         <>
-            {post.comments.map(comment => (
-                <div className="flex" key={comment.id}>
-                    <img className="h-8" src={logo}/>
-                    <span>{comment.username}</span>
-                    <span>{comment.text}</span>
-                </div>
-            ))}
+            <div className="flex flex-col gap-4">
+                {post.comments.map(comment => (
+                    <div className="" key={comment.id}>
+                        <div className='flex'>
+                            <img className="h-8 rounded-full mr-2" src={logo}/>
+                            <span>{comment.username}</span>
+                        </div>
+                        <span>{comment.text}</span>
+                    </div>
+                ))}
+            </div>
             {
                 data &&
-            <div className="flex border-b-2 border-black/70 justify-between px-4">
+            <div className="flex border-b-2 border-black/70 justify-between px-4 py-2">
                 <input
-                    className="py-1 px-3"
+                    className="py-1 px-3 w-full rounded-md"
                     placeholder="add a comment"
                     onChange={(event) => setComment(event.target.value)}
                 />
-                <button onClick={() => handleComment()}>Send</button>
+                <button className="bg-blue-600 px-4 py-1 ml-4 rounded-md text-white " onClick={() => handleComment()}>Send</button>
             </div>
             }
         </>

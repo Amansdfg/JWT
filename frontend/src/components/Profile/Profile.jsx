@@ -7,6 +7,7 @@ import ErrorPage from '../../pages/ErrorPage.jsx';
 import photo from '../../assets/No-photo.gif';
 import settings from '../../assets/settings.svg';
 import Modal from "../UI/Modal.jsx"
+import Comment from "../Home/Comment.jsx";
 function Profile() {
     const[modalPage,setModalPage]=useState();
     const[modalDetails,setModalDetails]=useState();
@@ -128,6 +129,7 @@ function Profile() {
                                 <button onClick={()=>modalDetailsGoi(modalPage)}>...</button>
                             </div>
                             <p className="text-md">Content: {modalPage.content}</p>
+                            <Comment post={modalPage}/>
                         </div>
                     </div>
                 </Modal>

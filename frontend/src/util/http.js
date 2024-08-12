@@ -130,13 +130,14 @@ export async function addComment({comment,id}){
     const token=getAuthToken();
     console.log("comment: "+comment)
     console.log("id: "+id)
+    console.log("token: "+token)
     const response=await  fetch("http://localhost:8081/comment/"+id,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
-            "Authorization": "Bearer " + token,
+            "Authorization":"Bearer "+token,
         },
-        body:JSON.stringify(comment)
+        body:comment
     })
     if(!response.ok){
         const error=new Error("An error occurred while posting");
