@@ -17,6 +17,7 @@ public class UserDto {
     private String username;
     private String firstName;
     private String lastName;
+    private String photo;
     private String email;
     private List<Role> roles;
     private List<FriendDto> friends;

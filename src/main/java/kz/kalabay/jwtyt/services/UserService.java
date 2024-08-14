@@ -106,4 +106,7 @@ public class UserService implements UserDetailsService {
     public User saveUser(User user) {
         return userRepositories.save(user);
     }
+    public List<UserDto> searchUsers(String username) {
+        return  mapper.mapToDTOList(userRepositories.findByUsernameContainingIgnoreCase(username));
+    }
 }

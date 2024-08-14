@@ -199,5 +199,21 @@ export async function acceptUser({username}){
         throw error;
     }
     return await response.json();
-
+}
+export async function searchUsers({signal,search}){
+    const token=getAuthToken();
+    const response=await fetch("http://localhost:8081/users/search",{
+        signal,
+        headers:{
+            "Authorization":"Bearer "+token,
+        },
+        body: search,
+    })
+    if(!response.ok){
+        const error=new Error("Error found during searching error");
+        error.code=response.status;
+        error.info=await response.json();
+        throw error;
+    }
+    return await response.json();
 }
