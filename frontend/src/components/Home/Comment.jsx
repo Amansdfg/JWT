@@ -7,9 +7,9 @@ function Comment({post}){
     const [comment,setComment]=useState("");
     const{mutate}=useMutation({
         mutationFn:addComment,
-        // onError: (error) => {
-        //     console.error("Error posting comment:", error);
-        // },
+        onError: (error) => {
+            console.error("Error posting comment:", error);
+        },
         onSuccess: (data) => {
             console.log("Comment posted successfully:", data);
         }
@@ -36,8 +36,7 @@ function Comment({post}){
                     </div>
                 ))}
             </div>
-            {
-                data &&
+            {data &&
             <div className="flex border-b-2 border-black/70 justify-between px-4 py-2">
                 <input
                     className="py-1 px-3 w-full rounded-md"

@@ -13,6 +13,7 @@ import {QueryClientProvider} from "@tanstack/react-query";
 import Profile from "./components/Profile/Profile.jsx";
 import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
 import Notification from "./components/Notification/Notification.jsx";
+import Friends from "./components/Profile/Friends.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -32,7 +33,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <Profile/>
+                element: <Profile/>,
+                children:[
+                    {
+                        path:":id",
+                        element:<Profile/>
+                    }
+                ]
             },
             {
                 path: "notification",
@@ -42,6 +49,16 @@ const router = createBrowserRouter([
                 path: "post",
                 element: <UploadPost/>,
                 action:postAction
+            },
+            {
+                path: "friends",
+                element: <Friends/>,
+                children:[
+                    {
+                        path:":id",
+                        element:<Friends/>
+                    }
+                ]
             },
             {
                 path:"*",

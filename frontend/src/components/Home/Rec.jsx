@@ -4,13 +4,13 @@ import ErrorPage from "../../pages/ErrorPage.jsx";
 import Loading from "../UI/Loading.jsx";
 import logo from "../../assets/No-photo.gif";
 import React from "react";
+import {Link} from "react-router-dom";
 
 function Rec(){
     const { data: user, isLoading: userLoading, isError: userError } = useQuery({
         queryKey: ['user'],
         queryFn: fetchUser,
     });
-    console.log(user)
     const { data: recData, isLoading: recLoading, isError: recError } = useQuery({
         queryKey: ['rec'],
         queryFn: getRecommendation,
@@ -33,14 +33,14 @@ function Rec(){
     }
     if(recData){
         content= recData.map(user=> (
-                <div className="flex justify-center items-center" key={user.id} onClick={()=>handleRequest(user.id)}>
+                <Link className="flex justify-center items-center" key={user.id} to={`profile/`+user.id}>
                     <img className="h-8 rounded-full mr-2" src={logo} alt="User"/>
                     <div className="flex flex-col w-40">
                         <span className="text-xl">{user.username}</span>
                         <span className="truncate text-black/60">Recommendation for you</span>
                     </div>
-                    <button className="text-blue-700">send request</button>
-                </div>
+                    <button className="text-blue-700" onClick={()=>handleRequest(user.id)}>send request</button>
+                </Link>
             )
         )
     }

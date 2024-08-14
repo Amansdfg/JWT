@@ -1,4 +1,4 @@
-import {Form, NavLink, useRouteLoaderData} from "react-router-dom";
+import {Form, NavLink} from "react-router-dom";
 import {getAuthToken} from "../../util/auth.js";
 
 export default function MainNavigation() {
@@ -66,6 +66,19 @@ export default function MainNavigation() {
                         }
                     >
                         Notification
+                    </NavLink>
+                }
+            </li>
+            <li>
+                {
+                    token &&
+                    <NavLink
+                        to="/friends"
+                        className={({isActive}) =>
+                            `text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium ${isActive ? "bg-gray-500" : ""}`
+                        }
+                    >
+                        Friends
                     </NavLink>
                 }
             </li>

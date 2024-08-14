@@ -1,20 +1,38 @@
 import React, {useState} from 'react';
-import {NavLink, useParams} from 'react-router-dom';
+import {Link, NavLink, useParams} from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { fetchUser } from '../../util/http.js';
+import {fetchFriend, fetchUser} from '../../util/http.js';
 import Loading from '../UI/Loading.jsx';
 import ErrorPage from '../../pages/ErrorPage.jsx';
 import photo from '../../assets/No-photo.gif';
 import settings from '../../assets/settings.svg';
 import Modal from "../UI/Modal.jsx"
 import Comment from "../Home/Comment.jsx";
+import ProfilePost from "./ProfilePost.jsx";
 function Profile() {
+    const param=useParams();
     const[modalPage,setModalPage]=useState();
     const[modalDetails,setModalDetails]=useState();
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ['user'],
-        queryFn:({signal})=>fetchUser({signal})
-    });
+    let data;
+    let isError;
+    let isPending;
+    if(param.id) {
+        const {data: friend,isPending:isPendingFriend,isError:isErrorFriend} = useQuery({
+            queryKey: ['friends', param.id],
+            queryFn: () => fetchFriend({id: param.id})
+        })
+        data=friend;
+        isPending=isPendingFriend;
+        isError=isErrorFriend;
+    }else {
+        const {data:user, isPending:isPendingUser, isError:isErrorUser} = useQuery({
+            queryKey: ['user'],
+            queryFn: ({signal}) => fetchUser({signal})
+        });
+        data=user;
+        isPending=isPendingUser;
+        isError=isErrorUser;
+    }
     function modalDetailsGoi(post){
         setModalDetails(post);
     }
@@ -23,7 +41,7 @@ function Profile() {
     }
     let content;
 
-    if (isLoading) {
+    if (isPending) {
         content = <Loading />;
     }
 
@@ -58,19 +76,29 @@ function Profile() {
                 <div className="flex justify-evenly">
                     <img src={photo} alt="Profile" className="aspect-square h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
                     <div className="flex flex-col">
-                        <div className="flex gap-2 md:gap-6 justify-center">
+                        <div className="flex gap-2 md:gap-6 justify-center items-center">
                             <span className="text-xl lg:text-2xl">{data.username}</span>
-                            <NavLink to="/profile/edit" className="px-3 py-1 text-sm sm:text-md md:text-lg lg:text-xl bg-white  rounded-md">
-                                Edit
-                            </NavLink>
-                            <NavLink to="/post" className="px-3 py-1 bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
-                                Upload post
-                            </NavLink>
+                            {!param.id &&
+                                <>
+                                    <Link to="/profile/edit" className="px-3 py-1 text-sm sm:text-md md:text-lg lg:text-xl bg-white  rounded-md">
+                                        Edit
+                                    </Link>
+                                    <Link to="/post" className="px-3 py-1 bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
+                                        Upload post
+                                    </Link>
+                                </>
+                            }
+                            {param.id &&
+                                <Link to={`/chat/`+param.id} className="px-3 py-1 bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
+                                    Chat
+                                </Link>
+                            }
+
                             <img src={settings} alt="Settings" className="w-6 h-6" />
                         </div>
                         <div className="flex gap-6">
-                            <span className="text-sm sm:text-md md:text-lg lg:text-xl">{data.posts.length} Posts</span>
-                            <span className="text-sm sm:text-md md:text-lg lg:text-xl">{data.friends.length} Friends</span>
+                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl" to="/profile">{data.posts.length} Posts</Link>
+                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl" to={param.id?`/friends/`+param.id :"/friends"}>{data.friends.length}  Friends</Link>
                         </div>
                     </div>
                 </div>
@@ -79,22 +107,8 @@ function Profile() {
                     <div className=" grid  grid-cols-posts gap-6">
                         {data.posts.length === 0 && <span>No posts yet</span>}
                         {data.posts.length > 0 &&
-                            data.posts.map((post) => (
-                                <div key={post.id} className="cursor-pointer" onClick={()=>modalGoi(post)}>
-                                    {post.photoUrl && (
-                                        /\.(mp4|mov)$/i.test(post.photoUrl) ? (
-                                        <video
-                                            src={post.photoUrl ? `http://localhost:8081/${post.photoUrl}` : photo}
-                                            className="w-full h-60 object-contain bg-gray-600  rounded-md"
-                                        />):(
-                                        <img
-                                            src={post.photoUrl ? `http://localhost:8081/${post.photoUrl}` : photo}
-                                            alt={post.name}
-                                            className="w-full h-60 object-contain bg-gray-600 rounded-md"
-                                        />))
-                                    }
-                                </div>
-                            ))}
+                            <ProfilePost posts={data.posts} modalGoi={modalGoi}/>
+                        }
                     </div>
                 </div>
             </div>

@@ -4,7 +4,6 @@ import React, {useCallback, useState} from "react";
 import Content from "./Content.jsx";
 import Comment from "./Comment.jsx";
 function Post({post,user}){
-    console.log(post.comments)
     const [expandedPosts, setExpandedPosts] = useState({});
     const toggleContent = useCallback((postId) => {
         setExpandedPosts((prev) => ({
