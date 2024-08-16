@@ -2,6 +2,8 @@ create table if not exists users (
                        id                    bigserial,
                        username              varchar(30) not null unique,
                        password              varchar(80) not null,
+                       first_name              varchar(80) not null,
+                       last_name              varchar(80) not null,
                        email                 varchar(50) not null ,
                        primary key (id)
 );

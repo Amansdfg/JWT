@@ -153,10 +153,10 @@ function Profile() {
                 <Modal onClose={closeModalDetails}
                        classes="top-1/2 transform -translate-y-1/2 w-[40%] flex flex-col divide-y-2 divide-black/40">
                     <button className="p-2"
-                            onClick={() => handleShare(`http://localhost:8080/${modalPage.photoUrl}`)}>Share
+                            onClick={() => handleShare(`http://localhost:8081/${modalPage.photoUrl}`)}>Share
                     </button>
                     <button className="p-2"
-                            onClick={() => copyToClipboard(`http://localhost:8080/${modalPage.photoUrl}`)}>Copy URL
+                            onClick={() => copyToClipboard(`http://localhost:8081/${modalPage.photoUrl}`)}>Copy URL
                     </button>
                     <button className="p-2" onClick={() => closeModalDetails()}>close</button>
                 </Modal>

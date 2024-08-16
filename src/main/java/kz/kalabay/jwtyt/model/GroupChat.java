@@ -6,13 +6,13 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name="groupChats")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = true)
 public class GroupChat extends Chat{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
