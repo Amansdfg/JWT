@@ -102,17 +102,16 @@ export default function Chat() {
             </>
         );
     }
-
     let messagesContent;
     if (isMessagesLoading) {
         messagesContent = <Loading />;
     } else if (isMessagesError) {
         messagesContent = <p>Error loading messages</p>;
     } else if (messages) {
-        messagesContent = messages.map(msg => (
+        messagesContent = messages.map((msg,index) => (
             <div
                 key={msg.id}
-                className={`bg-white rounded-md max-w-xl break-all p-2 flex flex-col items-end ${(msg.sender.id === user.id ? "justify-start ml-auto" : "justify-end mr-auto")}`}
+                className={`bg-white max-w-xl break-all p-2 flex flex-col items-end  ${(msg.sender.id === user.id ? "justify-start ml-auto rounded-l-xl" : "justify-end mr-auto rounded-r-xl")} ${(messages.length>index+1 && messages[index].sender.id !== messages[index+1].sender.id? "rounded-br-md" : "") }`}
             >
                 <h2 className="text-2xl">{msg.text}</h2>
                 <span className="text-sm">{time(new Date(msg.date))}</span>

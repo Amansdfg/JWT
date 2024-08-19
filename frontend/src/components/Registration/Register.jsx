@@ -59,8 +59,8 @@ export default function Register(){
                 </label>
 
                 <input
-                    id="FirstName"
-                    name="firstname"
+                    id="firstName"
+                    name="firstName"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     type="text"
                     onBlur={handleFirstNameBlur}
@@ -75,8 +75,8 @@ export default function Register(){
                 </label>
                 <input
                     type="text"
-                    id="LastName"
-                    name="lastname"
+                    id="lastName"
+                    name="lastName"
                     className="mt-1 p-2.5 w-full rounded-md border bg-white text-sm text-gray-700 shadow-sm"
                     onBlur={handleLastNameBlur}
                     onChange={handleLastNameChange}

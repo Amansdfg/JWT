@@ -6,6 +6,7 @@ import Notification from "../components/UI/Notification.jsx";
 export default function Authentication() {
     const actionData = useActionData();
     const [notification,setNotification]=useState();
+
     useEffect(() => {
         if (actionData) {
             if (actionData.message) {

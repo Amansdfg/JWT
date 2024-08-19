@@ -103,7 +103,6 @@ export async function upLoadPost({data,signal}){
 }
 export async  function getRecommendation({signal}){
     const token=getAuthToken();
-    console.log(token)
     if(token) {
         const response = await fetch("http://localhost:8081/users/rec", {
             signal,
@@ -112,7 +111,6 @@ export async  function getRecommendation({signal}){
             }
 
         })
-        console.log(response)
         if (!response.ok) {
             const error = new Error("Error during fetching rec");
             error.code = response.status;
@@ -120,7 +118,6 @@ export async  function getRecommendation({signal}){
             throw error;
         }
         const data = await response.json();
-        console.log(data);
         return data;
     }else{
         return null;
