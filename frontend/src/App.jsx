@@ -15,7 +15,6 @@ import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
 import Notification from "./components/Notification/Notification.jsx";
 import Friends from "./components/Profile/Friends.jsx";
 import Settings from "./components/Profile/Settings.jsx";
-import {useEffect, useState} from "react";
 const router = createBrowserRouter([
     {
         path: '/',

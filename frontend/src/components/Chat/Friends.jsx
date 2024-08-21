@@ -28,7 +28,7 @@ export default function Friends({friends}){
             </Modal>
             }
 
-            <div className=" flex bg-white dark:bg-aman px-4 py-2 rounded">
+            <div className=" flex bg-white dark:bg-lightMode px-4 py-2 rounded">
                 <div className="flex gap-2">
                 <button
                         className='drop-shadow-md mr-6'>
@@ -46,10 +46,10 @@ export default function Friends({friends}){
             {friends.map((friend) => (
                 <NavLink key={friend.id} to={"/chat/" + friend.id}
                          className={({isActive}) =>
-                             `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-aman  ${isActive ? "bg-gray-500" : ""}`
+                             `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode  ${isActive ? "bg-gray-500" : ""}`
                          }>
                     <img src={logo} className="w-24 rounded-md" alt="friend" />
-                    <span>{friend.username}</span>
+                    <span className="dark:text-white">{friend.username}</span>
                 </NavLink>
             ))}
         </>

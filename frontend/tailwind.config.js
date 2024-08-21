@@ -32,6 +32,7 @@ export default {
       },
       backgroundColor:{
         'aman':"#E9E7E7",
+        'lightMode':"#060963",
         'darkMode':'#0f0c27'
       },
       gridTemplateColumns:{
@@ -40,7 +41,7 @@ export default {
       boxShadow: {
         'modal': '0 2px 8px rgba(0, 0, 0, 0.26)',
         'custom': '0 0 16px 1px rgba(0, 0, 0, 0.5)',
-        'header':'-3px -3px 7px #ffffff73, 2px 2px 5px #5e687949;'
+        'header': '-3px -3px 7px #ffffff73, 2px 2px 5px #5e687949;'
       },
       keyframes: {
         'slide-down-fade-in': {

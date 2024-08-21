@@ -28,7 +28,7 @@ export default function Chat() {
                 <div className={`flex-col gap-3 flex ${!params.id ? " w-full md:w-30p" : " w-30p hidden md:flex"}`}>
                   <Friends friends={user.friends}/>
                 </div>
-                <div className={`px-4 py-3 bg-white dark:bg-aman  drop-shadow-md rounded-md  ${!params.id?"hidden w-70p md:flex":"w-full md:w-70p"}`}>
+                <div className={`px-4 py-3 bg-white dark:bg-lightMode drop-shadow-md rounded-md  ${!params.id?"hidden w-70p md:flex":"w-full md:w-70p"}`}>
                     <Messages id={params.id} user={user}/>
                 </div>
             </div>
