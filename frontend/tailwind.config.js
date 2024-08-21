@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -9,6 +10,7 @@ export default {
 
       backgroundImage: {
         'custom-gradient': 'linear-gradient(180deg, #253c3c, #1d4949)',
+        // 'custom-gradient': 'linear-gradient(180deg, #050C9C, #0F67B1)',
       },
 
       width:{
@@ -29,7 +31,8 @@ export default {
         '80p':"80%",
       },
       backgroundColor:{
-        'aman':"#E9E7E7"
+        'aman':"#E9E7E7",
+        'darkMode':'#0f0c27'
       },
       gridTemplateColumns:{
         'posts': "repeat(auto-fit, minmax(240px,auto))",
@@ -37,6 +40,7 @@ export default {
       boxShadow: {
         'modal': '0 2px 8px rgba(0, 0, 0, 0.26)',
         'custom': '0 0 16px 1px rgba(0, 0, 0, 0.5)',
+        'header':'-3px -3px 7px #ffffff73, 2px 2px 5px #5e687949;'
       },
       keyframes: {
         'slide-down-fade-in': {

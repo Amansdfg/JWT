@@ -94,7 +94,7 @@ function Profile() {
                                 </Link>
                             }
 
-                            <img src={settings} alt="Settings" className="w-6 h-6" />
+                            <NavLink to="/profile/settings"><img src={settings} alt="Settings" className="w-6 h-6" /></NavLink>
                         </div>
                         <div className="flex gap-6">
                             <Link className="text-sm sm:text-md md:text-lg lg:text-xl" to="/profile">{data.posts.length} Posts</Link>

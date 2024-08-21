@@ -43,7 +43,7 @@ function Comment({post}){
                     placeholder="add a comment"
                     onChange={(event) => setComment(event.target.value)}
                 />
-                <button className="bg-blue-600 px-4 py-1 ml-4 rounded-md text-white " onClick={() => handleComment()}>Send</button>
+                {comment.length>0 &&<button className="bg-blue-600 px-4 py-1 ml-4 rounded-md text-white " onClick={() => handleComment()}>Send</button>}
             </div>
             }
         </>

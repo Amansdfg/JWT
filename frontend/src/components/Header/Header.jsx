@@ -8,13 +8,15 @@ import Bars3Icon from "./icons/Bars3Icon.jsx";
 import {useState} from "react";
 import {header} from "../../util/list.js";
 import MainNavigation from "./MainNavigation.jsx";
+import DarkModeToggle from "../UI/DarkModeToggle.jsx";
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
+
     function handle(){
         setIsOpen(!isOpen);
     }
     return (
-        <nav className='w-screen bg-gray-800'>
+        <nav className='w-screen bg-aman dark:bg-darkMode shadow-header'>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 items-center justify-between">
                             <div className="flex items-center">
@@ -28,12 +30,13 @@ export default function Header() {
                                 <div className="hidden md:block">
                                     <MainNavigation/>
                                 </div>
+                                <DarkModeToggle/>
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-4 flex items-center md:ml-6">
                                     <button
                                         type="button"
-                                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        className="relative rounded-full dabg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                     >
                                         <span className="absolute -inset-1.5"/>
                                         <span className="sr-only">View notifications</span>

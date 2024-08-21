@@ -3,20 +3,18 @@ export  const client=new QueryClient();
 import {getAuthToken} from "./auth.js";
 export async function fetchFriend({id}){
     const token=getAuthToken();
-    if(token) {
-        const response = await fetch("http://localhost:8081/users/"+id, {
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        })
-        if (!response.ok) {
-            const error = new Error("Error during fetching user");
-            error.code = response.status;
-            error.message = await response.json();
-            throw error;
+    const response = await fetch("http://localhost:8081/users/"+id, {
+        headers: {
+            "Authorization": "Bearer " + token
         }
-        return await response.json();
+    })
+    if (!response.ok) {
+        const error = new Error("Error during fetching user");
+        error.code = response.status;
+        error.message = await response.json();
+        throw error;
     }
+    return await response.json();
 
 }
 export async function fetchAllUsers({signal}){
@@ -46,23 +44,19 @@ export async function info(){
 }
 export async function fetchUser({signal}){
     const token=getAuthToken();
-    if(token) {
-        const response = await fetch("http://localhost:8081/aman/info", {
-            signal,
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        })
-        if (!response.ok) {
-            const error = new Error("Error during fetching user");
-            error.code = response.status;
-            error.message = await response.json();
-            throw error;
+    const response = await fetch("http://localhost:8081/aman/info", {
+        signal,
+        headers: {
+            "Authorization": "Bearer " + token
         }
-        return await response.json();
-    }else{
-        return  null;
+    })
+    if (!response.ok) {
+        const error = new Error("Error during fetching user");
+        error.code = response.status;
+        error.message = await response.json();
+        throw error;
     }
+    return await response.json();
 }
 export async function fetchMessages({id,signal}){
     console.log("id:"+id+", signal"+ signal)
@@ -103,8 +97,7 @@ export async function upLoadPost({data,signal}){
 }
 export async  function getRecommendation({signal}){
     const token=getAuthToken();
-    if(token) {
-        const response = await fetch("http://localhost:8081/users/rec", {
+    const response = await fetch("http://localhost:8081/users/rec", {
             signal,
             headers: {
                 "Authorization": "Bearer " + token,
@@ -119,9 +112,6 @@ export async  function getRecommendation({signal}){
         }
         const data = await response.json();
         return data;
-    }else{
-        return null;
-    }
 }
 export async function addComment({comment,id}){
     const token=getAuthToken();
