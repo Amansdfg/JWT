@@ -5,7 +5,7 @@ const DarkModeToggle = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
-        // Check for user's theme preference in localStorage
+        // Check for user.svg's theme preference in localStorage
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
@@ -29,7 +29,7 @@ const DarkModeToggle = () => {
             onClick={toggleDarkMode}
             className="w-8"
         >
-           <img src={isDarkMode ? sun : moon} alt={isDarkMode?"moon":'sun'}/>
+           <img src={isDarkMode ? sun : moon} alt={isDarkMode?"moon.svg":'sun'}/>
         </button>
     );
 };

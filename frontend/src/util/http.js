@@ -9,7 +9,7 @@ export async function fetchFriend({id}){
         }
     })
     if (!response.ok) {
-        const error = new Error("Error during fetching user");
+        const error = new Error("Error during fetching user.svg");
         error.code = response.status;
         error.message = await response.json();
         throw error;
@@ -52,7 +52,7 @@ export async function fetchUser({signal}){
             }
         })
         if (!response.ok) {
-            const error = new Error("Error during fetching user");
+            const error = new Error("Error during fetching user.svg");
             error.code = response.status;
             error.message = await response.json();
             throw error;
@@ -121,7 +121,7 @@ export async  function getRecommendation({signal}){
 }
 export async function addComment({comment,id}){
     const token=getAuthToken();
-    console.log("comment: "+comment)
+    console.log("comment.svg: "+comment)
     console.log("id: "+id)
     console.log("token: "+token)
     const response=await  fetch("http://localhost:8081/comment/"+id,{
@@ -193,12 +193,13 @@ export async function acceptUser({username}){
     }
     return await response.json();
 }
-export async function searchUsers({signal,search}){
+export async function searchUsers({search}){
     const token=getAuthToken();
     const response=await fetch("http://localhost:8081/users/search",{
-        signal,
+        method:"POST",
         headers:{
             "Authorization":"Bearer "+token,
+            "Content-Type":'application/json'
         },
         body: search,
     })

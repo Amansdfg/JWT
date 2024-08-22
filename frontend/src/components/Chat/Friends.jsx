@@ -38,6 +38,7 @@ export default function Friends({friends}){
                     <button key={friend.id}
                             className=' drop-shadow-md'>
                     <img src={logo} className="w-14 rounded-full" alt="friend"/>
+                        <span>{friend.username}</span>
                     </button>
                 ))}
                 </div>

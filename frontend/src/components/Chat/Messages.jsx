@@ -109,7 +109,7 @@ export default function Messages({id,user}){
                     <div className="h-15p flex rounded-t-md justify-between items-center px-4 bg-gray-300">
                         {friendContent}
                     </div>
-                    <div className="flex-1 flex px-2 py-3 flex-col rounded-b-md gap-3 overflow-y-auto bg-aman">
+                    <div className="flex-1 flex px-2 py-3 flex-col rounded-b-md gap-3 overflow-y-auto">
                         {messagesContent}
                         <div ref={messagesEndRef}></div>
                     </div>

@@ -38,7 +38,7 @@ const token=getAuthToken();
 
         if (!response.ok) {
             console.log("Server error:", response.statusText);
-            throw new Error("Could not authenticate user");
+            throw new Error("Could not authenticate user.svg");
         }
 
         return redirect("/profile");

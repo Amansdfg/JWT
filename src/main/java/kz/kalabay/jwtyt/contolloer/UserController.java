@@ -48,7 +48,7 @@ public class UserController {
         logger.info("Creating post for user: {}", principal.getName());
         return userService.post(principal.getName(), post, file);
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public List<UserDto> searchUser(@RequestBody String search ) {
         List<UserDto> users= userService.searchUsers(search);
         System.out.println(users);

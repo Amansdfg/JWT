@@ -8,7 +8,7 @@ function Comment({post}){
     const{mutate}=useMutation({
         mutationFn:addComment,
         onError: (error) => {
-            console.error("Error posting comment:", error);
+            console.error("Error posting comment.svg:", error);
         },
         onSuccess: (data) => {
             console.log("Comment posted successfully:", data);
