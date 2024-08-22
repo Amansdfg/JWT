@@ -44,19 +44,23 @@ export async function info(){
 }
 export async function fetchUser({signal}){
     const token=getAuthToken();
-    const response = await fetch("http://localhost:8081/aman/info", {
-        signal,
-        headers: {
-            "Authorization": "Bearer " + token
+    if(token) {
+        const response = await fetch("http://localhost:8081/aman/info", {
+            signal,
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
+        if (!response.ok) {
+            const error = new Error("Error during fetching user");
+            error.code = response.status;
+            error.message = await response.json();
+            throw error;
         }
-    })
-    if (!response.ok) {
-        const error = new Error("Error during fetching user");
-        error.code = response.status;
-        error.message = await response.json();
-        throw error;
+        return await response.json();
+    }else{
+        return null
     }
-    return await response.json();
 }
 export async function fetchMessages({id,signal}){
     console.log("id:"+id+", signal"+ signal)
@@ -111,6 +115,8 @@ export async  function getRecommendation({signal}){
             throw error;
         }
         return await response.json();
+    }else{
+        return null;
     }
 }
 export async function addComment({comment,id}){

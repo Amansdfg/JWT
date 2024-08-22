@@ -41,7 +41,7 @@ export default function Friends({friends}){
                     </button>
                 ))}
                 </div>
-                <button onClick={createGroupChat} className="ml-auto text-3xl">+</button>
+                <button onClick={createGroupChat} className="ml-auto text-3xl dark:text-white">+</button>
             </div>
             {friends.map((friend) => (
                 <NavLink key={friend.id} to={"/chat/" + friend.id}

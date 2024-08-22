@@ -103,7 +103,7 @@ export default function Messages({id,user}){
     }
 
     return (
-        <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full ">
             {id && friend && (
                 <>
                     <div className="h-15p flex rounded-t-md justify-between items-center px-4 bg-gray-300">

@@ -36,8 +36,8 @@ function Rec(){
                 <Link className="flex justify-center items-center" key={user.id} to={`profile/`+user.id}>
                     <img className="h-8 rounded-full mr-2" src={logo} alt="User"/>
                     <div className="flex flex-col w-40">
-                        <span className="text-xl">{user.username}</span>
-                        <span className="truncate text-black/60">Recommendation for you</span>
+                        <span className="dark:text-white text-xl">{user.username}</span>
+                        <span className="dark:text-white truncate text-black/60">Recommendation for you</span>
                     </div>
                     <button className="text-blue-700" onClick={()=>handleRequest(user.id)}>send request</button>
                 </Link>
@@ -51,11 +51,11 @@ function Rec(){
                     <div className="flex justify-center items-center" key={user.id}>
                         <img className="h-10 rounded-full mr-2" src={logo} alt="User"/>
                         <div className="flex flex-col w-40">
-                            <span className="text-xl">{user.username}</span>
-                            <span className="truncate">{user.firstName} {user.lastName}</span>
+                            <span className="dark:text-white text-xl">{user.username}</span>
+                            <span className="dark:text-white truncate">{user.firstName} {user.lastName}</span>
                         </div>
                     </div>
-                    <h2 className="text-gray-600 my-4">Recommendation for you</h2>
+                    <h2 className="text-gray-600 dark:text-white my-4">Recommendation for you</h2>
                 </>
             }
 

@@ -77,35 +77,35 @@ function Profile() {
                     <img src={photo} alt="Profile" className="aspect-square h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
                     <div className="flex flex-col">
                         <div className="flex gap-2 md:gap-6 justify-center items-center">
-                            <span className="text-xl lg:text-2xl">{data.username}</span>
+                            <span className="text-xl lg:text-2xl dark:text-white">{data.username}</span>
                             {!param.id &&
                                 <>
-                                    <Link to="/profile/edit" className="px-3 py-1 text-sm sm:text-md md:text-lg lg:text-xl bg-white  rounded-md">
+                                    <Link to="/profile/edit" className="px-3 py-1 dark:bg-lightMode dark:text-white text-sm sm:text-md md:text-lg lg:text-xl bg-white  rounded-md">
                                         Edit
                                     </Link>
-                                    <Link to="/post" className="px-3 py-1 bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
+                                    <Link to="/post" className="px-3 py-1 bg-white dark:bg-lightMode dark:text-white  text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
                                         Upload post
                                     </Link>
                                 </>
                             }
                             {param.id &&
-                                <Link to={`/chat/`+param.id} className="px-3 py-1 bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
+                                <Link to={`/chat/`+param.id} className="px-3 py-1 dark:bg-lightMode dark:text-white bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
                                     Chat
                                 </Link>
                             }
 
-                            <NavLink to="/profile/settings"><img src={settings} alt="Settings" className="w-6 h-6" /></NavLink>
+                            <NavLink to="/profile/settings"><img src={settings} alt="Settings" className="w-6 h-6 ring-white fill-white accent-white text-white  caret-white decoration-white stroke-white via-white to-white ring-offset-white outline-white divide-white" /></NavLink>
                         </div>
                         <div className="flex gap-6">
-                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl" to="/profile">{data.posts.length} Posts</Link>
-                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl" to={param.id?`/friends/`+param.id :"/friends"}>{data.friends.length}  Friends</Link>
+                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl dark:text-white" to="/profile">{data.posts.length} Posts</Link>
+                            <Link className="text-sm sm:text-md md:text-lg lg:text-xl dark:text-white" to={param.id?`/friends/`+param.id :"/friends"}>{data.friends.length}  Friends</Link>
                         </div>
                     </div>
                 </div>
                 <div className="py-10">
-                    <span className="text-2xl">Posts</span>
+                    <span className="text-2xl dark:text-white">Posts</span>
                     <div className=" grid  grid-cols-posts gap-6">
-                        {data.posts.length === 0 && <span>No posts yet</span>}
+                        {data.posts.length === 0 && <span className="dark:text-white">No posts yet</span>}
                         {data.posts.length > 0 &&
                             <ProfilePost posts={data.posts} modalGoi={modalGoi}/>
                         }
@@ -116,7 +116,7 @@ function Profile() {
     }
 
     return (
-        <section className="bg-aman min-h-screen">
+        <section className="min-h-screen">
             {content}
             {modalPage && (
                 <Modal onClose={closeModal} classes='w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] h-[90%] p-8'>

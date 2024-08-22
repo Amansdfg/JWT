@@ -32,8 +32,8 @@ export default {
       },
       backgroundColor:{
         'aman':"#E9E7E7",
-        'lightMode':"#060963",
-        'darkMode':'#0f0c27'
+        'lightMode':"#64748b",
+        'darkMode':'#1e293b'
       },
       gridTemplateColumns:{
         'posts': "repeat(auto-fit, minmax(240px,auto))",
