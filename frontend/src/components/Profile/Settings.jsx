@@ -1,37 +1,14 @@
-import user from "../../assets/user.svg"
-import notification from '../../assets/notification.svg'
-import lock from '../../assets/lock.svg'
-import block from "../../assets/block.svg"
-import message from "../../assets/message.svg"
-import comment from "../../assets/comment.svg"
+import {settingsMenu} from "../../util/list.js";
 export default function Setting(){
     return (
-        <section>
-            <div>
-                <div>
-                    <img src={user} alt="user"/>
-                    <span>Edit profile</span>
-                </div>
-                <div>
-                    <img src={notification} alt='notification'/>
-                    <span>Notification</span>
-                </div>
-                <div>
-                    <img src={lock} alt='account privacy'/>
-                    <span>Account privacy</span>
-                </div>
-                <div>
-                    <img src={block} alt='blocked'/>
-                    <span>Blocked</span>
-                </div>
-                <div>
-                    <img src={message} alt='messages'/>
-                    <span>Messages</span>
-                </div>
-                <div>
-                    <img src={comment} alt='comment'/>
-                    <span>Comment</span>
-                </div>
+        <section className="px-10 py-12">
+            <div className='ml-[300px] flex flex-col gap-4'>
+                {settingsMenu.map(item=>(
+                    <a className="flex items-center" key={item.id} href={item.href}>
+                        <img src={item.image} alt={item.name} className="mr-3 "/>
+                        <span className="text-2xl">{item.title}</span>
+                    </a>
+                ))}
             </div>
             <div>
 
