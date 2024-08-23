@@ -2,14 +2,13 @@ import {useEffect,useState} from "react";
 
 export default function AboutUs() {
     const [activeSection, setActiveSection] = useState('');
-    console.log(activeSection)
-    console.log("aman")
+
     useEffect(() => {
-        const sections = document.querySelectorAll('section[id]');
+        const sections = document.querySelectorAll('section[id], h1[id], h3[id]');
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.25
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -19,20 +18,18 @@ export default function AboutUs() {
                 }
             });
         }, options);
-
         sections.forEach(section => {
             observer.observe(section);
         });
-
         return () => {
             sections.forEach(section => {
                 observer.unobserve(section);
             });
         };
-    }, []);
+    },[])
     return (
         <section className="px-10 py-8 flex text-gray-800">
-            <div>
+            <div className='dark:text-white'>
                 <h1 id="chatgram" className="text-3xl font-bold mb-4">ChatGram</h1>
                 <p className="mb-4">
                     ChatGram is a cutting-edge social networking platform crafted to foster meaningful connections
@@ -164,34 +161,124 @@ export default function AboutUs() {
             </div>
 
             <div className="pl-10 w-[800px]">
-                <nav className="sticky top-20">
+                <nav className="sticky top-20 dark:text-white">
                     <h2 className="text-lg font-semibold mb-4">Contents</h2>
-                    <ul className="flex flex-col gap-2 text-gray-600 hover:text-blue-600">
-                        <li ><a href="#chatgram" className={activeSection==='chatgram'?"text-blue-600":"text-gray-600 hover:text-blue-600"}>ChatGram</a></li>
-                        <li ><a href="#why-chatgram" className={activeSection==='why-chatgram'?"text-blue-600":"text-gray-600 hover:text-blue-600"}>Why ChatGram?</a></li>
-                        <li ><a href="#key-features" className="text-gray-600 hover:text-blue-600">Key Features</a></li>
+                    <ul className="flex flex-col gap-2 text-gray-600 dark:text-white">
+                        <li>
+                            <a href="#chatgram"
+                               className={activeSection === 'chatgram' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                ChatGram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#why-chatgram"
+                               className={activeSection === 'why-chatgram' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Why ChatGram?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#key-features"
+                               className={activeSection === 'key-features' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Key Features
+                            </a>
+                        </li>
                         <ul className='ml-4 flex flex-col gap-1'>
-                            <li ><a href="#user-authentication" className="text-gray-600 hover:text-blue-600">User Authentication</a></li>
-                            <li ><a href="#real-time-chat" className="text-gray-600 hover:text-blue-600">Real-Time Chat</a></li>
-                            <li ><a href="#post-management" className="text-gray-600 hover:text-blue-600">Post Management</a></li>
-                            <li ><a href="#friend-connections" className="text-gray-600 hover:text-blue-600">Friend Connections</a></li>
-                            <li ><a href="#responsive-design" className="text-gray-600 hover:text-blue-600">Responsive Design</a></li>
+                            <li>
+                                <a href="#user-authentication"
+                                   className={activeSection === 'user-authentication' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    User Authentication
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#real-time-chat"
+                                   className={activeSection === 'real-time-chat' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Real-Time Chat
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#post-management"
+                                   className={activeSection === 'post-management' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Post Management
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#friend-connections"
+                                   className={activeSection === 'friend-connections' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Friend Connections
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#responsive-design"
+                                   className={activeSection === 'responsive-design' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Responsive Design
+                                </a>
+                            </li>
                         </ul>
-                        <li ><a href="#technology-stack" className="text-gray-600 hover:text-blue-600">Technology Stack</a></li>
+                        <li>
+                            <a href="#technology-stack"
+                               className={activeSection === 'technology-stack' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Technology Stack
+                            </a>
+                        </li>
                         <ul className='ml-4 flex flex-col gap-1'>
-                            <li ><a href="#backend" className="text-gray-600 hover:text-blue-600">Backend</a></li>
-                            <li ><a href="#frontend" className="text-gray-600 hover:text-blue-600">Frontend</a></li>
-                            <li ><a href="#database" className="text-gray-600 hover:text-blue-600">Database</a></li>
-                            <li ><a href="#authentication" className="text-gray-600 hover:text-blue-600">Authentication</a></li>
-                            <li ><a href="#real-time-communication" className="text-gray-600 hover:text-blue-600">Real-Time Communication</a></li>
+                            <li>
+                                <a href="#backend"
+                                   className={activeSection === 'backend' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Backend
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#frontend"
+                                   className={activeSection === 'frontend' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Frontend
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#database"
+                                   className={activeSection === 'database' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Database
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#authentication"
+                                   className={activeSection === 'authentication' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Authentication
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#real-time-communication"
+                                   className={activeSection === 'real-time-communication' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                    Real-Time Communication
+                                </a>
+                            </li>
                         </ul>
-                        <li ><a href="#our-vision" className="text-gray-600 hover:text-blue-600">Our Vision</a></li>
-                        <li ><a href="#getting-started-with-chatgram" className="text-gray-600 hover:text-blue-600">Getting Started with ChatGram</a></li>
-                        <li ><a href="#community-and-collaboration" className="text-gray-600 hover:text-blue-600">Community and Collaboration</a></li>
-                        <li ><a href="#license-and-contributions" className="text-gray-600 hover:text-blue-600">License and Contributions</a></li>
+                        <li>
+                            <a href="#our-vision"
+                               className={activeSection === 'our-vision' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Our Vision
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#getting-started-with-chatgram"
+                               className={activeSection === 'getting-started-with-chatgram' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Getting Started with ChatGram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#community-and-collaboration"
+                               className={activeSection === 'community-and-collaboration' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                Community and Collaboration
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#license-and-contributions"
+                               className={activeSection === 'license-and-contributions' ? "text-blue-600 font-bold" : "hover:text-blue-600"}>
+                                License and Contributions
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </section>
     );
-}
+    }
