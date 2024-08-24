@@ -11,31 +11,32 @@ export default {
       backgroundImage: {
         'custom-gradient': 'linear-gradient(180deg, #253c3c, #1d4949)',
         'wallpaper': "url('/src/assets/wallpaper.jpg')",
+        'gradient-custom': 'linear-gradient(to right, #f8b195, #f67280, #c06c84)',
       },
 
-      width:{
-        'post-sm':"550px",
-        'post-md':"450px",
-        'post-lg':"500px",
-        'post-xl':"500px",
-        '70p':"70%",
-        '30p':"30%"
+      width: {
+        'post-sm': "550px",
+        'post-md': "450px",
+        'post-lg': "500px",
+        'post-xl': "500px",
+        '70p': "70%",
+        '30p': "30%"
       },
-      height:{
-        "post-h":'400px',
-        'post-sm':"550px",
-        'post-md':"450px",
-        'post-lg':"500px",
-        'post-xl':"500px",
-        '15p':"15%",
-        '80p':"80%",
+      height: {
+        "post-h": '400px',
+        'post-sm': "550px",
+        'post-md': "450px",
+        'post-lg': "500px",
+        'post-xl': "500px",
+        '15p': "15%",
+        '80p': "80%",
       },
-      backgroundColor:{
-        'aman':"#E9E7E7",
-        'lightMode':"#64748b",
-        'darkMode':'#1e293b'
+      backgroundColor: {
+        'aman': "#E9E7E7",
+        'lightMode': "#64748b",
+        'darkMode': '#1e293b'
       },
-      gridTemplateColumns:{
+      gridTemplateColumns: {
         'posts': "repeat(auto-fit, minmax(240px,auto))",
       },
       boxShadow: {
@@ -48,28 +49,29 @@ export default {
           '0%': { transform: 'translateY(-10vh)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
-        'typing':{
-          "from" :{width:'0'},
-          "to":{width:'100%'},
+        type: {
+          '0%': { width: '0' },
+          '1%, 99%': { borderRight: '1px solid orange' },
+          '100%': { borderRight: 'none' },
+          // '100%': { width: 'auto', borderRight: 'none' }, // E
         },
-        "blink-caret":{
-          '0%':{
-            borderColor:"transparent"
-          },
-          "50%":{
-            borderColor:"orange"
-          },
-          '100%':{
-            borderColor:"transparent"
-          },
-        }
+        shringAnimation: {
+          '0%': { backgroundPosition: '0 0', opacity: '0', width: '0' },
+          '1%': { backgroundPosition: '0 0', opacity: '1', borderRight: '1px solid orange' },
+          '50%': { backgroundPosition: '150px 0', opacity: '1', borderRight: '1px solid orange' },
+          '100%': { backgroundPosition: '400px 0', opacity: '1', borderRight: '1px solid orange' },
+        },
+        blink: {
+          '50%': { borderColor: 'transparent' },
+        },
       },
       animation: {
         'slide-down-fade-in': 'slide-down-fade-in 300ms ease-out forwards',
-        'typing': 'typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite',
+        'type': 'type 2s steps(40,end) forwards',
+        'shring-animation': 'shringAnimation 2.2s steps(40,end) 2s forwards',
+        'blink': 'blink .5s step-end infinite alternate',
       },
     },
   },
   plugins: [],
 }
-

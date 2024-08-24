@@ -22,14 +22,15 @@ export default function Authentication() {
         <section className="flex flex-col bg-aman w-screen h-screen">
             <Header/>
             <div className="overflow-hidden bg-no-repeat bg-cover bg-wallpaper h-full flex justify-center items-center">
-                <div className="w-[50%] flex justify-center items-center">
-                    <div className="flex flex-col ">
-                        {/*<p className=" overflow-hidden whitespace-nowrap animate-typing">Chatgram</p>*/}
-                        <p className="overflow-hidden whitespace-nowrap animate-typing border-r-2 border-orange">
-                            This is a typing effect with a blinking caret.
-                        </p>
+                <div className="w-[50%] flex justify-start items-center">
+                    <div className="w-full pl-[100px]">
+                        <h1 className="text-custom-blue font-[800] text-[20px] text-left whitespace-nowrap overflow-hidden w-[170px] animate-type font-mono">Hi,
+                            Welcome to</h1>
+                        <h1 className="opacity-0 font-[800] text-[100px] bg-gradient-custom text-transparent bg-clip-text w-[500px] overflow-hidden animate-shring-animation animate-blink font-sans">
+                            Chatgram</h1>
                     </div>
                 </div>
+
                 <div className="w-[50%]">
                     <Login/>
                 </div>
@@ -38,8 +39,8 @@ export default function Authentication() {
                 <Notification
                     type={notification.type}
                     message={notification.message}
-                    onClose={()=>setNotification(null)}
-            />)
+                    onClose={() => setNotification(null)}
+                />)
             }
         </section>
     );
