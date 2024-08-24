@@ -14,7 +14,7 @@ function Rec(){
     const { data: recData, isLoading: recLoading, isError: recError } = useQuery({
         queryKey: ['rec'],
         queryFn: getRecommendation,
-        enabled: !user,
+        // enabled: !user,
     });
 
     const{mutate}=useMutation({

@@ -14,7 +14,8 @@ import Profile from "./components/Profile/Profile.jsx";
 import UploadPost ,{action as postAction} from "./pages/UploadPost.jsx";
 import Notification from "./components/Notification/Notification.jsx";
 import Friends from "./components/Profile/Friends.jsx";
-import Settings from "./components/Profile/Settings.jsx";
+import SettingsLayout from "./components/settings/SettingsLayout.jsx";
+import EditProfile from "./components/settings/EditProfile.jsx"
 import AboutUs from "./components/AboutUs.jsx";
 const router = createBrowserRouter([
     {
@@ -41,10 +42,6 @@ const router = createBrowserRouter([
                         element: <Profile/>,
                     },
                     {
-                        path:"settings",
-                        element:<Settings/>
-                    },
-                    {
                         path:":id",
                         element:<Profile/>
                     },
@@ -62,6 +59,25 @@ const router = createBrowserRouter([
             {
                 path: "about_us",
                 element: <AboutUs/>
+            },
+            {
+                path:"settings",
+                element: <SettingsLayout/>,
+                children:[
+                    {
+                        index: true,
+                        element: <EditProfile/>
+                    },
+                    {
+                        path: "edit",
+                        element: <EditProfile/>
+                    },
+                    {
+                        path: "about_us",
+                        element: <AboutUs/>
+                    },
+
+                ]
             },
             {
                 path: "friends",

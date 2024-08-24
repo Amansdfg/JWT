@@ -1,7 +1,9 @@
+import {NavLink} from "react-router-dom";
+
 export default function DisclosureButton({children,handle,...props}){
     return(
-        <a onClick={()=>handle()} {...props}>
+        <NavLink onClick={()=>handle()} {...props}>
             {children}
-        </a>
+        </NavLink>
     )
 }

@@ -3,6 +3,7 @@ import Login from '../components/Login/Login.jsx';
 import Header from "../components/Header/Header.jsx";
 import {useEffect, useState} from "react";
 import Notification from "../components/UI/Notification.jsx";
+import wallpaper from "../assets/wallpaper.jpg"
 export default function Authentication() {
     const actionData = useActionData();
     const [notification,setNotification]=useState();
@@ -20,8 +21,18 @@ export default function Authentication() {
     return (
         <section className="flex flex-col bg-aman w-screen h-screen">
             <Header/>
-            <div className="overflow-hidden px-10 h-full flex justify-center items-center ">
-                <Login/>
+            <div className="overflow-hidden bg-no-repeat bg-cover bg-wallpaper h-full flex justify-center items-center">
+                <div className="w-[50%] flex justify-center items-center">
+                    <div className="flex flex-col ">
+                        {/*<p className=" overflow-hidden whitespace-nowrap animate-typing">Chatgram</p>*/}
+                        <p className="overflow-hidden whitespace-nowrap animate-typing border-r-2 border-orange">
+                            This is a typing effect with a blinking caret.
+                        </p>
+                    </div>
+                </div>
+                <div className="w-[50%]">
+                    <Login/>
+                </div>
             </div>
             {notification && (
                 <Notification
@@ -57,7 +68,7 @@ export async function action({request}) {
 
         if (!response.ok) {
             console.log("Server error:", response.statusText);
-            throw new Error("Could not authenticate user.svg");
+            throw new Error("Could not authenticate user");
         }
 
         const resData = await response.json();

@@ -10,7 +10,7 @@ export default {
 
       backgroundImage: {
         'custom-gradient': 'linear-gradient(180deg, #253c3c, #1d4949)',
-        // 'custom-gradient': 'linear-gradient(180deg, #050C9C, #0F67B1)',
+        'wallpaper': "url('/src/assets/wallpaper.jpg')",
       },
 
       width:{
@@ -48,9 +48,25 @@ export default {
           '0%': { transform: 'translateY(-10vh)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        'typing':{
+          "from" :{width:'0'},
+          "to":{width:'100%'},
+        },
+        "blink-caret":{
+          '0%':{
+            borderColor:"transparent"
+          },
+          "50%":{
+            borderColor:"orange"
+          },
+          '100%':{
+            borderColor:"transparent"
+          },
+        }
       },
       animation: {
         'slide-down-fade-in': 'slide-down-fade-in 300ms ease-out forwards',
+        'typing': 'typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite',
       },
     },
   },

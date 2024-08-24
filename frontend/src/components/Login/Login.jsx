@@ -18,7 +18,7 @@ export default function Login() {
         hasError:passwordHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
     return (
-        <Form className="w-full sm:w-[28rem] p-8 bg-custom-gradient rounded-2xl shadow-custom" method="POST">
+        <Form className="sm:w-[28rem] p-8 bg-custom-gradient rounded-2xl shadow-custom" method="POST">
             <h2 className="text-center text-white text-xl">Login</h2>
             <div className="flex flex-col w-full justify-start gap-4">
                 <div className="mb-4 m-0">

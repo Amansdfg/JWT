@@ -94,7 +94,7 @@ function Profile() {
                                 </Link>
                             }
 
-                            <NavLink to="/profile/settings"><img src={settings} alt="Settings" className="w-6 h-6 ring-white fill-white accent-white text-white  caret-white decoration-white stroke-white via-white to-white ring-offset-white outline-white divide-white" /></NavLink>
+                            <NavLink to="/settings"><img src={settings} alt="Settings" className="w-6 h-6 ring-white fill-white accent-white text-white  caret-white decoration-white stroke-white via-white to-white ring-offset-white outline-white divide-white" /></NavLink>
                         </div>
                         <div className="flex gap-6">
                             <Link className="text-sm sm:text-md md:text-lg lg:text-xl dark:text-white" to="/profile">{data.posts.length} Posts</Link>

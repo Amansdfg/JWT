@@ -28,7 +28,7 @@ export default function Friends({friends}){
             </Modal>
             }
 
-            <div className=" flex bg-white dark:bg-lightMode px-4 py-2 rounded">
+            <div className=" flex bg-white dark:bg-lightMode px-4 py-2 rounded overflow-x">
                 <div className="flex gap-2">
                 <button
                         className='drop-shadow-md mr-6'>
@@ -36,9 +36,9 @@ export default function Friends({friends}){
                 </button>
                 {friends.map((friend) => (
                     <button key={friend.id}
-                            className=' drop-shadow-md'>
-                    <img src={logo} className="w-14 rounded-full" alt="friend"/>
-                        <span>{friend.username}</span>
+                            className=' drop-shadow-md w-14'>
+                    <img src={logo} className="w-full rounded-full" alt="friend"/>
+                        <span className='truncate '>{friend.username}</span>
                     </button>
                 ))}
                 </div>

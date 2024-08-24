@@ -42,7 +42,7 @@ export default function Header() {
                                 <span className="sr-only">View notifications</span>
                                 <BellIcon/>
                             </button>
-                            <Menu header={header}/>
+                            <Menu/>
                         </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">
