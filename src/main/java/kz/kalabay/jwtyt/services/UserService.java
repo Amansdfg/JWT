@@ -4,6 +4,7 @@ package kz.kalabay.jwtyt.services;
 import kz.kalabay.jwtyt.mapper.UserMapper;
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.User;
+import kz.kalabay.jwtyt.model.dto.ChangePasswordDto;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.repostory.UserRepositories;
@@ -108,5 +109,14 @@ public class UserService implements UserDetailsService {
     }
     public List<UserDto> searchUsers(String username) {
         return  mapper.mapToDTOList(userRepositories.findByUsernameContainingIgnoreCase(username));
+    }
+    public String changePassword(ChangePasswordDto changePasswordDto) {
+        User user=userRepositories.findByUsername(changePasswordDto.getUsername()).orElseThrow(()->new RuntimeException("Not found"));
+        if(!passwordEncoder.matches(changePasswordDto.getOldPassword(), user.getPassword())){
+            throw new RuntimeException("Password does not match");
+        }
+        user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        userRepositories.save(user);
+        return "Successfully changed password";
     }
 }

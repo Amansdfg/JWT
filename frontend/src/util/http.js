@@ -211,3 +211,23 @@ export async function searchUsers({search}){
     }
     return await response.json();
 }
+export async function changePassword(dto) {
+    const token = getAuthToken();
+    const response = await fetch("http://localhost:8081/users/change-password", {
+        method: "POST",
+        headers: {
+            "Authorization": 'Bearer ' + token,
+            'Content-Type': "application/json"
+        },
+        body: dto
+    });
+
+    if (!response.ok) {
+        const error = new Error("Error found during change password");
+        error.code = response.status;
+        error.info = await response.json();
+        throw error;
+    }
+
+    return await response.json();
+}

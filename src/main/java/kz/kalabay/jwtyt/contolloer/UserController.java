@@ -1,6 +1,7 @@
 package kz.kalabay.jwtyt.contolloer;
 
 import kz.kalabay.jwtyt.model.Post;
+import kz.kalabay.jwtyt.model.dto.ChangePasswordDto;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -53,5 +54,14 @@ public class UserController {
         List<UserDto> users= userService.searchUsers(search);
         System.out.println(users);
         return users;
+    }
+    @PostMapping("/change-password")
+    public String changePassword(@RequestBody ChangePasswordDto changePasswordDto,Principal principal) {
+        System.out.println(changePasswordDto);
+        System.out.println(principal);
+        if(!changePasswordDto.getUsername().equals(principal.getName())){
+            return "username are not match";
+        }
+        return userService.changePassword(changePasswordDto);
     }
 }
