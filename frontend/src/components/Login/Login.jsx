@@ -2,6 +2,7 @@ import {useInput} from "../../hooks/useInput.js";
 import {isNotEmpty,hasMinLength} from "../../util/validation.js"
 import {Form, Link, useNavigation} from "react-router-dom";
 import './Login.css'
+import logo from "../../assets/chatgramLogo.png"
 export default function Login() {
     const navigation=useNavigation();
     const isSubmitting=navigation.state==="submitting";
@@ -18,7 +19,8 @@ export default function Login() {
         hasError:passwordHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
     return (
-        <Form className="sm:w-[28rem] p-8 bg-custom-gradient rounded-2xl shadow-custom" method="POST">
+        <Form className="px-6 py-4 mx-6 my-4 md:m-0 md:bg-transparent w-auto  md:w-[30%] bg-slate-800 rounded-2xl shadow-custom" method="POST">
+            <img src={logo} className="w-[50%] mx-auto md:"/>
             <h2 className="text-center text-white text-xl">Login</h2>
             <div className="flex flex-col w-full justify-start gap-4">
                 <div className="mb-4 m-0">

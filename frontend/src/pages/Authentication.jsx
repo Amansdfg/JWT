@@ -21,19 +21,16 @@ export default function Authentication() {
     return (
         <section className="flex flex-col bg-aman w-screen h-screen">
             <Header/>
-            <div className="overflow-hidden bg-no-repeat bg-cover bg-wallpaper h-full flex justify-center items-center">
-                <div className="w-[50%] flex justify-start items-center">
+            <div className="overflow-hidden bg-no-repeat bg-cover bg-wallpaper h-full flex items-center">
+                <div className="w-[50%] hidden md:block  justify-start items-center">
                     <div className="w-full pl-[100px]">
-                        <h1 className="text-custom-blue font-[800] text-[20px] text-left whitespace-nowrap overflow-hidden w-[170px] animate-type font-mono">Hi,
-                            Welcome to</h1>
-                        <h1 className="opacity-0 font-[800] text-[100px] bg-gradient-custom text-transparent bg-clip-text w-[500px] overflow-hidden animate-shring-animation animate-blink font-sans">
+                        <h1 className="text-custom-blue text-[25px] w-[220px] font-[800]  lg:text-[40px] lg:w-[350px]  text-left whitespace-nowrap overflow-hidden animate-type font-mono">
+                            Hi, Welcome to</h1>
+                        <h1 className="opacity-0 font-[800] text-[40px] md:text-[60px] lg:text-[80px] xl:text-[100px] bg-gradient-custom text-transparent bg-clip-text w-[75%] overflow-hidden animate-shring-animation animate-blink font-sans">
                             Chatgram</h1>
                     </div>
                 </div>
-
-                <div className="w-[50%]">
-                    <Login/>
-                </div>
+                <Login/>
             </div>
             {notification && (
                 <Notification

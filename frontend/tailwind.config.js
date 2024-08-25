@@ -9,7 +9,6 @@ export default {
     extend: {
 
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(180deg, #253c3c, #1d4949)',
         'wallpaper': "url('/src/assets/wallpaper.jpg')",
         'gradient-custom': 'linear-gradient(to right, #f8b195, #f67280, #c06c84)',
       },
@@ -53,7 +52,6 @@ export default {
           '0%': { width: '0' },
           '1%, 99%': { borderRight: '1px solid orange' },
           '100%': { borderRight: 'none' },
-          // '100%': { width: 'auto', borderRight: 'none' }, // E
         },
         shringAnimation: {
           '0%': { backgroundPosition: '0 0', opacity: '0', width: '0' },
