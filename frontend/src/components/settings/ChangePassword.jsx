@@ -45,8 +45,7 @@ export default function ChangePassword(){
     }
     return (
         <form onSubmit={handleSubmit}>
-            <h1 className="text-2xl w-[700px] font-semibold mb-[40px]">Edit profile</h1>
-
+            <h1 className="text-2xl font-semibold mb-[40px]">Edit profile</h1>
             <span className="text-xl mb-[1rem]">Username</span>
             <input
                 name='username'

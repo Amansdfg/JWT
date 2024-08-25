@@ -219,7 +219,7 @@ export async function changePassword(dto) {
             "Authorization": 'Bearer ' + token,
             'Content-Type': "application/json"
         },
-        body: dto
+        body: JSON.stringify(dto)
     });
 
     if (!response.ok) {
@@ -229,5 +229,5 @@ export async function changePassword(dto) {
         throw error;
     }
 
-    return await response.json();
+    return await response.text();
 }
