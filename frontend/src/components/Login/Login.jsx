@@ -52,10 +52,10 @@ export default function Login() {
                 </div>
             </div>
 
-            <p className="flex flex-col gap-4 sm:flex-row justify-between my-[10px] mx-auto">
-                <Link to="/register" className="text-center py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890] focus:[#319890]">Register</Link>
-                <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer button-flat hover:bg-transparent hover:text-[#9cbaba]">Reset</button>
-                <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890] focus:[#319890]" disabled={isSubmitting}>{isSubmitting ?"Submitting":"Login"}</button>
+            <p className="flex flex-col gap-2 lg:gap-4 sm:flex-row justify-between my-[10px]">
+                <Link to="/register" className="text-center py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]">Register</Link>
+                <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]">Reset</button>
+                <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]" disabled={isSubmitting}>{isSubmitting ?"Submitting":"Login"}</button>
             </p>
         </Form>
     );

@@ -10,6 +10,7 @@ import block from "../assets/block.svg"
 import message from "../assets/message.svg"
 import comment from "../assets/comment.svg"
 import info from "../assets/aboutUs.svg"
+import password from "../assets/password.svg"
 export const setting=[
     {
         id:1,
@@ -108,36 +109,43 @@ export const settingsMenu=[
         href:'/settings/notification',
         image:notification,
     },
-    {
-        id:"s3",
-        name:'account privacy',
-        title:'Account privacy',
-        href:'/settings/privacy',
-        image:lock,
-    },
+    // {
+    //     id:"s3",
+    //     name:'account privacy',
+    //     title:'Account privacy',
+    //     href:'/settings/privacy',
+    //     image:lock,
+    // },
     {
         id:"s4",
+        name:'password',
+        title:'Change password',
+        href:'/settings/change-password',
+        image:password,
+    },
+    {
+        id:"s5",
         name:'blocked',
         title:'Blocked',
         href:'/settings/blocked',
         image:block,
     },
     {
-        id:"s5",
+        id:"s6",
         name:'messages',
         title:'Messages',
         href:'/settings/messages',
         image:message,
     },
     {
-        id:"s6",
+        id:"s7",
         name:'comment',
         title:'Comment',
         href:'/settings/comment',
         image:comment,
     },
     {
-        id:"s7",
+        id:"s8",
         name:'about-us',
         title:'About us',
         href:'/settings/about_us',

@@ -39,7 +39,7 @@ ChatGram is a social networking platform that allows users to chat, share posts,
     ```yaml
     spring.datasource.url=jdbc:postgresql://localhost:5432/chatgram
     spring.datasource.username=your_username
-    spring.datasource.password=your_password
+    spring.datasource.password.svg=your_password
     spring.jpa.hibernate.ddl-auto=update
     ```
 

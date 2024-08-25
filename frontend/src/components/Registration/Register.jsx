@@ -51,7 +51,7 @@ export default function Register(){
                     onChange={handleUserNameChange}
                     value={userNameValue}
                 />
-                {userNameHasError && <div className="control-error">Invalid UserName</div>}
+                {userNameHasError && <div className="text-red-600">Invalid Username</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
@@ -67,7 +67,7 @@ export default function Register(){
                     onChange={handleFirstNameChange}
                     value={firstNameValue}
                 />
-                {firstNameHasError && <div className="control-error">Invalid FirstName</div>}
+                {firstNameHasError && <div className="text-red-600">Invalid Firstname</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
@@ -82,7 +82,7 @@ export default function Register(){
                     onChange={handleLastNameChange}
                     value={lastNameValue}
                 />
-                {lastNameHasError && <div className="control-error">Invalid LastName</div>}
+                {lastNameHasError && <div className="text-red-600">Invalid Lastname</div>}
             </div>
             <div className="col-span-6">
                 <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
@@ -95,7 +95,7 @@ export default function Register(){
                     onChange={handleEmailChange}
                     value={emailValue}
                 />
-                {emailHasError && <div className="control-error">Invalid Email</div>}
+                {emailHasError && <div className="text-red-600">Invalid Email</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
@@ -108,7 +108,7 @@ export default function Register(){
                     onChange={handlePasswordChange}
                     value={passwordValue}
                 />
-                {passwordHasError && <div className="control-error">Invalid Email</div>}
+                {passwordHasError && <div className="text-red-600">Invalid Email</div>}
             </div>
             <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
@@ -123,7 +123,7 @@ export default function Register(){
                     onChange={handlePasswordConfirmationChange}
                     value={passwordConfirmationValue}
                 />
-                {passwordConfirmationHasError && <div className="control-error">Invalid Email</div>}
+                {passwordConfirmationHasError && <div className="text-red-600">Invalid Email</div>}
             </div>
             <div className="col-span-6">
                 <label htmlFor="MarketingAccept" className="flex gap-4">
@@ -137,9 +137,9 @@ export default function Register(){
             <div className="col-span-6">
                 <p className="text-sm text-gray-500">
                     By creating an account, you agree to our
-                    <a href="#" className="text-gray-700 underline"> terms and conditions </a>
+                    <a href="#" className="text-gray-700 underline px-2">terms and conditions</a>
                     and
-                    <a href="#" className="text-gray-700 underline">privacy policy</a>.
+                    <a href="#" className="text-gray-700 underline px-2">privacy policy</a>.
                 </p>
             </div>
             <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
@@ -149,7 +149,7 @@ export default function Register(){
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
-                    <Link to="/login" className="text-gray-700 underline">Log in</Link>.
+                    <Link to="/login" className="text-gray-700 underline ml-2">Log in</Link>.
                 </p>
             </div>
         </Form>

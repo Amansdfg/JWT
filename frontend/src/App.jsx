@@ -17,6 +17,7 @@ import Friends from "./components/Profile/Friends.jsx";
 import SettingsLayout from "./components/settings/SettingsLayout.jsx";
 import EditProfile from "./components/settings/EditProfile.jsx"
 import AboutUs from "./components/AboutUs.jsx";
+import ChangePassword from "./components/settings/ChangePassword.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
                     {
                         path: "about_us",
                         element: <AboutUs/>
+                    },
+                    {
+                        path: "change-password",
+                        element: <ChangePassword/>
                     },
 
                 ]
