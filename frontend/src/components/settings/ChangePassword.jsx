@@ -18,11 +18,9 @@ export default function ChangePassword(){
     const {mutate}=useMutation({
         mutationFn:changePassword,
         onError:(error)=>{
-            console.log("Error change password request: ",error)
-            setNotification({show: true,type: "error",message: "Password change failed. Please try again. "})
+            setNotification({show: true,type: "error",message: `Password change failed. ${error.toString()}. Please try again. `})
         },
         onSuccess:(data)=>{
-            console.log("Request change password successfully: "+data);
             setNotification({show: true,type: "success",message: "Password successfully changed"})
         }
     })

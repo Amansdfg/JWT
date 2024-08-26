@@ -29,6 +29,7 @@ function Profile() {
             queryKey: ['user'],
             queryFn: ({signal}) => fetchUser({signal})
         });
+        console.log("Aman")
         data=user;
         isPending=isPendingUser;
         isError=isErrorUser;
@@ -74,7 +75,7 @@ function Profile() {
         content = (
             <div className=" w-2/3 mx-auto pt-6">
                 <div className="flex justify-evenly">
-                    <img src={photo} alt="Profile" className="aspect-square h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
+                    <img src={`http://localhost:8081/${data.photo}`} alt="Profile" className="aspect-square h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
                     <div className="flex flex-col">
                         <div className="flex gap-2 md:gap-6 justify-center items-center">
                             <span className="text-xl lg:text-2xl dark:text-white">{data.username}</span>

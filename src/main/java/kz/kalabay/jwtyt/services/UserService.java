@@ -56,6 +56,7 @@ public class UserService implements UserDetailsService {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setRoles(List.of(roleService.getUserRole()));
+        user.setPhoto("images/No-photo.png");
         return userRepositories.save(user);
     }
     public User getByUsername(String username){
@@ -70,17 +71,6 @@ public class UserService implements UserDetailsService {
     public UserDto getUserByIdDto(Long id){
         return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
-//    public ResponseEntity<String> post(String username, Post post) {
-//        User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
-//        postService.savePost(post);
-////        Post savedPost = postService.getPostById(post.getId());
-//        List<Post> posts = user.getPosts();
-//        posts.add(post);
-//        user.setPosts(posts);
-//        userRepositories.save(user);
-//
-//        return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
-//    }
     public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
         User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
 
@@ -94,7 +84,6 @@ public class UserService implements UserDetailsService {
 
             return new ResponseEntity<>("Post created successfully", HttpStatus.CREATED);
         } catch (IOException e) {
-            e.printStackTrace();
             return new ResponseEntity<>("Failed to upload image", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -104,19 +93,19 @@ public class UserService implements UserDetailsService {
     public List<UserDto> getRecommendationUsers(String username){
         return mapper.mapToDTOList(userRepositories.findAllByNotUsernameAndNotFriends(username));
     }
-    public User saveUser(User user) {
-        return userRepositories.save(user);
+    public void saveUser(User user) {
+        userRepositories.save(user);
     }
     public List<UserDto> searchUsers(String username) {
         return  mapper.mapToDTOList(userRepositories.findByUsernameContainingIgnoreCase(username));
     }
-    public String changePassword(ChangePasswordDto changePasswordDto) {
+    public ResponseEntity<String> changePassword(ChangePasswordDto changePasswordDto) {
         User user=userRepositories.findByUsername(changePasswordDto.getUsername()).orElseThrow(()->new RuntimeException("Not found"));
         if(!passwordEncoder.matches(changePasswordDto.getOldPassword(), user.getPassword())){
-            throw new RuntimeException("Password does not match");
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password does not match");
         }
         user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
         userRepositories.save(user);
-        return "Successfully changed password";
+        return ResponseEntity.ok("Successfully changed password");
     }
 }

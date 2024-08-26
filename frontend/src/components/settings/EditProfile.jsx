@@ -23,12 +23,12 @@ export default function EditProfile(){
             <span className="text-xl mb-[1rem]">Username</span>
             <input placeholder="username"
                    className="w-full h-[3rem] mb-[2rem] rounded-xl px-4 py-2 resize-none border-2 focus:text-gray-600 focus:outline-none focus:bg-gray-50 focus:border-blue-500"
-                   value={user.username}
+                   defaultValue={user.username}
              />
             <span className="text-xl mb-[1rem]">Email</span>
             <input placeholder="email"
                    className="w-full h-[3rem] mb-[2rem] rounded-xl px-4 py-2 resize-none border-2 focus:text-gray-600 focus:outline-none focus:bg-gray-50 focus:border-blue-500"
-                   value={user.email}
+                   defaultValue={user.email}
             />
             <span className="text-xl">Urls</span>
             <div className='flex items-center mb-[0.5rem]'>

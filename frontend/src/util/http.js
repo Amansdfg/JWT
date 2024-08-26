@@ -224,8 +224,8 @@ export async function changePassword(dto) {
 
     if (!response.ok) {
         const error = new Error("Error found during change password");
-        error.code = response.status;
-        error.info = await response.json();
+        error.code = response.status
+        error.message=await response.text();
         throw error;
     }
 

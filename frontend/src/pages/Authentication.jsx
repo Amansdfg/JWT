@@ -7,12 +7,11 @@ import wallpaper from "../assets/wallpaper.jpg"
 export default function Authentication() {
     const actionData = useActionData();
     const [notification,setNotification]=useState();
-
     useEffect(() => {
         if (actionData) {
             if (actionData.message) {
                 setNotification({
-                    type: actionData.status === 401 ? 'error' : 'success',
+                    type:'error',
                     message: actionData.message
                 });
             }
