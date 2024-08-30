@@ -15,7 +15,7 @@ public class MailSenderService {
     @Autowired
     private JavaMailSender sender;
     public void sendMail(String email, String token ) {
-        String resetLink="http://localhost:8081/reset-password/"+token;
+        String resetLink="http://localhost:5173/auth/reset-password/"+token;
         MailSendDto message=new MailSendDto();
         message.setTo(email);
         message.setSubject("Password Reset Request");

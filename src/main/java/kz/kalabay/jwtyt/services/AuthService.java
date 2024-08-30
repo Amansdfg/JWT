@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class AuthService {
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthenticationManager authenticationManager;
     private final UserRepositories userRepositories;
+    private final PasswordEncoder passwordEncoder;
     public ResponseEntity<?> createAuthToken(JwtRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -49,5 +51,11 @@ public class AuthService {
         user.setResetToken(token);
         userRepositories.save(user);
         return token;
+    }
+    public void resetPassword(String token, String password) {
+        User user=userRepositories.findByResetToken(token).orElseThrow(()->new RuntimeException("Not found"));
+        user.setPassword(passwordEncoder.encode(password));
+        user.setResetToken(null);
+        userRepositories.save(user);
     }
 }

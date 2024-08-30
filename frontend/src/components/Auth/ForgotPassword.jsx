@@ -2,7 +2,7 @@ import lock from "../../assets/lock.svg";
 import {Link} from "react-router-dom";
 import {useState} from "react"
 import {useMutation} from "@tanstack/react-query";
-import {reset} from "../../util/http.js"
+import {forgot} from "../../util/http.js"
 import Notification from "../UI/Notification.jsx";
 export default function ForgotPassword() {
     const[email,setEmail]=useState('');
@@ -15,12 +15,12 @@ export default function ForgotPassword() {
     );
 
     const{mutate} =useMutation({
-        mutationFn:reset,
+        mutationFn:forgot,
         onSuccess:(data)=>{
-            setNotification({show: true,type: "success",message:data})
+            setNotification({show: true,type: "success",message:data.message})
         },
         onError:(error)=>{
-            setNotification({show:true,type:"error",message: error})
+            setNotification({show:true,type:"error",message: error.message})
         }
     })
     function handleSubmit(){

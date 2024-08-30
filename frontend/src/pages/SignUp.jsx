@@ -1,6 +1,6 @@
-import Left from "../components/Registration/Left.jsx";
-import Mobile from "../components/Registration/Mobile.jsx";
-import Register from "../components/Registration/Register.jsx";
+import Left from "../components/Auth/Registration/Left.jsx";
+import Mobile from "../components/Auth/Registration/Mobile.jsx";
+import Register from "../components/Auth/Registration/Register.jsx";
 import {json, redirect} from "react-router-dom";
 export default function SignUp(){
     return (

@@ -18,7 +18,8 @@ import SettingsLayout from "./components/settings/SettingsLayout.jsx";
 import EditProfile from "./components/settings/EditProfile.jsx"
 import AboutUs from "./components/AboutUs.jsx";
 import ChangePassword from "./components/settings/ChangePassword.jsx";
-import ForgotPassword from "./components/Login/ForgotPassword.jsx";
+import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
+import ResetPassword from "./components/Auth/ResetPassword.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -96,10 +97,6 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path:"reset",
-                element:<ForgotPassword/>
-            },
-            {
                 path:"*",
                 element:<NotFound/>
             }
@@ -107,14 +104,29 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path:"login",
-        element:<Login/>,
-        action : loginAction,
-    },
-    {
-        path: 'register',
-        element: <SignUp />,
-        action:registerAction
+        path:"auth",
+        element: <RootLayout />,
+        errorElement: <ErrorPage/>,
+        children:[
+            {
+                path:"login",
+                element:<Login/>,
+                action : loginAction,
+            },
+            {
+                path: 'register',
+                element: <SignUp />,
+                action:registerAction
+            },
+            {
+                path:"forgot",
+                element:<ForgotPassword/>
+            },
+            {
+                path:"reset-password/:token",
+                element: <ResetPassword/>
+            }
+        ]
     },
     {
         path: "chat",

@@ -1,4 +1,4 @@
-import logo from "../../assets/reactlogo.svg";
+import logo from "../../../assets/reactlogo.svg";
 
 export  default function Mobile(){
     return (

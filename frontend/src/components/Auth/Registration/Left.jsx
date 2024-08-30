@@ -1,5 +1,5 @@
-import bg from "../../assets/wallpaper.avif";
-import logo from "../../assets/reactlogo.svg";
+import bg from "../../../assets/wallpaper.avif";
+import logo from "../../../assets/reactlogo.svg";
 
 export default function Left(){
     return (

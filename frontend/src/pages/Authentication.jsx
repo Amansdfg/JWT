@@ -1,9 +1,8 @@
 import {json, redirect, useActionData} from "react-router-dom";
-import Login from '../components/Login/Login.jsx';
+import Login from '../components/Auth/Login/Login.jsx';
 import Header from "../components/Header/Header.jsx";
 import {useEffect, useState} from "react";
 import Notification from "../components/UI/Notification.jsx";
-import wallpaper from "../assets/wallpaper.jpg"
 export default function Authentication() {
     const actionData = useActionData();
     const [notification,setNotification]=useState();

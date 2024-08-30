@@ -231,18 +231,39 @@ export async function changePassword(dto) {
 
     return await response.text();
 }
-export async function reset({email}){
-    const response=await  fetch("http://localhost:8081/mail/send",
+export async function forgot({email}){
+    const response=await  fetch("http://localhost:8081/aman/forgot-password",
         {
             method:'POST',
-            body:email
+            headers:{
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify({ email })
         }
     )
     if(!response.ok){
-        const error=new Eror("Error during reset")
+        const error=new Error("Error during forgot request")
         error.code=response.status;
         error.message=await response.json();
         throw error;
     }
     return await response.json()
+}
+export async function reset({password,token}){
+    console.log(password)
+    console.log(token)
+    const response=await fetch("http://localhost:8081/aman/reset-password",{
+        method:"POST",
+        headers:{
+            'Content-Type': "application/json"
+        },
+        body:JSON.stringify({password,token})
+    })
+    if(!response.ok){
+        const error=new Error("Error during reset password")
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
+    }
+    return await response.json();
 }

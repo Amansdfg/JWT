@@ -1,8 +1,8 @@
-import {useInput} from "../../hooks/useInput.js";
-import {isNotEmpty,hasMinLength} from "../../util/validation.js"
+import {useInput} from "../../../hooks/useInput.js";
+import {isNotEmpty,hasMinLength} from "../../../util/validation.js"
 import {Form, Link, useNavigation} from "react-router-dom";
 import './Login.css'
-import logo from "../../assets/chatgramLogo.png"
+import logo from "../../../assets/chatgramLogo.png"
 export default function Login() {
     const navigation=useNavigation();
     const isSubmitting=navigation.state==="submitting";
@@ -39,7 +39,7 @@ export default function Login() {
                 <div className="mb-4 m-0">
                     <div className="flex justify-between">
                         <label className="text-sm mb-1 text-[#9bafaf] uppercase font-bold" htmlFor="password">Password</label>
-                        <Link to="/reset" className="text-sm mb-1 text-[#9bafaf] uppercase font-bold">Forgot password?</Link>
+                        <Link to="/auth/forgot" className="text-sm mb-1 text-[#9bafaf] uppercase font-bold">Forgot password?</Link>
                     </div>
                     <input
                         className="block w-full p-2 text-base rounded-md border-2 border-[#758a8a] bg-[#869999] text-[#142020]"
@@ -56,7 +56,7 @@ export default function Login() {
             </div>
 
             <p className="flex flex-col gap-2 lg:gap-4 sm:flex-row justify-between my-[10px]">
-                <Link to="/register" className="text-center py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]">Register</Link>
+                <Link to="/auth/register" className="text-center py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]">Register</Link>
                 <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]">Reset</button>
                 <button className="py-2 px-4 text-base rounded-md border-none bg-[#147b73] text-[#d9e2f1] cursor-pointer hover:bg-[#319890]" disabled={isSubmitting}>{isSubmitting ?"Submitting":"Login"}</button>
             </p>

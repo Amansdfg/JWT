@@ -1,6 +1,6 @@
 import {Link, Form} from "react-router-dom";
-import {useInput} from "../../hooks/useInput.js";
-import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../util/validation.js";
+import {useInput} from "../../../hooks/useInput.js";
+import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../../util/validation.js";
 export default function Register(){
     const {
         value:userNameValue,
@@ -149,7 +149,7 @@ export default function Register(){
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
-                    <Link to="/login" className="text-gray-700 underline ml-2">Log in</Link>.
+                    <Link to="/auth/login" className="text-gray-700 underline ml-2">Log in</Link>.
                 </p>
             </div>
         </Form>
