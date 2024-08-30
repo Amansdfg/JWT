@@ -24,6 +24,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String photo;
+    private String resetToken;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",

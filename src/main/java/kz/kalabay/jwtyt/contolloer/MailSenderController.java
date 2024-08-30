@@ -12,6 +12,8 @@ public class MailSenderController {
     private final MailSenderService mailSender;
     @PostMapping("/mail/send")
     public void sendMail(@RequestBody MailSendDto mailSendDto ) {
+        System.out.println(mailSendDto);
         mailSender.send(mailSendDto);
     }
+
 }

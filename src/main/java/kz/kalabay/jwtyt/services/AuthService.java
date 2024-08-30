@@ -3,6 +3,7 @@ package kz.kalabay.jwtyt.services;
 import kz.kalabay.jwtyt.exceptions.AppError;
 import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.*;
+import kz.kalabay.jwtyt.repostory.UserRepositories;
 import kz.kalabay.jwtyt.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,12 +13,16 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
     private final UserService userService;
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthenticationManager authenticationManager;
+    private final UserRepositories userRepositories;
     public ResponseEntity<?> createAuthToken(JwtRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -37,5 +42,12 @@ public class AuthService {
         }
         User user=userService.createNewUser(userDto);
         return ResponseEntity.ok(new JwtUserDto(user.getId(),user.getUsername(),user.getEmail()));
+    }
+    public String generatePasswordResetToken(String email) {
+        User user=userRepositories.findByEmail(email).orElseThrow(()->new RuntimeException("Not found"));
+        String token= UUID.randomUUID().toString();
+        user.setResetToken(token);
+        userRepositories.save(user);
+        return token;
     }
 }

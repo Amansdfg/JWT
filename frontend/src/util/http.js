@@ -232,16 +232,17 @@ export async function changePassword(dto) {
     return await response.text();
 }
 export async function reset({email}){
-    const token=getAuthToken();
     const response=await  fetch("http://localhost:8081/mail/send",
         {
             method:'POST',
-            headers:{
-                "Authorization":"Bearer "+token,
-                "Content-Type":'application/json'
-            },
-            body:
+            body:email
         }
-
     )
+    if(!response.ok){
+        const error=new Eror("Error during reset")
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
+    }
+    return await response.json()
 }

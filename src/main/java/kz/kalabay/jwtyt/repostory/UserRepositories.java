@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepositories extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
     Optional<User> findAllById(Long id);
     List<User> findByUsernameContainingIgnoreCase(String username);
     @Query("SELECT u FROM User u WHERE u.username != :username AND u.username NOT IN " +
