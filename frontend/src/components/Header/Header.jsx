@@ -6,10 +6,11 @@ import DisclosurePanel from "./DisclosurePanel.jsx";
 import XMarkIcon from "./icons/XMarkIcon.jsx";
 import Bars3Icon from "./icons/Bars3Icon.jsx";
 import {useState} from "react";
-import {header} from "../../util/list.js";
 import MainNavigation from "./MainNavigation.jsx";
 import DarkModeToggle from "../UI/DarkModeToggle.jsx";
+import {getAuthToken} from "../../util/auth.js";
 export default function Header() {
+    const token=getAuthToken();
     const [isOpen, setIsOpen] = useState(false);
 
     function handle(){
@@ -34,15 +35,15 @@ export default function Header() {
                     <div className="hidden md:block">
                         <div className="ml-4 flex items-center md:ml-6">
                             <DarkModeToggle/>
-                            <button
-                                type="button"
-                                className="relative rounded-full dabg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                            >
-                                <span className="absolute -inset-1.5"/>
-                                <span className="sr-only">View notifications</span>
-                                <BellIcon/>
-                            </button>
-                            <Menu/>
+                            {/*<button*/}
+                            {/*    type="button"*/}
+                            {/*    className="relative rounded-full dabg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"*/}
+                            {/*>*/}
+                            {/*    <span className="absolute -inset-1.5"/>*/}
+                            {/*    <span className="sr-only">View notifications</span>*/}
+                            {/*    <BellIcon/>*/}
+                            {/*</button>*/}
+                            {token &&  <Menu/>}
                         </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">

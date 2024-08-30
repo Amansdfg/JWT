@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MailSenderController {
     private final MailSenderService mailSender;
-    @PostMapping("/send")
+    @PostMapping("/mail/send")
     public void sendMail(@RequestBody MailSendDto mailSendDto ) {
         mailSender.send(mailSendDto);
     }

@@ -18,6 +18,7 @@ import SettingsLayout from "./components/settings/SettingsLayout.jsx";
 import EditProfile from "./components/settings/EditProfile.jsx"
 import AboutUs from "./components/AboutUs.jsx";
 import ChangePassword from "./components/settings/ChangePassword.jsx";
+import ForgotPassword from "./components/Login/ForgotPassword.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
                         element:<Friends/>
                     }
                 ]
+            },
+            {
+                path:"reset",
+                element:<ForgotPassword/>
             },
             {
                 path:"*",

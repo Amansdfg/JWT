@@ -37,7 +37,10 @@ export default function Login() {
                 </div>
 
                 <div className="mb-4 m-0">
-                    <label className="block text-sm mb-1 text-[#9bafaf] uppercase font-bold" htmlFor="password">Password</label>
+                    <div className="flex justify-between">
+                        <label className="text-sm mb-1 text-[#9bafaf] uppercase font-bold" htmlFor="password">Password</label>
+                        <Link to="/reset" className="text-sm mb-1 text-[#9bafaf] uppercase font-bold">Forgot password?</Link>
+                    </div>
                     <input
                         className="block w-full p-2 text-base rounded-md border-2 border-[#758a8a] bg-[#869999] text-[#142020]"
                         id="password"
