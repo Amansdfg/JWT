@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
-import {fetchFriend, fetchMessages, fetchUser} from "../../util/http.js";
+import {fetchChatUser, fetchFriend, fetchMessages, fetchUser} from "../../util/http.js";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import Loading from "../UI/Loading.jsx";
@@ -13,13 +13,13 @@ export default function Messages({id,user}){
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
     const { data: friend, isLoading: isFriendLoading, isError: isFriendError, error: friendError } = useQuery({
-        queryKey: ['friend', id],
-        queryFn: () => fetchFriend({ id: id }),
+        queryKey: ['user', id],
+        queryFn: () => fetchChatUser({ id: id }),
         enabled: !!id,
     });
     const { data: fetchedMessages, isLoading: isMessagesLoading, isError: isMessagesError, error: messageError } = useQuery({
         queryKey: ['messages', id],
-        queryFn: ({ signal }) => fetchMessages({ id: id, signal }),
+        queryFn: () => fetchMessages({ id: id}),
         enabled: !!id,
     });
     useEffect(() => {
@@ -32,13 +32,22 @@ export default function Messages({id,user}){
         const socket = new SockJS('http://localhost:8081/ws');
         const client = Stomp.over(socket);
 
+        // client.connect({}, () => {
+        //     client.subscribe('/topic/messages/'+id, (message) => {
+        //         const receivedMessage = JSON.parse(message.body);
+        //         setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+        //     });
+        // });
         client.connect({}, () => {
-            client.subscribe('/topic/messages', (message) => {
+            console.log("Connected to WebSocket");
+            client.subscribe(`/topic/messages/${id}`, (message) => {
+                console.log("Received message:", message.body);
                 const receivedMessage = JSON.parse(message.body);
                 setMessages((prevMessages) => [...prevMessages, receivedMessage]);
             });
+        }, (error) => {
+            console.error("WebSocket connection error:", error);
         });
-
         setStompClient(client);
 
         return () => {
@@ -58,15 +67,14 @@ export default function Messages({id,user}){
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
     };
-
     const sendMessage = () => {
         if (message.trim() && stompClient && stompClient.connected) {
             const chatMessage = {
-                sender: user,
-                receiver: friend,
+                sender: user.id,
+                receiver: friend.id,
                 text: message,
             };
-            stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
+            stompClient.send(`/app/chat${id}`, {}, JSON.stringify(chatMessage));
             setMessage('');
         }
     };

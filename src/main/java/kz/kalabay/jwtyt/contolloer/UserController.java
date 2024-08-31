@@ -2,6 +2,7 @@ package kz.kalabay.jwtyt.contolloer;
 
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.dto.ChangePasswordDto;
+import kz.kalabay.jwtyt.model.dto.SimpleUser;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,6 @@ public class UserController {
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
-
     @GetMapping("/rec")
     public ResponseEntity<?> getRecommendations(Principal principal) {
         if (principal == null) {
@@ -36,10 +36,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getRecommendationUsers(principal.getName()));
     }
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable(value = "id") Long id) {
-        UserDto userDto = userService.getUserByIdDto(id);
-        logger.info(userDto.toString());
-        return userDto;
+    public SimpleUser getUser(@PathVariable(value = "id") Long id) {
+        return userService.getUserByIdDto(id);
     }
     @PostMapping("/post")
     public ResponseEntity<String> post(
@@ -64,5 +62,9 @@ public class UserController {
             return ResponseEntity.badRequest().body("username are not match");
         }
         return userService.changePassword(changePasswordDto);
+    }
+    @GetMapping("/partner/{id}")
+    public SimpleUser fetchUserById(@PathVariable("id") Long id,Principal principal) {
+        return userService.fetchUser(id, principal.getName());
     }
 }

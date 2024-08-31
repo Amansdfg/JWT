@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 @Entity
-@Table(name="indChats")
+@Table(name="messages")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

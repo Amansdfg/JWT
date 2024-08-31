@@ -61,11 +61,9 @@ export async function fetchUser({signal}){
         return null
     }
 }
-export async function fetchMessages({id,signal}){
-    console.log("id:"+id+", signal"+ signal)
+export async function fetchMessages({id}){
     const token=getAuthToken();
     const response=await fetch("http://localhost:8081/chat/"+id,{
-        signal,
         headers:{
             "Authorization":"Bearer "+token
         }
@@ -299,8 +297,8 @@ export async function createChat({id}){
     return await response.json();
 }
 export async function fetchChatUser({id}){
-    const token=getAuthToken();
-    const response = await fetch("http://localhost:8081/users/"+id, {
+    const token = getAuthToken();
+    const response = await fetch("http://localhost:8081/users/partner/"+id, {
         headers: {
             "Authorization": "Bearer " + token
         }

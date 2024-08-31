@@ -25,7 +25,6 @@ public class ChatService {
     private final RepositoryIndChat repositoryIndChat;
     private final MessageRepository messageRepository;
     private final UserRepositories userRepositories;
-    private final UserMapper userMapper;
     private final MessageMapper mapper;
     private final UserSimpleDto userSimpleDtoMapper;
     private final IndChatMapper indChatMapper;
@@ -63,8 +62,8 @@ public class ChatService {
         individualChat.setUser2(user2);
         return indChatMapper.mapToChatUrl(repositoryIndChat.save(individualChat));
     }
-    public SimpleUser partnerChat(Long chatId,String username){
-        User user1=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
-        User user2=userRepositories.findById(chatId).orElseThrow(()->new RuntimeException("Not found"));
-    }
+//    public SimpleUser partnerChat(Long chatId,String username){
+//        User user1=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
+//        User user2=userRepositories.findById(chatId).orElseThrow(()->new RuntimeException("Not found"));
+//    }
 }

@@ -2,11 +2,15 @@ package kz.kalabay.jwtyt.services;
 
 
 import kz.kalabay.jwtyt.mapper.UserMapper;
+import kz.kalabay.jwtyt.mapper.UserSimpleDto;
+import kz.kalabay.jwtyt.model.IndividualChat;
 import kz.kalabay.jwtyt.model.Post;
 import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.ChangePasswordDto;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
+import kz.kalabay.jwtyt.model.dto.SimpleUser;
 import kz.kalabay.jwtyt.model.dto.UserDto;
+import kz.kalabay.jwtyt.repostory.RepositoryIndChat;
 import kz.kalabay.jwtyt.repostory.UserRepositories;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +40,8 @@ public class UserService implements UserDetailsService {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
     private final PostService postService;
+    private final RepositoryIndChat repositoryIndChat;
+    private final UserSimpleDto userSimpleDto;
     public Optional<User> findByUsername(String username) {
         return userRepositories.findByUsername(username);
     }
@@ -72,8 +77,8 @@ public class UserService implements UserDetailsService {
     public User getUserById(Long id){
         return userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found"));
     }
-    public UserDto getUserByIdDto(Long id){
-        return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
+    public SimpleUser getUserByIdDto(Long id){
+        return userSimpleDto.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
     public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
         User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));
@@ -114,5 +119,9 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
         userRepositories.save(user);
         return ResponseEntity.ok("Successfully changed password");
+    }
+    public SimpleUser fetchUser(Long id,String username) {
+        IndividualChat individualChat=repositoryIndChat.findById(id).orElseThrow(()->new RuntimeException("Not found"));
+        return userSimpleDto.mapToDTO(individualChat.getUser1().getUsername().equals(username)?individualChat.getUser2():individualChat.getUser1());
     }
 }
