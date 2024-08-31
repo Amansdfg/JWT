@@ -12,7 +12,6 @@ export default function Messages({id,user}){
     const [stompClient, setStompClient] = useState(null);
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
-
     const { data: friend, isLoading: isFriendLoading, isError: isFriendError, error: friendError } = useQuery({
         queryKey: ['friend', id],
         queryFn: () => fetchFriend({ id: id }),

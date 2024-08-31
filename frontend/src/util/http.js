@@ -15,7 +15,6 @@ export async function fetchFriend({id}){
         throw error;
     }
     return await response.json();
-
 }
 export async function fetchAllUsers({signal}){
     const response=await fetch("http://localhost:8081/users/all",signal)
@@ -261,6 +260,55 @@ export async function reset({password,token}){
         const error=new Error("Error during reset password")
         error.code=response.status;
         error.message=await response.json();
+        throw error;
+    }
+    return await response.json();
+}
+export async function chats(){
+    const token=getAuthToken();
+    const response=await  fetch("http://localhost:8081/chats",
+        {
+            headers:{
+                "Authorization":"Bearer "+token,
+            }
+        })
+    if(!response.ok){
+        const error=new Error("Error during chats")
+        error.code=response.status;
+        error.message=await response.json();
+        throw error;
+    }
+    return await response.json();
+}
+export async function createChat({id}){
+    const token=getAuthToken();
+    const response=await fetch("http://localhost:8081/chat/"+id,
+        {
+            method:"POST",
+            headers:{
+                "Authorization":"Bearer "+token
+            }
+        }
+    )
+    if(!response.ok){
+        const error=new Error("Error during createChat")
+        error.code=response.status;
+        error.message=await response.json();
+        throw  error;
+    }
+    return await response.json();
+}
+export async function fetchChatUser({id}){
+    const token=getAuthToken();
+    const response = await fetch("http://localhost:8081/users/"+id, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    if (!response.ok) {
+        const error = new Error("Error during fetching user.svg");
+        error.code = response.status;
+        error.message = await response.json();
         throw error;
     }
     return await response.json();

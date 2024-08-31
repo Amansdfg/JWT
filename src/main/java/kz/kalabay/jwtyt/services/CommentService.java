@@ -25,9 +25,6 @@ public class CommentService {
     public CommentDto saveComment(Long postId, String username, String text) {
         Comment comment = new Comment();
         comment.setText(text);
-        System.out.println("postId: " + postId);
-        System.out.println("username: " + username);
-        System.out.println("comment: " + text);
         User user=userRepositories.findByUsername(username).orElseThrow(()-> new RuntimeException("User not found"));
         comment.setUser(user);
         commentRepository.save(comment);

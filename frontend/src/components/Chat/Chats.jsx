@@ -4,18 +4,42 @@ import React, {useState} from "react";
 import Modal from "../UI/Modal.jsx"
 import close from "../../assets/close.svg"
 import add from "../../assets/plus.svg"
-export default function Friends({friends}){
-
+import {useQuery} from "@tanstack/react-query";
+import {chats} from "../../util/http.js"
+import Loading from "../UI/Loading.jsx";
+export default function Chats({friends}){
     const [isCreate,setIsCreate]=useState(false);
     function createGroupChat(){
         setIsCreate(!isCreate);
+    }
+    const{data:chatsData,isLoading,isError,error}=useQuery({
+        queryKey:['chats'],
+        queryFn:chats
+    })
+    let content;
+    if(isLoading){
+        content=<Loading/>
+    }
+    if(isError){
+        content=<p>{error}</p>
+    }
+    if(chatsData){
+        content= chatsData.map((friend) => (
+                <NavLink key={friend.id} to={"/chat/" +friend.id}
+                         className={({isActive}) =>
+                             `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode  ${isActive ? "bg-gray-500" : ""}`
+                         }>
+                    <img src={`http://localhost:8081/${friend.user.photo}`} className="w-24 rounded-md" alt="friend" />
+                    <span className="dark:text-white">{friend.user.username}</span>
+                </NavLink>
+            ))
     }
     return (
         <>
             { isCreate &&<Modal>
                 <div className='w-[400px] flex flex-col gap-4 px-10 py-8'>
                     <button onClick={createGroupChat} className="absolute top-3 right-3"><img src={close} alt="close"/></button>
-                    {friends.map((friend) => (
+                    {chatsData.map((friend) => (
                         <NavLink key={friend.id} to={"/chat/" + friend.id}
                                  className={({isActive}) =>
                                      `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white  ${isActive ? "bg-gray-500" : undefined}`
@@ -45,15 +69,7 @@ export default function Friends({friends}){
                 </div>
                 <button onClick={createGroupChat} className="ml-auto text-3xl dark:text-white">+</button>
             </div>
-            {friends.map((friend) => (
-                <NavLink key={friend.id} to={"/chat/" + friend.id}
-                         className={({isActive}) =>
-                             `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode  ${isActive ? "bg-gray-500" : ""}`
-                         }>
-                    <img src={`http://localhost:8081/${friend.photo}`} className="w-24 rounded-md" alt="friend" />
-                    <span className="dark:text-white">{friend.username}</span>
-                </NavLink>
-            ))}
+            {content}
         </>
     )
 }

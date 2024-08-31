@@ -1,11 +1,13 @@
-import {useQuery} from "@tanstack/react-query";
-import {fetchFriend, fetchUser,searchUsers} from "../../util/http.js";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import {fetchFriend, fetchUser,searchUsers,createChat} from "../../util/http.js";
 import Loading from "../UI/Loading.jsx";
 import logo from "../../assets/No-photo.gif";
 import React, {useRef, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 function Friends(){
+    const navigate = useNavigate();
+
     const searchElement = useRef();
     const [search,setSearch]=useState();
     const { data:searchData, isLoading:isSearching } = useQuery({
@@ -40,22 +42,31 @@ function Friends(){
     if(isPending){
         content=<Loading/>
     }
+    const{mutate}=useMutation({
+        mutationFn:createChat,
+        onSuccess: (data) => {
+            const chatUrl = data.id;
+            navigate("/chat/"+chatUrl);
+        },
+    })
+    function handleChat(id){
+        mutate({id})
+    }
     if(data){
-        // content=(data.friends).map(friend=>(
         content=(searchData?searchData:data.friends).map(friend=>(
             <div className="bg-white dark:bg-lightMode px-6 py-4 rounded-md  flex justify-between items-center" key={friend.id}>
                 <div className="flex  items-center">
-                    <img className="h-10 rounded-full mr-2" src={friend.photo ?? logo} alt="User"/>
+                    <img className="h-10 rounded-full mr-2" src={`http://localhost:8081/${friend.photo}`} alt="User"/>
                     <div>
                         <h3 className="text-xl font-semibold dark:text-white">{friend.username}</h3>
                         <span className="dark:text-white">{friend.firstName} {friend.lastName}</span>
                     </div>
                 </div>
                 <div>
-                    <Link className="bg-gray-300 font-sans text-lg  rounded-md px-4 py-1"
-                        to={`/chat/`+friend.id}>
+                    <button className="bg-gray-300 font-sans text-lg  rounded-md px-4 py-1"
+                          onClick={()=>handleChat(friend.id)}>
                         chat
-                    </Link>
+                    </button>
                     <Link className="ml-4 bg-gray-300 font-sans text-lg  rounded-md px-4 py-1"
                           to={`/profile/`+friend.id}>
                         profile
@@ -69,7 +80,7 @@ function Friends(){
             <div className="flex  bg-white dark:bg-lightMode rounded-md items-center px-6 py-4">
                 { data &&
                     <>
-                <img className="h-10 rounded-full mr-2" src={data.photo ?? logo} alt="User"/>
+                <img className="h-10 rounded-full mr-2" src={`http://localhost:8081/${data.photo}`} alt="User"/>
                 <div>
                     <h3 className="text-xl font-semibold dark:text-white">{data.username}</h3>
                     <span className="dark:text-white">{data.firstName} {data.lastName}</span>

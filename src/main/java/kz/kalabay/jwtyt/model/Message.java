@@ -3,25 +3,27 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 @Entity
 @Table(name="indChats")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IndividualChat{
+public class Message{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String chatStatus;
     @ManyToOne(fetch = FetchType.EAGER)
-    private User user1;
+    private User sender;
     @ManyToOne(fetch = FetchType.EAGER)
-    private User user2;
+    private User receiver;
     private LocalDateTime date;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Message> messages;
-
+    @Column(length = 20000)
+    private String text;
+    public Message(User sender, User receiver, String text) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.text = text;
+        this.date = LocalDateTime.now();
+    }
 }
