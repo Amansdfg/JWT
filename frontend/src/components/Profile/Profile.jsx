@@ -29,7 +29,6 @@ function Profile() {
             queryKey: ['user'],
             queryFn: ({signal}) => fetchUser({signal})
         });
-        console.log("Aman")
         data=user;
         isPending=isPendingUser;
         isError=isErrorUser;
@@ -57,7 +56,7 @@ function Profile() {
     }
     function copyToClipboard(url) {
         navigator.clipboard.writeText(url).then(() => {
-            alert('URL copied to clipboard!'); // Replace with a better UI feedback if desired
+            alert('URL copied to clipboard!');
         });
     }
 

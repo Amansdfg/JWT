@@ -13,7 +13,11 @@ public class MailSenderController {
     @PostMapping("/mail/send")
     public void sendMail(@RequestBody MailSendDto mailSendDto ) {
         System.out.println(mailSendDto);
-        mailSender.send(mailSendDto);
+        try {
+            mailSender.send(mailSendDto);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import Modal from "../UI/Modal.jsx"
 import close from "../../assets/close.svg"
 import add from "../../assets/plus.svg"
 export default function Friends({friends}){
+
     const [isCreate,setIsCreate]=useState(false);
     function createGroupChat(){
         setIsCreate(!isCreate);
@@ -19,7 +20,7 @@ export default function Friends({friends}){
                                  className={({isActive}) =>
                                      `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white  ${isActive ? "bg-gray-500" : undefined}`
                                  }>
-                            <img src={logo} className="w-24" alt="friend" />
+                            <img src={`http://localhost:8081/${friend.photo}`} className="w-24" alt="friend" />
                             <span>{friend.username}</span>
                             <img src={add} alt="add button"/>
                         </NavLink>
@@ -37,7 +38,7 @@ export default function Friends({friends}){
                 {friends.map((friend) => (
                     <button key={friend.id}
                             className=' drop-shadow-md w-14'>
-                    <img src={logo} className="w-full rounded-full" alt="friend"/>
+                    <img src={`http://localhost:8081/${friend.photo}`} className="w-full rounded-full" alt="friend"/>
                         <span className='truncate '>{friend.username}</span>
                     </button>
                 ))}
@@ -49,7 +50,7 @@ export default function Friends({friends}){
                          className={({isActive}) =>
                              `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode  ${isActive ? "bg-gray-500" : ""}`
                          }>
-                    <img src={logo} className="w-24 rounded-md" alt="friend" />
+                    <img src={`http://localhost:8081/${friend.photo}`} className="w-24 rounded-md" alt="friend" />
                     <span className="dark:text-white">{friend.username}</span>
                 </NavLink>
             ))}

@@ -27,6 +27,7 @@ export default function ForgotPassword() {
         }
     })
     function handleSubmit(){
+        setNotification({show:true,type: "info",message: 'loading...'})
         mutate({email:email})
     }
 
@@ -57,6 +58,6 @@ export default function ForgotPassword() {
                 <Link to="/register" className="font-bold mt-4">Create new Account</Link>
                 <Link to="/login" className="mt-[80px] py-2 mb-4 border-2 bg-gray-50 rounded-xl">Back to login</Link>
             </div>
-            </section>
+        </section>
     );
 }

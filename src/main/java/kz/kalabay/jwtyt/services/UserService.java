@@ -9,6 +9,9 @@ import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
 import kz.kalabay.jwtyt.model.dto.UserDto;
 import kz.kalabay.jwtyt.repostory.UserRepositories;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -92,7 +95,10 @@ public class UserService implements UserDetailsService {
         return mapper.mapToDTOList(userRepositories.findAll());
     }
     public List<UserDto> getRecommendationUsers(String username){
-        return mapper.mapToDTOList(userRepositories.findAllByNotUsernameAndNotFriends(username));
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<User> usersPage = userRepositories.findAllByNotUsernameAndNotFriends(username, pageable);
+        List<User> users = usersPage.getContent();
+        return mapper.mapToDTOList(users);
     }
     public void saveUser(User user) {
         userRepositories.save(user);

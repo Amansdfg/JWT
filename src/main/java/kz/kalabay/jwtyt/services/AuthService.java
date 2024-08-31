@@ -45,8 +45,8 @@ public class AuthService {
         User user=userService.createNewUser(userDto);
         return ResponseEntity.ok(new JwtUserDto(user.getId(),user.getUsername(),user.getEmail()));
     }
-    public String generatePasswordResetToken(String email) {
-        User user=userRepositories.findByEmail(email).orElseThrow(()->new RuntimeException("Not found"));
+    public String generatePasswordResetToken(String email) throws RuntimeException {
+        User user=userRepositories.findByEmail(email).orElseThrow(()->new RuntimeException("User with email doestnt exist"));
         String token= UUID.randomUUID().toString();
         user.setResetToken(token);
         userRepositories.save(user);

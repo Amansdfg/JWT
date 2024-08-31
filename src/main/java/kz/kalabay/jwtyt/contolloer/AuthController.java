@@ -1,4 +1,5 @@
 package kz.kalabay.jwtyt.contolloer;
+import jakarta.mail.MessagingException;
 import kz.kalabay.jwtyt.model.dto.JwtRequest;
 import kz.kalabay.jwtyt.model.dto.RegistrationUserDto;
 import kz.kalabay.jwtyt.services.AuthService;
@@ -29,8 +30,14 @@ public class AuthController {
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassPassword(@RequestBody Map<String,String> request) {
         String email = request.get("email");
-        String token=authService.generatePasswordResetToken(email);
-        mailSenderService.sendMail(email,token);
+        try {
+            String token=authService.generatePasswordResetToken(email);
+            mailSenderService.sendMail(email,token);
+        }catch (MessagingException e){
+            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
+        }
         return ResponseEntity.ok(Map.of("message", "Reset link sent to your email"));
     }
     @PostMapping("/reset-password")

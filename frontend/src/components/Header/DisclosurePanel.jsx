@@ -5,7 +5,6 @@ import photo from "../../assets/No-photo.gif";
 import {useQuery} from "@tanstack/react-query";
 import {fetchUser} from "../../util/http.js";
 import Loading from "../UI/Loading.jsx";
-import MainNavigation from "./MainNavigation.jsx";
 import MobileNavigation from "./MobileNavigation.jsx";
 export default function DisclosurePanel({isOpen}){
     const {data,isError,isPending,error}=useQuery({
@@ -33,7 +32,9 @@ export default function DisclosurePanel({isOpen}){
             <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                        <img className="h-10 w-10 rounded-full" src={photo} alt="" />
+                        {data &&
+                            <img className="h-10 w-10 rounded-full" src={`http://localhost:8081/${data.photo}`} alt={data.photo}/>
+                        }
                     </div>
                     <div className="ml-3">
                         {content}

@@ -244,7 +244,7 @@ export async function forgot({email}){
     if(!response.ok){
         const error=new Error("Error during forgot request")
         error.code=response.status;
-        error.message=await response.json();
+        error.message=await response.text();
         throw error;
     }
     return await response.json()

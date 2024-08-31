@@ -34,7 +34,7 @@ function Rec(){
     if(recData){
         content= recData.map(user=> (
                 <Link className="flex justify-center items-center" key={user.id} to={`profile/`+user.id}>
-                    <img className="h-8 rounded-full mr-2" src={logo} alt="User"/>
+                    <img className="h-8 rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
                     <div className="flex flex-col w-40">
                         <span className="dark:text-white text-xl">{user.username}</span>
                         <span className="dark:text-white truncate text-black/60">Recommendation for you</span>
@@ -49,7 +49,7 @@ function Rec(){
             {user &&
                 <>
                     <div className="flex justify-center items-center" key={user.id}>
-                        <img className="h-10 rounded-full mr-2" src={logo} alt="User"/>
+                        <img className="h-10 rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
                         <div className="flex flex-col w-40">
                             <span className="dark:text-white text-xl">{user.username}</span>
                             <span className="dark:text-white truncate">{user.firstName} {user.lastName}</span>

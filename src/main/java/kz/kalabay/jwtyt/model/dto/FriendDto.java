@@ -15,5 +15,6 @@ public class FriendDto {
     private Long id;
     private String username;
     private String email;
+    private String photo;
     private List<Role> roles;
 }
