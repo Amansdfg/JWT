@@ -20,6 +20,7 @@ import AboutUs from "./components/AboutUs.jsx";
 import ChangePassword from "./components/settings/ChangePassword.jsx";
 import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import ResetPassword from "./components/Auth/ResetPassword.jsx";
+import * as path from "node:path";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -105,8 +106,6 @@ const router = createBrowserRouter([
     },
     {
         path:"auth",
-        element: <RootLayout />,
-        errorElement: <ErrorPage/>,
         children:[
             {
                 path:"login",
@@ -119,12 +118,17 @@ const router = createBrowserRouter([
                 action:registerAction
             },
             {
-                path:"forgot",
-                element:<ForgotPassword/>
-            },
-            {
-                path:"reset-password/:token",
-                element: <ResetPassword/>
+                element: <RootLayout/>,
+                children: [
+                    {
+                        path:"forgot",
+                        element:<ForgotPassword/>
+                    },
+                    {
+                        path:"reset-password/:token",
+                        element: <ResetPassword/>
+                    }
+                ]
             }
         ]
     },

@@ -4,6 +4,9 @@ import {useState} from "react"
 import {useMutation} from "@tanstack/react-query";
 import {forgot} from "../../util/http.js"
 import Notification from "../UI/Notification.jsx";
+
+import Footer from "../Footer.jsx";
+import Header from "../Header/Header.jsx";
 export default function ForgotPassword() {
     const[email,setEmail]=useState('');
     const[notification,setNotification]=useState(
@@ -28,7 +31,7 @@ export default function ForgotPassword() {
     }
 
     return (
-        <section className="w-full flex justify-center items-center">
+        <section className="w-full flex justify-center items-center bg-aman min-h-svh dark:bg-darkMode">
             {notification.show && (
                 <Notification
                     type={notification.type}
@@ -54,6 +57,6 @@ export default function ForgotPassword() {
                 <Link to="/register" className="font-bold mt-4">Create new Account</Link>
                 <Link to="/login" className="mt-[80px] py-2 mb-4 border-2 bg-gray-50 rounded-xl">Back to login</Link>
             </div>
-        </section>
+            </section>
     );
 }

@@ -17,7 +17,8 @@ export default function Header() {
         setIsOpen(!isOpen);
     }
     return (
-        <nav className='w-screen bg-gray-800 dark:bg-darkMode shadow-header'>
+        <nav className="w-screen bg-gray-800 dark:bg-darkMode pb-1">
+        <div className='shadow-header'>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
@@ -61,6 +62,7 @@ export default function Header() {
                 </div>
             </div>
             <DisclosurePanel isOpen={isOpen}/>
+        </div>
         </nav>
     )
 }

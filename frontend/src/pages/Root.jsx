@@ -27,7 +27,7 @@ function RootLayout() {
             <main className="bg-aman min-h-svh dark:bg-darkMode">
                 <Outlet/>
             </main>
-            <Footer />
+            <Footer/>
         </>
 
     );

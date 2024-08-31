@@ -250,8 +250,6 @@ export async function forgot({email}){
     return await response.json()
 }
 export async function reset({password,token}){
-    console.log(password)
-    console.log(token)
     const response=await fetch("http://localhost:8081/aman/reset-password",{
         method:"POST",
         headers:{
