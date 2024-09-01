@@ -15,7 +15,7 @@ function Post({post,user}){
         <div
             className="w-full bg-white dark:bg-lightMode flex flex-col gap-2 px-6 py-4  sm:w-post-sm md:w-post-md lg:w-post-lg xl:w-post-xl rounded-md">
             <div className="flex">
-                <img className="h-8 rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
+                <img className="w-8 h-8 object-cover  rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
                 <h3 className="dark:text-white text-xl font-semibold">{user.username}</h3>
             </div>
             {post.photoUrl &&<Content post={post}/>}

@@ -32,11 +32,11 @@ function Rec(){
         content = <p>Error</p>
     }
     if(recData){
-        content= recData.map(user=> (
-                <Link className="flex justify-center items-center" key={user.id} to={`profile/`+user.id}>
-                    <img className="h-8 rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
+        content= recData.map(person=> (
+                <Link className="flex justify-center items-center" key={person.id} to={`profile/`+person.id}>
+                    <img className="w-8 h-8 object-cover rounded-full mr-2" src={`http://localhost:8081/${person.photo}`} alt="User"/>
                     <div className="flex flex-col w-40">
-                        <span className="dark:text-white text-xl">{user.username}</span>
+                        <span className="dark:text-white text-xl">{person.username}</span>
                         <span className="dark:text-white truncate text-black/60">Recommendation for you</span>
                     </div>
                     <button className="text-blue-700" onClick={()=>handleRequest(user.id)}>send request</button>
@@ -49,7 +49,7 @@ function Rec(){
             {user &&
                 <>
                     <div className="flex justify-center items-center" key={user.id}>
-                        <img className="h-10 rounded-full mr-2" src={`http://localhost:8081/${user.photo}`} alt="User"/>
+                        <img className="w-10 h-10 object-cover mr-2 rounded-full" src={`http://localhost:8081/${user.photo}`} alt="User"/>
                         <div className="flex flex-col w-40">
                             <span className="dark:text-white text-xl">{user.username}</span>
                             <span className="dark:text-white truncate">{user.firstName} {user.lastName}</span>

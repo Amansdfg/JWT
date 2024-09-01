@@ -24,10 +24,10 @@ export default function Chats({friends}){
         content=<p>{error}</p>
     }
     if(chatsData){
-        content= chatsData.map((friend) => (
+        content = chatsData.map((friend) => (
                 <a key={friend.id} href={"/chat/" +friend.id}
                          className="flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode">
-                    <img src={`http://localhost:8081/${friend.user.photo}`} className="w-24 rounded-md" alt="friend" />
+                    <img src={`http://localhost:8081/${friend.user.photo}`} className="w-24 h-24 object-cover rounded-full" alt="friend" />
                     <span className="dark:text-white">{friend.user.username}</span>
                 </a>
             ))
@@ -42,7 +42,7 @@ export default function Chats({friends}){
                                  className={({isActive}) =>
                                      `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white  ${isActive ? "bg-gray-500" : undefined}`
                                  }>
-                            <img src={`http://localhost:8081/${friend.photo}`} className="w-24" alt="friend" />
+                            <img src={`http://localhost:8081/${friend.photo}`} className="w-24 h-24 object-cover" alt="friend" />
                             <span>{friend.username}</span>
                             <img src={add} alt="add button"/>
                         </NavLink>
@@ -55,12 +55,12 @@ export default function Chats({friends}){
                 <div className="flex gap-2">
                 <button
                         className='drop-shadow-md mr-6'>
-                    <img src={logo} className="w-14 rounded-full" alt="friend"/>
+                    <img src={logo} className="h-14  w-14 rounded-full" alt="friend"/>
                 </button>
                 {friends.map((friend) => (
                     <button key={friend.id}
-                            className=' drop-shadow-md w-14'>
-                    <img src={`http://localhost:8081/${friend.photo}`} className="w-full rounded-full" alt="friend"/>
+                            className=' drop-shadow-md'>
+                    <img src={`http://localhost:8081/${friend.photo}`} className="w-14 h-14 object-cover rounded-full" alt="friend"/>
                         <span className='truncate '>{friend.username}</span>
                     </button>
                 ))}

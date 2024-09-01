@@ -79,7 +79,7 @@ export default function Messages({id,user}){
     } else if (friend) {
         friendContent = (
             <>
-                <img src={logo} className="h-24" alt="friend" />
+                <img src={`http://localhost:8081/${friend.photo}`} className="h-24" alt="friend" />
                 <span className="text-2xl">{friend.username}</span>
             </>
         );
@@ -113,7 +113,6 @@ export default function Messages({id,user}){
                         <div ref={messagesEndRef}></div>
                     </div>
                     <div className="flex py-3 bg-white">
-
                         <input
                             id="message"
                             onChange={handleMessageChange}

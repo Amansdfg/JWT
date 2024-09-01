@@ -1,6 +1,7 @@
 import {QueryClient} from "@tanstack/react-query"
 export  const client=new QueryClient();
 import {getAuthToken} from "./auth.js";
+import {json} from "react-router-dom";
 export async function fetchFriend({id}){
     const token=getAuthToken();
     const response = await fetch("http://localhost:8081/users/"+id, {
@@ -310,6 +311,24 @@ export async function register({data}){
         const error = new Error("Error during registration");
         error.code = response.status;
         error.message = await response.json();
+        throw error;
+    }
+    return await response.json();
+}
+
+export async function changePhoto({photo}){
+    const token=getAuthToken();
+    const response = await fetch("http://localhost:8081/users/change-photo", {
+        method: "POST",
+        headers: {
+            "Authorization":"Bearer "+token
+        },
+        body: photo,
+    });
+    if (!response.ok) {
+        const error=new Error("Error during change photo")
+        error.code=response.status;
+        error.message=await response.json();
         throw error;
     }
     return await response.json();

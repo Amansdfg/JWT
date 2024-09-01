@@ -64,4 +64,8 @@ public class UserController {
     public SimpleUser fetchUserById(@PathVariable("id") Long id,Principal principal) {
         return userService.fetchUser(id, principal.getName());
     }
+    @PostMapping("change-photo")
+    public String changePhoto(@RequestParam("file") MultipartFile file,Principal principal) {
+        return userService.changePhoto(file, principal.getName());
+    }
 }

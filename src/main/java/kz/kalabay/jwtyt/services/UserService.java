@@ -74,9 +74,7 @@ public class UserService implements UserDetailsService {
     public UserDto getUserByUsername(String username){
         return mapper.mapToDTO(userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found")));
     }
-//    public User findByEmail(String email) throws RuntimeException{
-//        return userRepositories.findByEmail(email).orElseThrow(()->new RuntimeException("Not found"));
-//    }
+
     public User getUserById(Long id){
         return userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found"));
     }
@@ -126,5 +124,11 @@ public class UserService implements UserDetailsService {
     public SimpleUser fetchUser(Long id,String username) {
         IndividualChat individualChat=repositoryIndChat.findById(id).orElseThrow(()->new RuntimeException("Not found"));
         return userSimpleDto.mapToDTO(individualChat.getUser1().getUsername().equals(username)?individualChat.getUser2():individualChat.getUser1());
+    }
+    public String changePhoto(MultipartFile file, String username) {
+        User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
+        user.setPhoto("images/"+file.getOriginalFilename());
+        userRepositories.save(user);
+        return "Successfully changed photo";
     }
 }

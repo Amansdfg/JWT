@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Link, NavLink, useParams} from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import {fetchFriend, fetchUser} from '../../util/http.js';
+import {Link, NavLink, useNavigate, useParams} from 'react-router-dom';
+import {useMutation, useQuery} from '@tanstack/react-query';
+import {createChat, fetchFriend, fetchUser} from '../../util/http.js';
 import Loading from '../UI/Loading.jsx';
 import ErrorPage from '../../pages/ErrorPage.jsx';
 import photo from '../../assets/No-photo.gif';
@@ -10,6 +10,7 @@ import Modal from "../UI/Modal.jsx"
 import Comment from "../Home/Comment.jsx";
 import ProfilePost from "./ProfilePost.jsx";
 function Profile() {
+    const navigate=useNavigate();
     const param=useParams();
     const[modalPage,setModalPage]=useState();
     const[modalDetails,setModalDetails]=useState();
@@ -70,11 +71,21 @@ function Profile() {
             alert('Share not supported on this browser');
         }
     }
+    const{mutate}=useMutation({
+        mutationFn:createChat,
+        onSuccess: (data) => {
+            const chatUrl = data.id;
+            navigate("/chat/"+chatUrl);
+        },
+    })
+    function handleChat(id){
+        mutate({id})
+    }
     if (data) {
         content = (
             <div className=" w-2/3 mx-auto pt-6">
                 <div className="flex justify-evenly">
-                    <img src={`http://localhost:8081/${data.photo}`} alt="Profile" className="aspect-square h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
+                    <img src={`http://localhost:8081/${data.photo}`} alt="Profile" className="aspect-square object-cover h-16 sm:h-16 md:h-24 lg:h-32 rounded-full" />
                     <div className="flex flex-col">
                         <div className="flex gap-2 md:gap-6 justify-center items-center">
                             <span className="text-xl lg:text-2xl dark:text-white">{data.username}</span>
@@ -89,7 +100,8 @@ function Profile() {
                                 </>
                             }
                             {param.id &&
-                                <Link to={`/chat/`+param.id} className="px-3 py-1 dark:bg-lightMode dark:text-white bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md">
+                                <Link to={`/chat/`+param.id} className="px-3 py-1 dark:bg-lightMode dark:text-white bg-white text-sm sm:text-md md:text-lg lg:text-xl rounded-md"
+                                    onClick={()=>handleChat(param.id)}>
                                     Chat
                                 </Link>
                             }
@@ -104,7 +116,7 @@ function Profile() {
                 </div>
                 <div className="py-10">
                     <span className="text-2xl dark:text-white">Posts</span>
-                    <div className=" grid  grid-cols-posts gap-6">
+                    <div className={`${data.posts.length<3?'flex justify-between':'grid  grid-cols-posts'} gap-6`}>
                         {data.posts.length === 0 && <span className="dark:text-white">No posts yet</span>}
                         {data.posts.length > 0 &&
                             <ProfilePost posts={data.posts} modalGoi={modalGoi}/>
