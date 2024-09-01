@@ -8,7 +8,6 @@ import kz.kalabay.jwtyt.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,13 +50,10 @@ public class UserController {
     @PostMapping("/search")
     public List<UserDto> searchUser(@RequestBody String search ) {
         List<UserDto> users= userService.searchUsers(search);
-        System.out.println(users);
         return users;
     }
     @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDto changePasswordDto,Principal principal) {
-        System.out.println(changePasswordDto);
-        System.out.println(principal);
         if(!changePasswordDto.getUsername().equals(principal.getName())){
             return ResponseEntity.badRequest().body("username are not match");
         }

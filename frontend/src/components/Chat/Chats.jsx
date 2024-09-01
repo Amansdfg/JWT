@@ -25,13 +25,11 @@ export default function Chats({friends}){
     }
     if(chatsData){
         content= chatsData.map((friend) => (
-                <NavLink key={friend.id} to={"/chat/" +friend.id}
-                         className={({isActive}) =>
-                             `flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode  ${isActive ? "bg-gray-500" : ""}`
-                         }>
+                <a key={friend.id} href={"/chat/" +friend.id}
+                         className="flex justify-between rounded-md px-3 py-4 drop-shadow-md bg-white dark:bg-lightMode">
                     <img src={`http://localhost:8081/${friend.user.photo}`} className="w-24 rounded-md" alt="friend" />
                     <span className="dark:text-white">{friend.user.username}</span>
-                </NavLink>
+                </a>
             ))
     }
     return (

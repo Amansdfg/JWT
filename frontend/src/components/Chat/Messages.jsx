@@ -31,17 +31,9 @@ export default function Messages({id,user}){
     useEffect(() => {
         const socket = new SockJS('http://localhost:8081/ws');
         const client = Stomp.over(socket);
-
-        // client.connect({}, () => {
-        //     client.subscribe('/topic/messages/'+id, (message) => {
-        //         const receivedMessage = JSON.parse(message.body);
-        //         setMessages((prevMessages) => [...prevMessages, receivedMessage]);
-        //     });
-        // });
         client.connect({}, () => {
             console.log("Connected to WebSocket");
             client.subscribe(`/topic/messages/${id}`, (message) => {
-                console.log("Received message:", message.body);
                 const receivedMessage = JSON.parse(message.body);
                 setMessages((prevMessages) => [...prevMessages, receivedMessage]);
             });
@@ -71,10 +63,10 @@ export default function Messages({id,user}){
         if (message.trim() && stompClient && stompClient.connected) {
             const chatMessage = {
                 sender: user.id,
-                receiver: friend.id,
                 text: message,
+                chatId:id
             };
-            stompClient.send(`/app/chat${id}`, {}, JSON.stringify(chatMessage));
+            stompClient.send(`/app/chat/${id}`, {}, JSON.stringify(chatMessage));
             setMessage('');
         }
     };
@@ -101,7 +93,7 @@ export default function Messages({id,user}){
         messagesContent = messages.map((msg,index) => (
             <div
                 key={msg.id}
-                className={`bg-white max-w-xl break-all p-2 flex flex-col items-end  ${(msg.sender.id === user.id ? "justify-start ml-auto rounded-l-xl" : "justify-end mr-auto rounded-r-xl")}`}
+                className={`bg-aman max-w-xl break-all p-2 flex flex-col items-end  ${(msg.sender.id === user.id ? "justify-start ml-auto rounded-l-xl" : "justify-end mr-auto rounded-r-xl")}`}
             >
                 <h2 className="text-2xl">{msg.text}</h2>
                 <span className="text-sm">{time(new Date(msg.date))}</span>
