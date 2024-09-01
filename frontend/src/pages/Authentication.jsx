@@ -48,8 +48,7 @@ export async function action({request}) {
         password: data.get("password"),
     };
     try {
-        console.log("Sending authentication request with data:", authData);
-        const response = await fetch("http://localhost:8081/aman/auth", {
+        const response = await fetch("http://localhost:8081/auth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -58,15 +57,12 @@ export async function action({request}) {
         });
         if (response.status === 422 || response.status === 401) {
             const errorMessage = await response.json();
-            console.log("Authentication failed with status:", response.status, errorMessage);
             return json({ message: errorMessage.message }, { status: response.status });
         }
 
         if (!response.ok) {
-            console.log("Server error:", response.statusText);
             throw new Error("Could not authenticate user");
         }
-
         const resData = await response.json();
         const token = resData.token;
         localStorage.setItem("token", token);
@@ -75,7 +71,6 @@ export async function action({request}) {
         localStorage.setItem("expiration", expiration.toISOString());
         return redirect("/");
     } catch (error) {
-        console.log("Error:", error);
         return json({ message: "An error occurred during authentication" }, { status: 500 });
     }
 }

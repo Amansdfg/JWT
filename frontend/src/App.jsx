@@ -5,7 +5,7 @@ import { checkAuthLoader, tokenLoader } from './util/auth';
 import Home from "./components/Home/Home.jsx";
 import {client} from "./util/http.js";
 import Login ,{action as loginAction} from "./pages/Authentication.jsx"
-import SignUp ,{action as registerAction} from "./pages/SignUp.jsx";
+import SignUp from "./pages/SignUp.jsx";
 import NotFound from "./components/NotFound.jsx";
 import Chat from "./components/Chat/Chat.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
@@ -115,7 +115,6 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <SignUp />,
-                action:registerAction
             },
             {
                 element: <RootLayout/>,

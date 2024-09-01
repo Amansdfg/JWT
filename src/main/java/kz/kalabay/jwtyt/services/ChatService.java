@@ -16,6 +16,7 @@ import kz.kalabay.jwtyt.repostory.UserRepositories;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ public class ChatService {
         Message message1=new Message();
         message1.setSender(userRepositories.findAllById(senderId).orElseThrow(()->new RuntimeException("Not Found")));
         message1.setText(text);
+        message1.setDate(LocalDateTime.now());
         IndividualChat individualChat=repositoryIndChat.findAllById(chatId).orElseThrow(()->new RuntimeException("Not Found"));
         User receiver;
         if(individualChat.getUser1().getId().equals(senderId)){

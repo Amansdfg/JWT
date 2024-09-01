@@ -1,6 +1,7 @@
 package kz.kalabay.jwtyt.contolloer;
 
 import kz.kalabay.jwtyt.model.Post;
+import kz.kalabay.jwtyt.model.User;
 import kz.kalabay.jwtyt.model.dto.ChangePasswordDto;
 import kz.kalabay.jwtyt.model.dto.SimpleUser;
 import kz.kalabay.jwtyt.model.dto.UserDto;
@@ -35,7 +36,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getRecommendationUsers(principal.getName()));
     }
     @GetMapping("/{id}")
-    public SimpleUser getUser(@PathVariable(value = "id") Long id) {
+    public UserDto getUser(@PathVariable(value = "id") Long id) {
         return userService.getUserByIdDto(id);
     }
     @PostMapping("/post")

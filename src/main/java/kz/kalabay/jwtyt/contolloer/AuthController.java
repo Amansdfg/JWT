@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/aman")
+@RequestMapping(value = "/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
     private  final MailSenderService mailSenderService;
-    @PostMapping("/auth")
+    @PostMapping
     public ResponseEntity<?> createToken(@RequestBody JwtRequest jwtRequest) {
         return authService.createAuthToken(jwtRequest);
     }

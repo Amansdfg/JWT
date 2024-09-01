@@ -26,21 +26,6 @@ export async function fetchAllUsers({signal}){
     }
     return await response.json();
 }
-export async function info(){
-    const token=getAuthToken()
-    const response=await fetch("http://localhost:8081/aman/info",{
-        headers: {
-            "Authorization": "Bearer " + token
-        }
-    })
-    if(!response.ok){
-        const error=new Error("Error during fetch allUsers");
-        error.code=response.status;
-        error.message=await response.json();
-        throw error;
-    }
-    return await response.json();
-}
 export async function fetchUser({signal}){
     const token=getAuthToken();
     if(token) {
@@ -229,7 +214,7 @@ export async function changePassword(dto) {
     return await response.text();
 }
 export async function forgot({email}){
-    const response=await  fetch("http://localhost:8081/aman/forgot-password",
+    const response=await  fetch("http://localhost:8081/auth/forgot-password",
         {
             method:'POST',
             headers:{
@@ -247,7 +232,7 @@ export async function forgot({email}){
     return await response.json()
 }
 export async function reset({password,token}){
-    const response=await fetch("http://localhost:8081/aman/reset-password",{
+    const response=await fetch("http://localhost:8081/auth/reset-password",{
         method:"POST",
         headers:{
             'Content-Type': "application/json"
@@ -305,6 +290,24 @@ export async function fetchChatUser({id}){
     })
     if (!response.ok) {
         const error = new Error("Error during fetching user.svg");
+        error.code = response.status;
+        error.message = await response.json();
+        throw error;
+    }
+    return await response.json();
+}
+export async function register({data}){
+    const response=await fetch('http://localhost:8081/auth/registration',
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(data)
+        }
+    )
+    if (!response.ok) {
+        const error = new Error("Error during registration");
         error.code = response.status;
         error.message = await response.json();
         throw error;

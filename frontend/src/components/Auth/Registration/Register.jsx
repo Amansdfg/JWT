@@ -1,7 +1,7 @@
 import {Link, Form} from "react-router-dom";
 import {useInput} from "../../../hooks/useInput.js";
 import {hasMinLength, isEmail,isStartWithUpperCase, isNotEmpty} from "../../../util/validation.js";
-export default function Register(){
+export default function Register({handleSubmit}){
     const {
         value:userNameValue,
         handleInputChange:handleUserNameChange,
@@ -38,8 +38,9 @@ export default function Register(){
         handleInputBlur:handlePasswordConfirmationBlur,
         hasError:passwordConfirmationHasError,
     }=useInput('',(value)=>isNotEmpty(value) && hasMinLength(value,6));
+
     return (
-        <Form className="mt-8 grid grid-cols-6 gap-6" method="POST">
+        <Form className="mt-8 grid grid-cols-6 gap-6" method="POST" onSubmit={handleSubmit}>
             <div className="col-span-6">
                 <label htmlFor="UserName" className="block text-sm font-medium text-gray-700">Username</label>
                 <input
@@ -50,6 +51,7 @@ export default function Register(){
                     onBlur={handleUserNameBlur}
                     onChange={handleUserNameChange}
                     value={userNameValue}
+                    required
                 />
                 {userNameHasError && <div className="text-red-600">Invalid Username</div>}
             </div>
@@ -66,6 +68,7 @@ export default function Register(){
                     onBlur={handleFirstNameBlur}
                     onChange={handleFirstNameChange}
                     value={firstNameValue}
+                    required
                 />
                 {firstNameHasError && <div className="text-red-600">Invalid Firstname</div>}
             </div>
@@ -81,6 +84,7 @@ export default function Register(){
                     onBlur={handleLastNameBlur}
                     onChange={handleLastNameChange}
                     value={lastNameValue}
+                    required
                 />
                 {lastNameHasError && <div className="text-red-600">Invalid Lastname</div>}
             </div>
@@ -94,6 +98,7 @@ export default function Register(){
                     onBlur={handleEmailBlur}
                     onChange={handleEmailChange}
                     value={emailValue}
+                    required
                 />
                 {emailHasError && <div className="text-red-600">Invalid Email</div>}
             </div>
@@ -107,6 +112,7 @@ export default function Register(){
                     onBlur={handlePasswordBlur}
                     onChange={handlePasswordChange}
                     value={passwordValue}
+                    required
                 />
                 {passwordHasError && <div className="text-red-600">Invalid Email</div>}
             </div>
@@ -122,6 +128,7 @@ export default function Register(){
                     onBlur={handlePasswordConfirmationBlur}
                     onChange={handlePasswordConfirmationChange}
                     value={passwordConfirmationValue}
+                    required
                 />
                 {passwordConfirmationHasError && <div className="text-red-600">Invalid Email</div>}
             </div>

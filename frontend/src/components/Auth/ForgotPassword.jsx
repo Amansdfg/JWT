@@ -5,8 +5,6 @@ import {useMutation} from "@tanstack/react-query";
 import {forgot} from "../../util/http.js"
 import Notification from "../UI/Notification.jsx";
 
-import Footer from "../Footer.jsx";
-import Header from "../Header/Header.jsx";
 export default function ForgotPassword() {
     const[email,setEmail]=useState('');
     const[notification,setNotification]=useState(

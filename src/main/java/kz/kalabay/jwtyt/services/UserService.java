@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setRoles(List.of(roleService.getUserRole()));
-        user.setPhoto("images/No-photo.png");
+        user.setPhoto("images/No-photo.gif");
         return userRepositories.save(user);
     }
     public User getByUsername(String username){
@@ -74,11 +74,14 @@ public class UserService implements UserDetailsService {
     public UserDto getUserByUsername(String username){
         return mapper.mapToDTO(userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found")));
     }
+//    public User findByEmail(String email) throws RuntimeException{
+//        return userRepositories.findByEmail(email).orElseThrow(()->new RuntimeException("Not found"));
+//    }
     public User getUserById(Long id){
         return userRepositories.findById(id).orElseThrow(()->new RuntimeException("Not found"));
     }
-    public SimpleUser getUserByIdDto(Long id){
-        return userSimpleDto.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
+    public UserDto getUserByIdDto(Long id){
+        return mapper.mapToDTO(userRepositories.findAllById(id).orElseThrow(()->new RuntimeException("Not found")));
     }
     public ResponseEntity<String> post(String username, Post post, MultipartFile file) {
         User user = userRepositories.findByUsername(username).orElseThrow(() -> new RuntimeException("Not found"));

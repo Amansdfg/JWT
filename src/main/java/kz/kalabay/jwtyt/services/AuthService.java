@@ -39,9 +39,14 @@ public class AuthService {
         if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(),"password and confirm password do not match"), HttpStatus.BAD_REQUEST);
         }
-        if(userService.findByUsername(userDto.getEmail()).isPresent()) {
+        if(userService.findByUsername(userDto.getUsername()).isPresent()) {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Username already exists"), HttpStatus.BAD_REQUEST);
         }
+//        try{
+//            userService.findByEmail(userDto.getEmail());
+//        }catch (RuntimeException e){
+//            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Email already exists"), HttpStatus.BAD_REQUEST);
+//        }
         User user=userService.createNewUser(userDto);
         return ResponseEntity.ok(new JwtUserDto(user.getId(),user.getUsername(),user.getEmail()));
     }
