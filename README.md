@@ -25,7 +25,7 @@ ChatGram is a social networking platform that allows users to chat, share posts,
 - Java 11 or later
 - Node.js and npm
 - PostgreSQL
-- Docker (optional, for containerized setup)
+- Docker
 
 ### Backend Setup
 
@@ -69,7 +69,10 @@ ChatGram is a social networking platform that allows users to chat, share posts,
 
 1. Build and run the containers:
     ```bash
-    docker-compose up --build
+    docker-compose start
+    ```
+     ```bash
+    docker-compose up
     ```
 
 ## Usage
