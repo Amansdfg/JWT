@@ -32,7 +32,6 @@ ChatGram is a social networking platform that allows users to chat, share posts,
 1. Clone the repository:
     ```bash
     git clone https://github.com/Amansdfg/JWT.git
-    cd chatgram/backend
     ```
 
 2. Configure the PostgreSQL database in `application.properties` or `application.yml`:
@@ -70,11 +69,9 @@ ChatGram is a social networking platform that allows users to chat, share posts,
 1. Build and run the containers:
     ```bash
     docker-compose start
-    ```
-     ```bash
     docker-compose up
     ```
-
+     
 ## Usage
 
 - Register a new account or log in with an existing account.
