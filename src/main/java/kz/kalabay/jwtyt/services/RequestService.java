@@ -21,6 +21,10 @@ public class RequestService {
     public String sendRequest(RequestDto requestDto, String username) {
         User sender=userService.getByUsername(username);
         User receiver=userService.getUserById(requestDto.getReceiverId());
+        Request exits=requestRepository.findAllBySenderAndReceiver(sender,receiver);
+        if(exits!=null){
+            return "All ready sent a request";
+        }
         if(sender!=null && receiver!=null) {
             Request request=new Request();
             request.setSender(sender);
@@ -50,6 +54,7 @@ public class RequestService {
         sender.setFriends(friends1);
         userService.saveUser(user);
         userService.saveUser(sender);
+        requestRepository.deleteAllBySenderAndReceiver(sender,user);
         return "Successfully added";
     }
 }
