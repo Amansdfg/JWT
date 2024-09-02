@@ -54,7 +54,10 @@ public class RequestService {
         sender.setFriends(friends1);
         userService.saveUser(user);
         userService.saveUser(sender);
-        requestRepository.deleteAllBySenderAndReceiver(sender,user);
+        Request request=requestRepository.findAllBySenderAndReceiver(sender,user);
+        if(request!=null){
+            requestRepository.delete(request);
+        }
         return "Successfully added";
     }
 }

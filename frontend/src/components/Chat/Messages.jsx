@@ -4,7 +4,6 @@ import {fetchChatUser, fetchFriend, fetchMessages, fetchUser} from "../../util/h
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import Loading from "../UI/Loading.jsx";
-import logo from "../../assets/No-photo.gif";
 import {time} from "../../util/validation.js";
 
 export default function Messages({id,user}){
@@ -79,7 +78,7 @@ export default function Messages({id,user}){
     } else if (friend) {
         friendContent = (
             <>
-                <img src={`http://localhost:8081/${friend.photo}`} className="h-24" alt="friend" />
+                <img src={`http://localhost:8081/${friend.photo}`} className="h-24 w-24 rounded-full object-cover" alt="friend" />
                 <span className="text-2xl">{friend.username}</span>
             </>
         );

@@ -8,6 +8,6 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findRequestsByReceiver_Id(Long receiverId);
     Request findAllBySenderAndReceiver(User sender,User receiver);
-    void deleteAllBySenderAndReceiver(User sender,User receiver);
+    void removeBySenderAndReceiver(User sender,User receiver);
 
 }

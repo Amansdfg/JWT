@@ -2,9 +2,7 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import {fetchUser, getRecommendation, sendRequest} from "../../util/http.js";
 import ErrorPage from "../../pages/ErrorPage.jsx";
 import Loading from "../UI/Loading.jsx";
-import logo from "../../assets/No-photo.gif";
 import React from "react";
-import {Link} from "react-router-dom";
 
 function Rec(){
     const { data: user, isLoading: userLoading, isError: userError } = useQuery({
@@ -33,14 +31,18 @@ function Rec(){
     }
     if(recData){
         content= recData.map(person=> (
-                <Link className="flex justify-center items-center" key={person.id} to={`profile/`+person.id}>
-                    <img className="w-8 h-8 object-cover rounded-full mr-2" src={`http://localhost:8081/${person.photo}`} alt="User"/>
-                    <div className="flex flex-col w-40">
-                        <span className="dark:text-white text-xl">{person.username}</span>
-                        <span className="dark:text-white truncate text-black/60">Recommendation for you</span>
-                    </div>
-                    <button className="text-blue-700" onClick={()=>handleRequest(user.id)}>send request</button>
-                </Link>
+                <div className="flex justify-center items-center" key={person.id}>
+                    <a href={`profile/` + person.id} className='flex justify-center items-center'>
+                        <img className="w-8 h-8 object-cover rounded-full mr-2"
+                             src={`http://localhost:8081/${person.photo}`}
+                             alt="User"/>
+                        <div className="flex flex-col w-40">
+                            <span className="dark:text-white text-xl">{person.username}</span>
+                            <span className="dark:text-white truncate text-black/60">Recommendation for you</span>
+                        </div>
+                    </a>
+                    <button className="text-blue-700" onClick={() => handleRequest(person.id)}>send request</button>
+                </div>
             )
         )
     }
