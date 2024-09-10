@@ -3,7 +3,7 @@ import telegram from "../../assets/telegram.svg"
 import linkedIn from "../../assets/linkedIn.svg"
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {changePhoto, fetchUser} from "../../util/http.js";
-import {useState} from "react";
+import React, {useState} from "react";
 import Modal from "../UI/Modal.jsx"
 import {Form} from "react-router-dom";
 export default function EditProfile(){
@@ -42,6 +42,7 @@ export default function EditProfile(){
                 <Modal onClose={handleModalPage}>
                     <Form encType="multipart/form-data">
                         <div className="w-[20rem] h-[20rem] flex flex-col justify-center items-center">
+                            <button className="fixed  top-2 right-2" onClick={handleModalPage}>Close</button>
                             <input
                                 className="border border-gray-300 rounded-lg p-2 mb-4"
                                 type="file" id="file" name="file" required
@@ -60,7 +61,7 @@ export default function EditProfile(){
             }
             <h1 className="text-2xl font-semibold mb-[40px]">Edit profile</h1>
             <div className="bg-white w-[700px] rounded-2xl flex px-6 py-4 items-center mb-[2rem]">
-                <img className="h-20 rounded-xl" src={`http://localhost:8081/${user.photo}`}/>
+                <img className="h-20 w-20 object-cover rounded-full" src={`http://localhost:8081/${user.photo}`}/>
                 <div className="flex flex-col ml-4">
                     <span className='text-2xl font-bold'>{user.username}</span>
                     <span>{user.firstName} {user.lastName}</span>

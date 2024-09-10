@@ -53,8 +53,8 @@ export default function ForgotPassword() {
                     <h1 className="uppercase px-3 text-gray-600 font-extrabold border-0 shrink-0 m-0 p-0 text-base">Or</h1>
                     <span className="h-[1px] bg-gray-600 top-[0.65rem] flex-1 relative"></span>
                 </div>
-                <Link to="/register" className="font-bold mt-4">Create new Account</Link>
-                <Link to="/login" className="mt-[80px] py-2 mb-4 border-2 bg-gray-50 rounded-xl">Back to login</Link>
+                <Link to="/auth/register" className="font-bold mt-4">Create new Account</Link>
+                <Link to="/auth/login" className="mt-[80px] py-2 mb-4 border-2 bg-gray-50 rounded-xl">Back to login</Link>
             </div>
         </section>
     );

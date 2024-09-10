@@ -28,6 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -125,9 +128,13 @@ public class UserService implements UserDetailsService {
         IndividualChat individualChat=repositoryIndChat.findById(id).orElseThrow(()->new RuntimeException("Not found"));
         return userSimpleDto.mapToDTO(individualChat.getUser1().getUsername().equals(username)?individualChat.getUser2():individualChat.getUser1());
     }
-    public String changePhoto(MultipartFile file, String username) {
+    public String changePhoto(MultipartFile file, String username) throws IOException {
         User user=userRepositories.findByUsername(username).orElseThrow(()->new RuntimeException("Not found"));
+        Path path = Paths.get("images/" + file.getOriginalFilename());
+        Files.createDirectories(path.getParent());
+        Files.write(path, file.getBytes());
         user.setPhoto("images/"+file.getOriginalFilename());
+
         userRepositories.save(user);
         return "Successfully changed photo";
     }

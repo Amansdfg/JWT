@@ -16,9 +16,7 @@ export async function action({ request }) {
     const file = data.get("file");
     if (file) {
         formData.append("file", file);
-        console.log("file: "+file)
     }
-    console.log(file)
 const token=getAuthToken();
     try {
 

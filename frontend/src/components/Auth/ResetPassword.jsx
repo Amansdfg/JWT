@@ -2,8 +2,6 @@ import {Link, useParams} from "react-router-dom";
 import {useState} from "react"
 import {useMutation} from "@tanstack/react-query";
 import {reset} from "../../util/http.js";
-import Footer from "../Footer.jsx";
-import Header from "../Header/Header.jsx";
 import Notification from "../UI/Notification.jsx";
 
 export default function ResetPassword(){

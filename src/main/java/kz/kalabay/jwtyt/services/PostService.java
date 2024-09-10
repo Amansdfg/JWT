@@ -30,8 +30,7 @@ public class PostService{
         if (file != null && !file.isEmpty()) {
             Path path = Paths.get(UPLOAD_DIR + file.getOriginalFilename());
             Files.createDirectories(path.getParent());
-            Files.write(path, file.getBytes());
-            System.out.println(path);
+            Files.write(path, file.getBytes());//
             post.setPhotoUrl(UPLOAD_DIR + file.getOriginalFilename());
             postRepository.save(post);
         }else{

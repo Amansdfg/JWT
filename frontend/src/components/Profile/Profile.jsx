@@ -64,7 +64,7 @@ function Profile() {
     function handleShare(url) {
         if (navigator.share) {
             navigator.share({
-                title: 'Share this post',
+                title: 'Shared this post',
                 url: url
             }).catch(console.error);
         } else {
@@ -106,7 +106,7 @@ function Profile() {
                                 </Link>
                             }
 
-                            <NavLink to="/settings"><img src={settings} alt="Settings" className="w-6 h-6 ring-white fill-white accent-white text-white  caret-white decoration-white stroke-white via-white to-white ring-offset-white outline-white divide-white" /></NavLink>
+                            { !param.id && <NavLink to="/settings"><img src={settings} alt="Settings" className="w-6 h-6 ring-white fill-white accent-white text-white  caret-white decoration-white stroke-white via-white to-white ring-offset-white outline-white divide-white" /></NavLink>}
                         </div>
                         <div className="flex gap-6">
                             <Link className="text-sm sm:text-md md:text-lg lg:text-xl dark:text-white" to="/profile">{data.posts.length} Posts</Link>
@@ -150,7 +150,7 @@ function Profile() {
                         }
                         <div className="ml-8">
                             <div className="flex gap-3 items-center">
-                                <img className='h-10 rounded-full' src={data.photo ?? photo} alt={data.id}/>
+                                <img className='h-10 w-10 rounded-full' src={`http://localhost:8081/${data.photo}`} alt={data.id}/>
                                 <span>{data.username}</span>
                                 <button onClick={()=>modalDetailsGoi(modalPage)}>...</button>
                             </div>
@@ -163,7 +163,8 @@ function Profile() {
             )}
             {modalDetails &&
                 <Modal onClose={closeModalDetails}
-                       classes="top-1/2 transform -translate-y-1/2 w-[40%] flex flex-col divide-y-2 divide-black/40">
+                       classes=" top-[50%] transform -translate-y-1/2 w-[40%]  flex  flex-col divide-y-2 divide-black/40">
+
                     <button className="p-2"
                             onClick={() => handleShare(`http://localhost:8081/${modalPage.photoUrl}`)}>Share
                     </button>

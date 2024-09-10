@@ -20,7 +20,6 @@ import AboutUs from "./components/AboutUs.jsx";
 import ChangePassword from "./components/settings/ChangePassword.jsx";
 import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import ResetPassword from "./components/Auth/ResetPassword.jsx";
-import * as path from "node:path";
 const router = createBrowserRouter([
     {
         path: '/',
